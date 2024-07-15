@@ -6,3 +6,7 @@
   font-family: 'nunito';
   src: url('./fonts/Nunito-VariableFont_wght.ttf');
 }
+
+.navLink:hover + .navAnimation {
+  @apply opacity-100;
+}
