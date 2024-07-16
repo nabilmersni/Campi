@@ -28,7 +28,7 @@ function LinkBtn({ to, type, children }) {
       >
         <NavLink
           to={to}
-          className="navLink relative z-20 w-16 rounded-full text-lg font-bold text-slate-300 transition-all hover:text-[#fefdff]"
+          className="navLink relative z-20 w-16 rounded-full font-bold text-slate-300 transition-all hover:text-[#fefdff]"
         >
           <span className="flex min-w-16 items-center justify-center">
             {children}
@@ -50,7 +50,7 @@ function LinkBtn({ to, type, children }) {
     return (
       <NavLink
         to={to}
-        className="navLink relative z-20 w-16 rounded-full text-lg font-bold text-slate-300 transition-all hover:text-[#fefdff]"
+        className="navLink relative z-20 w-16 rounded-full font-bold text-slate-300 transition-all hover:text-[#fefdff]"
       >
         {children}
       </NavLink>
@@ -61,7 +61,7 @@ function LinkBtn({ to, type, children }) {
     return (
       <NavLink
         to={to}
-        className="rounded-full bg-primary-light px-6 py-[.6rem] text-lg font-extrabold text-primary transition-all hover:bg-secondary"
+        className="rounded-full bg-primary-light px-6 py-[.6rem] font-extrabold text-primary transition-all hover:bg-secondary"
       >
         {children}
       </NavLink>

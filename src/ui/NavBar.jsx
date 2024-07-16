@@ -9,14 +9,26 @@ import burgerBtnAnimation from '../assets/lottiesAnimations/burgerBtnAnimation.j
 function NavBar() {
   const burgerBtnRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoop, setIsLoop] = useState(false);
 
   const handleBurgerBtnClick = () => {
+    setIsLoop(false);
     if (burgerBtnRef.current) {
       if (!isOpen) {
-        burgerBtnRef.current.playSegments([0, 98], true);
+        burgerBtnRef.current.playSegments(
+          [burgerBtnRef.current.animationItem.currentRawFrame, 98],
+          true,
+        );
         setIsOpen(true);
       } else {
-        burgerBtnRef.current.playSegments([141, 229], true);
+        burgerBtnRef.current.playSegments(
+          [
+            !isLoop ? burgerBtnRef.current.animationItem.currentRawFrame : 98,
+            0,
+          ],
+          true,
+        );
+
         setIsOpen(false);
       }
     }
@@ -24,6 +36,7 @@ function NavBar() {
 
   const handleBurgerLoop = () => {
     if (isOpen) burgerBtnRef.current.playSegments([98, 141], true);
+    if (!isLoop) setIsLoop(true);
   };
 
   return (
