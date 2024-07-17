@@ -1,8 +1,10 @@
+import { motion, useAnimation } from 'framer-motion';
+import { useEffect } from 'react';
 import NavBar from 'src/ui/NavBar';
 
 function LandingPage() {
   return (
-    <div>
+    <div className="relative h-dvh w-full overflow-hidden">
       <NavBar />
     </div>
   );

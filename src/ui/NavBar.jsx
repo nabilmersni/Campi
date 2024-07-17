@@ -1,50 +1,15 @@
-import { useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import Lottie from 'lottie-react';
 
 import LinkBtn from './LinkBtn';
 import campFireAnimation from '../assets/lottiesAnimations/camp-fire-2.json';
-import burgerBtnAnimation from '../assets/lottiesAnimations/burgerBtnAnimation.json';
+import CollapsedNavBar from './CollapsedNavBar';
+import Logo from './Logo';
 
 function NavBar() {
-  const burgerBtnRef = useRef();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLoop, setIsLoop] = useState(false);
-
-  const handleBurgerBtnClick = () => {
-    setIsLoop(false);
-    if (burgerBtnRef.current) {
-      if (!isOpen) {
-        burgerBtnRef.current.playSegments(
-          [burgerBtnRef.current.animationItem.currentRawFrame, 98],
-          true,
-        );
-        setIsOpen(true);
-      } else {
-        burgerBtnRef.current.playSegments(
-          [
-            !isLoop ? burgerBtnRef.current.animationItem.currentRawFrame : 98,
-            0,
-          ],
-          true,
-        );
-
-        setIsOpen(false);
-      }
-    }
-  };
-
-  const handleBurgerLoop = () => {
-    if (isOpen) burgerBtnRef.current.playSegments([98, 141], true);
-    if (!isLoop) setIsLoop(true);
-  };
-
   return (
-    <nav className="relative bg-primary-dark">
-      <div className="mx-auto flex max-w-[86rem] items-center justify-between px-6 py-4">
-        <NavLink to={'/'} className="mr-auto">
-          <img className="w-12 lg:w-14" src="img/navLogo.svg" alt="" />
-        </NavLink>
+    <nav className="relative h-[4.5rem] justify-between bg-primary-dark">
+      <div className="mx-auto flex h-full max-w-[86rem] items-center justify-between px-6">
+        <Logo />
 
         <div className="hidden items-center gap-14 lg:flex">
           <ul className="flex items-center gap-6">
@@ -90,19 +55,7 @@ function NavBar() {
           </div>
         </div>
 
-        <div
-          onClick={handleBurgerBtnClick}
-          className="cursor-pointer lg:hidden"
-        >
-          <Lottie
-            className="w-14"
-            loop={false}
-            animationData={burgerBtnAnimation}
-            autoplay={false}
-            lottieRef={burgerBtnRef}
-            onComplete={handleBurgerLoop}
-          />
-        </div>
+        <CollapsedNavBar />
       </div>
     </nav>
   );
