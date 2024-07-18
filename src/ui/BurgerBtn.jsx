@@ -1,11 +1,17 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 
 import burgerBtnAnimation from '../assets/lottiesAnimations/burgerBtnAnimation.json';
 import Lottie from 'lottie-react';
+import { NavBarContext } from 'src/context/NavBarContext';
+import {
+  hideNavLogoVars,
+  showNavLogoVars,
+} from 'src/utils/FramerMotionVariants';
 
-function BurgerBtn({ isOpen, setIsOpen }) {
+function BurgerBtn() {
   const burgerBtnRef = useRef();
   const [isLoop, setIsLoop] = useState(false);
+  const { isOpen, setIsOpen, navLogoControls } = useContext(NavBarContext);
 
   const handleBurgerBtnClick = () => {
     setIsLoop(false);
@@ -16,6 +22,7 @@ function BurgerBtn({ isOpen, setIsOpen }) {
           true,
         );
         setIsOpen(true);
+        navLogoControls.start(showNavLogoVars);
       } else {
         burgerBtnRef.current.playSegments(
           [
@@ -24,8 +31,8 @@ function BurgerBtn({ isOpen, setIsOpen }) {
           ],
           true,
         );
-
         setIsOpen(false);
+        navLogoControls.start(hideNavLogoVars);
       }
     }
   };

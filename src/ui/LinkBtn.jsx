@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Lottie from 'lottie-react';
 
 import campFire from '../assets/lottiesAnimations/camp-firee.json';
+import campFire2 from '../assets/lottiesAnimations/camp-fire-2.json';
 
 function LinkBtn({ to, type, children }) {
   const lottieRef = useRef(null);
@@ -36,8 +37,35 @@ function LinkBtn({ to, type, children }) {
         </NavLink>
 
         <Lottie
-          className="navAnimation absolute bottom-0 left-0 right-0 top-0 z-10 m-auto h-16 w-16 origin-bottom opacity-0"
+          className="navAnimation absolute bottom-0 left-0 right-0 top-0 z-10 m-auto h-16 w-16 origin-bottom opacity-0 transition-all duration-200"
           animationData={campFire}
+          loop={true}
+          autoPlay={false}
+          lottieRef={lottieRef}
+        />
+      </li>
+    );
+  }
+
+  if (type === 'navBarLinkCollapsed') {
+    return (
+      <li
+        className="relative"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <NavLink
+          to={to}
+          className="navLink relative z-20 w-16 rounded-full text-2xl font-bold text-slate-300 transition-all hover:text-[#fefdff]"
+        >
+          <span className="flex min-w-24 items-center justify-center">
+            {children}
+          </span>
+        </NavLink>
+
+        <Lottie
+          className="navAnimation absolute bottom-4 left-0 right-0 top-0 z-10 m-auto size-24 origin-bottom opacity-0 transition-all duration-200"
+          animationData={campFire2}
           loop={true}
           autoPlay={false}
           lottieRef={lottieRef}

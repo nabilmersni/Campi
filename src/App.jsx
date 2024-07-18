@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import LandingPage from './pages/LandingPage';
+import NavBarProvider from './context/NavBarContext';
 
 const router = createBrowserRouter([
   {
@@ -11,8 +12,10 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className="font-nunito">
-      <RouterProvider router={router} />
+    <div className="overflow-hidden font-nunito">
+      <NavBarProvider>
+        <RouterProvider router={router} />
+      </NavBarProvider>
     </div>
   );
 }
