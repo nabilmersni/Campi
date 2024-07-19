@@ -5,7 +5,7 @@ import Lottie from 'lottie-react';
 import campFire from '../assets/lottiesAnimations/camp-firee.json';
 import campFire2 from '../assets/lottiesAnimations/camp-fire-2.json';
 
-function LinkBtn({ to, type, children }) {
+function LinkBtn({ to, type, children, size = 1 }) {
   const lottieRef = useRef(null);
 
   const handleMouseEnter = () => {
@@ -86,10 +86,16 @@ function LinkBtn({ to, type, children }) {
   }
 
   if (type === 'hero') {
+    const sizeVarinats = {
+      1: 'px-[1.5rem] py-[.6rem] text-[1rem] ',
+      2: 'px-[1.8rem] py-[.8rem] text-[1.4rem]',
+      3: 'px-[4.5rem] py-[1.8rem] text-[3rem]',
+    };
+
     return (
       <NavLink
         to={to}
-        className="rounded-full bg-primary-light px-6 py-[.6rem] font-extrabold text-primary transition-all hover:bg-secondary"
+        className={`rounded-full bg-primary-light ${sizeVarinats[size]} font-extrabold text-primary transition-all hover:bg-secondary`}
       >
         {children}
       </NavLink>

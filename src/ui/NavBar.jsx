@@ -7,7 +7,7 @@ import Logo from './Logo';
 
 function NavBar() {
   return (
-    <nav className="fixed left-0 top-0 h-[4.5rem] w-full bg-primary-dark">
+    <nav className="fixed left-0 top-0 z-50 h-[4.5rem] w-full bg-primary-dark">
       <div className="mx-auto flex h-full max-w-[86rem] items-center justify-between px-6">
         <Logo />
 

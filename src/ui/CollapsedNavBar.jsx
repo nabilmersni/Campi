@@ -14,15 +14,12 @@ function CollapsedNavBar() {
     visible: {
       transition: {
         staggerChildren: 0.15,
-        delay: 0.5,
+        delayChildren: 0.1,
       },
     },
     exit: {
       x: -30,
       opacity: 0,
-      transition: {
-        type: 'spring',
-      },
     },
   };
 
@@ -78,14 +75,14 @@ function CollapsedNavBar() {
 
       <AnimatePresence>
         {isOpen && (
-          <div className="absolute left-0 top-0 z-30 flex h-dvh w-full flex-col items-center justify-end overflow-auto">
-            <motion.ul
-              className="mt-[20%] flex h-dvh flex-col items-center justify-center gap-10 overflow-auto"
-              variants={parentVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            >
+          <motion.div
+            className="absolute left-0 top-0 z-30 flex h-dvh w-full flex-col items-center justify-end"
+            variants={parentVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            <ul className="mt-[20%] flex h-dvh flex-col items-center justify-center gap-10 overflow-y-auto overflow-x-hidden">
               <motion.div variants={childVariants}>
                 <LinkBtn type={'navBarLinkCollapsed'} to={'/'}>
                   <span>Home</span>
@@ -110,9 +107,15 @@ function CollapsedNavBar() {
                 </LinkBtn>
               </motion.div>
 
-              <div className="size-2 rounded-full bg-primary-light"></div>
+              <motion.div
+                className="size-2 rounded-full bg-primary-light"
+                variants={childVariants}
+              ></motion.div>
 
-              <div className="flex items-center gap-4">
+              <motion.div
+                className="flex items-center gap-4"
+                variants={childVariants}
+              >
                 <LinkBtn type={'hero'} to={'/login'}>
                   Login
                 </LinkBtn>
@@ -126,9 +129,9 @@ function CollapsedNavBar() {
                 <LinkBtn type={'hero'} to={'/signup'}>
                   Sign up
                 </LinkBtn>
-              </div>
-            </motion.ul>
-          </div>
+              </motion.div>
+            </ul>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

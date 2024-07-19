@@ -13,6 +13,9 @@ export default {
         'secondary': '#DEFEE6',
         'black-light': "#1C315E"
       },
+      screens: {
+        'xlg': '1536px',
+      }
     },
   },
   plugins: [],
