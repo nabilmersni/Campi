@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'nunito';
-  src: url('./fonts/Nunito-VariableFont_wght.ttf');
+  src: url('/fonts/Nunito-VariableFont_wght.ttf') format('truetype');
 }
 
 .navLink:hover + .navAnimation {

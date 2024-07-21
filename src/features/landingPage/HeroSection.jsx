@@ -8,8 +8,11 @@ import plantAnimation from '../../assets/lottiesAnimations/header-plants-2.json'
 
 function HeroSection() {
   return (
-    <section className="relative h-dvh max-h-[55rem] bg-primary-dark p-5 lg:px-[10rem] lg:pr-0">
-      <div className="relative z-10 mx-auto hidden h-full max-w-[86rem] items-center justify-between gap-8 lg:flex">
+    <section
+      id="home"
+      className="relative h-[100vh] max-h-[55rem] bg-primary-dark p-5 lg:px-[10rem] lg:pr-0"
+    >
+      <div className="relative z-10 mx-auto hidden h-full max-w-[86rem] gap-8 lg:flex lg:items-center lg:justify-between">
         {/* left */}
         <div className="flex-1">
           <div className="mb-8 flex w-fit flex-1 flex-col">
@@ -92,9 +95,9 @@ function HeroSection() {
         </a>
       </div>
 
-      <div className="xlg:bottom-[-25rem] absolute bottom-[-4rem] left-0 right-0 flex w-full justify-center md:bottom-[-12rem] lg:bottom-[-20vw]">
+      <div className="absolute bottom-[-4rem] left-0 right-0 flex w-full justify-center md:bottom-[-12rem] lg:bottom-[-20vw] xlg:bottom-[-22rem]">
         <Lottie
-          className="w-max-[600rem]"
+          className="max-w-[100rem]"
           animationData={plantAnimation}
           loop={true}
           autoPlay={true}

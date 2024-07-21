@@ -1,12 +1,17 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
 import Lottie from 'lottie-react';
 
 import campFire from '../assets/lottiesAnimations/camp-firee.json';
 import campFire2 from '../assets/lottiesAnimations/camp-fire-2.json';
+import { NavBarContext } from 'src/context/NavBarContext';
+import { hideNavLogoVars } from 'src/utils/FramerMotionVariants';
 
 function LinkBtn({ to, type, children, size = 1 }) {
   const lottieRef = useRef(null);
+  const { setIsOpen, navLogoControls, burgerBtnRef } =
+    useContext(NavBarContext);
 
   const handleMouseEnter = () => {
     if (lottieRef.current) {
@@ -27,14 +32,19 @@ function LinkBtn({ to, type, children, size = 1 }) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <NavLink
+        <ScrollLink
+          activeClass="active"
           to={to}
-          className="navLink relative z-20 w-16 rounded-full font-bold text-slate-300 transition-all hover:text-[#fefdff]"
+          spy={true}
+          smooth={true}
+          offset={to === 'values' ? 200 : -70}
+          duration={500}
+          className="navLink relative z-20 w-16 cursor-pointer rounded-full font-bold text-slate-300 transition-all hover:text-[#fefdff]"
         >
           <span className="flex min-w-16 items-center justify-center">
             {children}
           </span>
-        </NavLink>
+        </ScrollLink>
 
         <Lottie
           className="navAnimation absolute bottom-0 left-0 right-0 top-0 z-10 m-auto h-16 w-16 origin-bottom opacity-0 transition-all duration-200"
@@ -54,14 +64,26 @@ function LinkBtn({ to, type, children, size = 1 }) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <NavLink
+        <ScrollLink
           to={to}
+          activeClass="active"
+          spy={true}
+          smooth={true}
+          offset={-70}
+          duration={500}
           className="navLink relative z-20 w-16 rounded-full text-2xl font-bold text-slate-300 transition-all hover:text-[#fefdff]"
         >
-          <span className="flex min-w-24 items-center justify-center">
+          <span
+            className="flex min-w-24 items-center justify-center"
+            onClick={() => {
+              setIsOpen(false);
+              navLogoControls.start(hideNavLogoVars);
+              burgerBtnRef.current.playSegments([98, 0], true);
+            }}
+          >
             {children}
           </span>
-        </NavLink>
+        </ScrollLink>
 
         <Lottie
           className="navAnimation absolute bottom-4 left-0 right-0 top-0 z-10 m-auto size-24 origin-bottom opacity-0 transition-all duration-200"
@@ -95,7 +117,7 @@ function LinkBtn({ to, type, children, size = 1 }) {
     return (
       <NavLink
         to={to}
-        className={`rounded-full bg-primary-light ${sizeVarinats[size]} font-extrabold text-primary transition-all hover:bg-secondary`}
+        className={`rounded-full bg-primary-light ${sizeVarinats[size]} min-w-[7rem] text-center font-extrabold text-primary transition-all hover:bg-secondary`}
       >
         {children}
       </NavLink>

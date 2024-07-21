@@ -14,9 +14,9 @@ export const colapsedShapeVars = {
 };
 
 export const showNavLogoVars = {
-    x: '-80%',
-    width: ["2rem", "4rem"],
-    height: ["2rem", "4rem"],
+    x: '-95%',
+    width: ["2rem", "3.5rem"],
+    height: ["2rem", "3.5rem"],
     top: "10vh",
     left: "50vw",
     fill: "#E5E0FF",
@@ -39,5 +39,27 @@ export const hideNavLogoVars = {
         duration: 1,
         type: "spring",
         staggerChildren: 0.1,
+    },
+};
+
+export const CollapsedNavBarParentVariants = {
+    visible: {
+        transition: {
+            staggerChildren: 0.15,
+            delayChildren: 0.1,
+        },
+    },
+    exit: {
+        x: -30,
+        opacity: 0,
+    },
+};
+
+export const CollapsedNavBarChildVariants = {
+    hidden: { x: -20, opacity: 0 },
+    visible: {
+        x: 0,
+        opacity: 1,
+        transition: {},
     },
 };

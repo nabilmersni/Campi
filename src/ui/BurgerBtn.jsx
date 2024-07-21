@@ -9,9 +9,10 @@ import {
 } from 'src/utils/FramerMotionVariants';
 
 function BurgerBtn() {
-  const burgerBtnRef = useRef();
+  // const burgerBtnRef = useRef();
   const [isLoop, setIsLoop] = useState(false);
-  const { isOpen, setIsOpen, navLogoControls } = useContext(NavBarContext);
+  const { isOpen, setIsOpen, navLogoControls, burgerBtnRef } =
+    useContext(NavBarContext);
 
   const handleBurgerBtnClick = () => {
     setIsLoop(false);

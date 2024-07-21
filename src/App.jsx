@@ -12,7 +12,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className="overflow-hidden font-nunito">
+    <div className="overflow-hidden scroll-smooth font-nunito">
       <NavBarProvider>
         <RouterProvider router={router} />
       </NavBarProvider>

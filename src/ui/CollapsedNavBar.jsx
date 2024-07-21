@@ -6,31 +6,13 @@ import { NavBarContext } from 'src/context/NavBarContext';
 import BurgerBtn from './BurgerBtn';
 import LinkBtn from './LinkBtn';
 import campFire from '../assets/lottiesAnimations/camp-fire-2.json';
+import {
+  CollapsedNavBarChildVariants,
+  CollapsedNavBarParentVariants,
+} from 'src/utils/FramerMotionVariants';
 
 function CollapsedNavBar() {
   const { isOpen } = useContext(NavBarContext);
-
-  const parentVariants = {
-    visible: {
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-    exit: {
-      x: -30,
-      opacity: 0,
-    },
-  };
-
-  const childVariants = {
-    hidden: { x: -20, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: {},
-    },
-  };
 
   return (
     <div>
@@ -77,31 +59,31 @@ function CollapsedNavBar() {
         {isOpen && (
           <motion.div
             className="absolute left-0 top-0 z-30 flex h-dvh w-full flex-col items-center justify-end"
-            variants={parentVariants}
+            variants={CollapsedNavBarParentVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
           >
-            <ul className="mt-[20%] flex h-dvh flex-col items-center justify-center gap-10 overflow-y-auto overflow-x-hidden">
-              <motion.div variants={childVariants}>
-                <LinkBtn type={'navBarLinkCollapsed'} to={'/'}>
+            <ul className="mt-[20%] flex h-[100vh] w-full flex-col items-center justify-center gap-10 overflow-y-auto overflow-x-hidden">
+              <motion.div variants={CollapsedNavBarChildVariants}>
+                <LinkBtn type={'navBarLinkCollapsed'} to={'home'}>
                   <span>Home</span>
                 </LinkBtn>
               </motion.div>
 
-              <motion.div variants={childVariants}>
-                <LinkBtn type={'navBarLinkCollapsed'} to={'/'}>
+              <motion.div variants={CollapsedNavBarChildVariants}>
+                <LinkBtn type={'navBarLinkCollapsed'} to={'values'}>
                   Our Values
                 </LinkBtn>
               </motion.div>
 
-              <motion.div variants={childVariants}>
+              <motion.div variants={CollapsedNavBarChildVariants}>
                 <LinkBtn type={'navBarLinkCollapsed'} to={'/'}>
                   Events
                 </LinkBtn>
               </motion.div>
 
-              <motion.div variants={childVariants}>
+              <motion.div variants={CollapsedNavBarChildVariants}>
                 <LinkBtn type={'navBarLinkCollapsed'} to={'/'}>
                   Shop
                 </LinkBtn>
@@ -109,19 +91,19 @@ function CollapsedNavBar() {
 
               <motion.div
                 className="size-2 rounded-full bg-primary-light"
-                variants={childVariants}
+                variants={CollapsedNavBarChildVariants}
               ></motion.div>
 
               <motion.div
                 className="flex items-center gap-4"
-                variants={childVariants}
+                variants={CollapsedNavBarChildVariants}
               >
                 <LinkBtn type={'hero'} to={'/login'}>
-                  Login
+                  <span className="w-[30rem]">Login</span>
                 </LinkBtn>
 
                 <Lottie
-                  className="size-20"
+                  className="hidden size-20 xsm:block"
                   animationData={campFire}
                   loop={true}
                 />

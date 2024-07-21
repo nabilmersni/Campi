@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        "nunito": ["nunito", "sans-serif"]
+        nunito: ['Nunito', 'sans-serif'],
       },
       colors: {
         'primary': '#7262AF',
@@ -14,6 +14,7 @@ export default {
         'black-light': "#1C315E"
       },
       screens: {
+        'xsm': '370px',
         'xlg': '1536px',
       }
     },

@@ -13,7 +13,7 @@ function NavBar() {
 
         <div className="hidden items-center gap-14 lg:flex">
           <ul className="flex items-center gap-6">
-            <LinkBtn type={'navBarLink'} to={'/'}>
+            <LinkBtn type={'navBarLink'} to={'home'}>
               Home
             </LinkBtn>
             <Lottie
@@ -21,7 +21,7 @@ function NavBar() {
               animationData={campFireAnimation}
               loop={true}
             />
-            <LinkBtn type={'navBarLink'} to={'/'}>
+            <LinkBtn type={'navBarLink'} to={'values'}>
               Our Values
             </LinkBtn>
             <Lottie
