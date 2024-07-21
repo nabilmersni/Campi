@@ -1,6 +1,6 @@
 import Lottie from 'lottie-react';
 
-function ValueItem({ title, description, animation, isSolar }) {
+function ValueItem({ title, description, animation }) {
   return (
     <div className="flex flex-col items-center">
       <div className="flex w-fit flex-col items-center">

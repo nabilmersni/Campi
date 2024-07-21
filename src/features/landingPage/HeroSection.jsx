@@ -50,16 +50,16 @@ function HeroSection() {
       {/* small */}
       <div className="relative z-10 mx-auto flex h-full max-w-[86rem] flex-col items-center justify-start gap-8 pt-14 lg:hidden">
         {/* left */}
-        <div className="relative z-10 flex max-w-[19rem] flex-col items-center justify-center px-4 sm:max-w-[25rem]">
+        <div className="relative z-10 flex max-w-[25rem] flex-col items-center justify-center px-4 sm:max-w-[25rem]">
           <div className="mb-8 flex w-fit flex-1 flex-col">
             <h1 className="text-[5rem] font-bold leading-tight text-primary-light sm:text-[6rem]">
               Campi
             </h1>
-            <p className="self-center text-[1rem] font-bold text-primary-light">
+            <p className="self-center text-[1.1rem] font-bold text-primary-light">
               A home away from home
             </p>
           </div>
-          <p className="text-center text-[1rem] font-semibold text-primary-light">
+          <p className="font- text-center text-[1rem] text-primary-light">
             Discover the ultimate camping experience with us. Join exciting
             events and explore our e-shop for top-quality camping gear.we have
             everything you need to make your camping trips unforgettable.
