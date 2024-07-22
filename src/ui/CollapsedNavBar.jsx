@@ -78,7 +78,7 @@ function CollapsedNavBar() {
               </motion.div>
 
               <motion.div variants={CollapsedNavBarChildVariants}>
-                <LinkBtn type={'navBarLinkCollapsed'} to={'/'}>
+                <LinkBtn type={'navBarLinkCollapsed'} to={'events'}>
                   Events
                 </LinkBtn>
               </motion.div>

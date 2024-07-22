@@ -11,7 +11,8 @@ export default {
         'primary-dark': '#3A3D64',
         'primary-light': '#E5E0FF',
         'secondary': '#DEFEE6',
-        'black-light': "#1C315E"
+        'black-light': "#1C315E",
+        'white-light': "#F5F1F6"
       },
       screens: {
         'xsm': '370px',

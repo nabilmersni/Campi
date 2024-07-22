@@ -12,7 +12,7 @@ function OurValuesSection() {
   return (
     <section
       id="values"
-      className="relative mx-auto max-w-[86rem] p-5 pt-[5.5rem] sm:pt-[15vw] md:pt-[27vw] lg:pt-[25vw] xlg:pt-[27rem]"
+      className="p-5 pt-[5.5rem] sm:pt-[15vw] md:pt-[27vw] lg:pt-[25vw] xlg:pt-[27rem]"
     >
       <div className="flex flex-col items-center">
         <div>

@@ -14,7 +14,7 @@ export const colapsedShapeVars = {
 };
 
 export const showNavLogoVars = {
-    x: '-95%',
+    x: '-87%',
     width: ["2rem", "3.5rem"],
     height: ["2rem", "3.5rem"],
     top: "10vh",

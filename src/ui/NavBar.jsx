@@ -29,7 +29,7 @@ function NavBar() {
               animationData={campFireAnimation}
               loop={true}
             />
-            <LinkBtn type={'navBarLink'} to={'/'}>
+            <LinkBtn type={'navBarLink'} to={'events'}>
               Events
             </LinkBtn>
             <Lottie

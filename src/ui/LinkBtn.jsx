@@ -37,7 +37,7 @@ function LinkBtn({ to, type, children, size = 1 }) {
           to={to}
           spy={true}
           smooth={true}
-          offset={to === 'values' ? 200 : -70}
+          offset={to === 'values' ? 250 : -110}
           duration={500}
           className="navLink relative z-20 w-16 cursor-pointer rounded-full font-bold text-slate-300 transition-all hover:text-[#fefdff]"
         >
@@ -118,6 +118,40 @@ function LinkBtn({ to, type, children, size = 1 }) {
       <NavLink
         to={to}
         className={`rounded-full bg-primary-light ${sizeVarinats[size]} min-w-[7rem] text-center font-extrabold text-primary transition-all hover:bg-secondary`}
+      >
+        {children}
+      </NavLink>
+    );
+  }
+
+  if (type === 'primaryLight') {
+    const sizeVarinats = {
+      1: 'px-[1.2rem] py-[.6rem] text-[1rem] ',
+      2: 'px-[1.8rem] py-[.8rem] text-[1.4rem]',
+      3: 'px-[4.5rem] py-[1.8rem] text-[3rem]',
+    };
+
+    return (
+      <NavLink
+        to={to}
+        className={`rounded-full bg-primary-light ${sizeVarinats[size]} text-center font-extrabold text-primary transition-all hover:bg-[#d3caff]`}
+      >
+        {children}
+      </NavLink>
+    );
+  }
+
+  if (type === 'primary') {
+    const sizeVarinats = {
+      1: 'px-[1.2rem] py-[.6rem] text-[1rem] ',
+      2: 'px-[1.8rem] py-[.8rem] text-[1.1rem]',
+      3: 'px-[4.5rem] py-[1.8rem] text-[3rem]',
+    };
+
+    return (
+      <NavLink
+        to={to}
+        className={`rounded-full bg-primary ${sizeVarinats[size]} text-center font-extrabold text-white transition-all hover:bg-[#8b7bcb]`}
       >
         {children}
       </NavLink>
