@@ -25,7 +25,7 @@ function EventsSection() {
         </p>
         <div className="mx-auto my-5 h-1 w-20 rounded-full bg-primary opacity-50"></div>
 
-        <div className="mb-16 mt-16 flex flex-wrap items-center justify-center gap-4 gap-y-10 lg:gap-x-24">
+        <div className="mb-12 mt-16 flex flex-wrap items-center justify-center gap-4 gap-y-10 sm:mb-16 lg:gap-x-24">
           <EventItemCard img={'/img/camp1.jpg'} />
           <EventItemCard img={'/img/camp2.jpg'} />
           <EventItemCard img={'/img/camp3.jpg'} />

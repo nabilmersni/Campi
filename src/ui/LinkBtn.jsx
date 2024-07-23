@@ -129,6 +129,7 @@ function LinkBtn({ to, type, children, size = 1 }) {
       1: 'px-[1.2rem] py-[.6rem] text-[1rem] ',
       2: 'px-[1.8rem] py-[.8rem] text-[1.4rem]',
       3: 'px-[4.5rem] py-[1.8rem] text-[3rem]',
+      4: 'px-[1.1rem] py-[.4rem] text-[1rem]',
     };
 
     return (

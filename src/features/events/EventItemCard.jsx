@@ -2,7 +2,7 @@ import LinkBtn from 'src/ui/LinkBtn';
 
 function EventItemCard({ img }) {
   return (
-    <div className="bg-white-light flex min-h-[20rem] flex-col items-center rounded-[3rem] border-[.2rem] border-primary p-3 sm:min-w-[23rem]">
+    <div className="flex min-h-[20rem] flex-col items-center rounded-[3rem] border-[.2rem] border-primary bg-white-light p-3 sm:min-w-[23rem]">
       <div className="mb-2 h-[10rem] w-full rounded-[2rem]">
         <img
           src={img}
