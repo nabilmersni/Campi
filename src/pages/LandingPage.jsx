@@ -5,6 +5,7 @@ import OurValuesSection from 'src/features/landingPage/OurValuesSection';
 import NavBar from 'src/ui/NavBar';
 import ShopSection from 'src/features/landingPage/ShopSection';
 import ContactUsSection from 'src/features/landingPage/ContactUsSection';
+import Footer from 'src/features/landingPage/Footer';
 
 function LandingPage() {
   useScrollPositionHistory();
@@ -18,6 +19,7 @@ function LandingPage() {
         <ShopSection />
       </main>
       <ContactUsSection />
+      <Footer />
     </div>
   );
 }

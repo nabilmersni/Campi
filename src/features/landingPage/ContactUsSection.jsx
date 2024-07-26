@@ -6,7 +6,7 @@ import Button from 'src/ui/Button';
 
 function ContactUsSection() {
   return (
-    <section className="mt-[-2rem] flex min-h-[80rem] flex-col items-center px-4">
+    <section className="mt-[-2rem] flex flex-col items-center px-4">
       <div className="flex flex-col items-center">
         <Lottie
           animationData={contactAnimation}

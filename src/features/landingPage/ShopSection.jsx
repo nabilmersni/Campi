@@ -27,11 +27,11 @@ function ShopSection() {
       <div className="relative mt-4 flex w-full flex-col items-center justify-center rounded-[1.5rem] border-[.15rem] border-primary p-7 pt-16 sm:mt-9 sm:rounded-[3rem] sm:pt-32 md:mt-12 lg:mt-20">
         <div className="mb-7 flex flex-wrap items-center justify-center gap-4 gap-y-10 sm:mb-16 lg:gap-x-20">
           <ShopItemCard img={'/img/tent.png'} />
+          <ShopItemCard img={'/img/backpack.png'} />
+          <ShopItemCard img={'/img/sleepBag.png'} />
           <ShopItemCard img={'/img/tent.png'} />
-          <ShopItemCard img={'/img/tent.png'} />
-          <ShopItemCard img={'/img/tent.png'} />
-          <ShopItemCard img={'/img/tent.png'} />
-          <ShopItemCard img={'/img/tent.png'} />
+          <ShopItemCard img={'/img/backpack.png'} />
+          <ShopItemCard img={'/img/sleepBag.png'} />
         </div>
 
         <LinkBtn type={'primary'} size={2}>

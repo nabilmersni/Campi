@@ -96,6 +96,36 @@ function LinkBtn({ to, type, children, size = 1 }) {
     );
   }
 
+  if (type === 'footerLink') {
+    return (
+      <li
+        className="relative w-fit place-self-start self-start justify-self-start"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <ScrollLink
+          to={to}
+          activeClass="active"
+          spy={true}
+          smooth={true}
+          offset={-70}
+          duration={500}
+          className="navLink relative z-20 w-16 cursor-pointer rounded-full text-[1rem] font-bold text-slate-300 transition-all hover:text-[#fefdff]"
+        >
+          <span className="flex items-center justify-center">{children}</span>
+        </ScrollLink>
+
+        <Lottie
+          className="navAnimation absolute bottom-3 left-[-2.7rem] top-0 z-10 m-auto size-14 origin-bottom opacity-0 transition-all duration-200"
+          animationData={campFire2}
+          loop={true}
+          autoPlay={false}
+          lottieRef={lottieRef}
+        />
+      </li>
+    );
+  }
+
   if (type === 'navBarLoginLink') {
     return (
       <NavLink

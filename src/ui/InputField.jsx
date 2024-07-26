@@ -32,6 +32,8 @@ function InputField({
           },
         }),
 
+        borderRadius: 2,
+
         '& fieldset': {
           borderColor: '#7262AF', // Default border color
         },

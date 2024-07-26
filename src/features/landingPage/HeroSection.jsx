@@ -97,7 +97,7 @@ function HeroSection() {
 
       <div className="absolute bottom-[-4rem] left-0 right-0 flex w-full justify-center md:bottom-[-12rem] lg:bottom-[-20vw] xlg:bottom-[-22rem]">
         <Lottie
-          className="max-w-[100rem]"
+          className="w-full max-w-[120rem]"
           animationData={plantAnimation}
           loop={true}
           autoPlay={true}
