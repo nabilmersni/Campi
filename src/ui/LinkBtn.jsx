@@ -99,7 +99,7 @@ function LinkBtn({ to, type, children, size = 1 }) {
   if (type === 'footerLink') {
     return (
       <li
-        className="relative w-fit place-self-start self-start justify-self-start"
+        className="relative w-fit self-center lg:self-start"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -112,7 +112,7 @@ function LinkBtn({ to, type, children, size = 1 }) {
           duration={500}
           className="navLink relative z-20 w-16 cursor-pointer rounded-full text-[1rem] font-bold text-slate-300 transition-all hover:text-[#fefdff]"
         >
-          <span className="flex items-center justify-center">{children}</span>
+          <span className="">{children}</span>
         </ScrollLink>
 
         <Lottie

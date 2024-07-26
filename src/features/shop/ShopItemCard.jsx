@@ -2,7 +2,7 @@ import LinkBtn from 'src/ui/LinkBtn';
 
 function ShopItemCard({ img }) {
   return (
-    <div className="flex min-h-[20rem] flex-col items-center rounded-[3rem] border-[.2rem] border-primary bg-[#F9FDFF] p-3 sm:min-w-[23rem]">
+    <div className="flex min-h-[20rem] w-full flex-col items-center rounded-[3rem] border-[.2rem] border-primary bg-[#F9FDFF] p-3 sm:w-fit sm:min-w-[23rem]">
       <div className="mb-2 h-[10rem] w-full rounded-[2rem] bg-white-light p-3">
         <img
           src={img}
