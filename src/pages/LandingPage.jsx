@@ -4,6 +4,7 @@ import HeroSection from 'src/features/landingPage/HeroSection';
 import OurValuesSection from 'src/features/landingPage/OurValuesSection';
 import NavBar from 'src/ui/NavBar';
 import ShopSection from 'src/features/landingPage/ShopSection';
+import ContactUsSection from 'src/features/landingPage/ContactUsSection';
 
 function LandingPage() {
   useScrollPositionHistory();
@@ -16,6 +17,7 @@ function LandingPage() {
         <EventsSection />
         <ShopSection />
       </main>
+      <ContactUsSection />
     </div>
   );
 }
