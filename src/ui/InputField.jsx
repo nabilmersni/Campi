@@ -8,6 +8,7 @@ function InputField({
   type = 'text',
   defaultValue = '',
   placeholder,
+  required,
 }) {
   let sx;
 
@@ -62,6 +63,7 @@ function InputField({
       type={type}
       multiline={isTextArea}
       rows={isTextArea ? 5 : undefined}
+      required={required}
       sx={sx}
     />
   );

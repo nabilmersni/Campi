@@ -37,7 +37,7 @@ function NavBar() {
               animationData={campFireAnimation}
               loop={true}
             />
-            <LinkBtn type={'navBarLink'} to={'/'}>
+            <LinkBtn type={'navBarLink'} to={'shop'}>
               Shop
             </LinkBtn>
           </ul>

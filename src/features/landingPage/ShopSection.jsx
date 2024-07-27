@@ -4,7 +4,7 @@ import ShopItemCard from '../shop/ShopItemCard';
 
 function ShopSection() {
   return (
-    <section className="flex flex-col items-center justify-center">
+    <section id="shop" className="flex flex-col items-center justify-center">
       <div className="relative">
         <Title>Shop</Title>
         <p className="mx-auto max-w-[36rem] text-center text-lg text-black-light">

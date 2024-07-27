@@ -2,11 +2,16 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import LandingPage from './pages/LandingPage';
 import NavBarProvider from './context/NavBarContext';
+import LoginForm from './features/authentication/LoginForm';
 
 const router = createBrowserRouter([
   {
     path: '',
     element: <LandingPage />,
+  },
+  {
+    path: '/login',
+    element: <LoginForm />,
   },
 ]);
 

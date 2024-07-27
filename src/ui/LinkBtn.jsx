@@ -1,5 +1,5 @@
 import { useContext, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import Lottie from 'lottie-react';
 
@@ -12,6 +12,7 @@ function LinkBtn({ to, type, children, size = 1 }) {
   const lottieRef = useRef(null);
   const { setIsOpen, navLogoControls, burgerBtnRef } =
     useContext(NavBarContext);
+  const navigate = useNavigate();
 
   const handleMouseEnter = () => {
     if (lottieRef.current) {
@@ -22,6 +23,15 @@ function LinkBtn({ to, type, children, size = 1 }) {
   const handleMouseLeave = () => {
     if (lottieRef.current) {
       lottieRef.current.stop();
+    }
+  };
+
+  const handleClick = (event) => {
+    const targetElement = document.getElementById(to);
+    navigate('/');
+
+    if (!targetElement) {
+      event.preventDefault();
     }
   };
 
@@ -37,8 +47,9 @@ function LinkBtn({ to, type, children, size = 1 }) {
           to={to}
           spy={true}
           smooth={true}
-          offset={to === 'values' ? 250 : -110}
+          offset={to === 'values' ? 180 : -110}
           duration={500}
+          onClick={handleClick}
           className="navLink relative z-20 w-16 cursor-pointer rounded-full font-bold text-slate-300 transition-all hover:text-[#fefdff]"
         >
           <span className="flex min-w-16 items-center justify-center">
@@ -71,6 +82,7 @@ function LinkBtn({ to, type, children, size = 1 }) {
           smooth={true}
           offset={-70}
           duration={500}
+          onClick={handleClick}
           className="navLink relative z-20 w-16 rounded-full text-2xl font-bold text-slate-300 transition-all hover:text-[#fefdff]"
         >
           <span
@@ -169,6 +181,23 @@ function LinkBtn({ to, type, children, size = 1 }) {
       >
         {children}
       </NavLink>
+    );
+  }
+
+  if (type === 'formLink') {
+    const sizeVarinats = {
+      1: 'px-[1.2rem] py-[.6rem] text-[1rem] ',
+      2: 'px-[1.8rem] py-[.8rem] text-[1.1rem]',
+      3: 'px-[4.5rem] py-[1.8rem] text-[3rem]',
+    };
+
+    return (
+      <Link
+        to={to}
+        className={`rounded-full ${sizeVarinats[size]} text-nowrap text-center font-semibold text-[#8b7bcb] transition-all hover:text-primary`}
+      >
+        {children}
+      </Link>
     );
   }
 

@@ -11,10 +11,18 @@ function Footer() {
           <div className="flex flex-1 flex-col items-center gap-2">
             <h1 className="mb-4 text-4xl font-semibold">Campi</h1>
             <ul className="flex flex-col items-center gap-2">
-              <LinkBtn type={'footerLink'}>Home</LinkBtn>
-              <LinkBtn type={'footerLink'}>Our Values</LinkBtn>
-              <LinkBtn type={'footerLink'}>Events</LinkBtn>
-              <LinkBtn type={'footerLink'}>Shop</LinkBtn>
+              <LinkBtn type={'footerLink'} to={'home'}>
+                Home
+              </LinkBtn>
+              <LinkBtn type={'footerLink'} to={'values'}>
+                Our Values
+              </LinkBtn>
+              <LinkBtn type={'footerLink'} to={'events'}>
+                Events
+              </LinkBtn>
+              <LinkBtn type={'footerLink'} to={'shop'}>
+                Shop
+              </LinkBtn>
             </ul>
           </div>
           <div className="flex flex-1 flex-col items-center lg:items-start">
