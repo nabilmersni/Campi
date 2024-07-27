@@ -3,9 +3,9 @@ function FacebookAuth({ children }) {
     <button
       type="button"
       aria-label="Sign in with Google"
-      className="bg-google-button-blue hover:bg-google-button-blue-hover flex w-full items-center gap-3 rounded-md p-0.5 pr-3 transition-colors duration-300"
+      className="bg-google-button-blue hover:bg-google-button-blue-hover relative flex h-11 w-full items-center gap-3 rounded-md p-0.5 pr-3 transition-colors duration-300"
     >
-      <div className="flex h-9 w-9 items-center justify-center rounded-l bg-white">
+      <div className="absolute left-1 flex h-9 w-12 items-center justify-center rounded-sm bg-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1024 1024"
@@ -22,7 +22,9 @@ function FacebookAuth({ children }) {
           ></path>
         </svg>
       </div>
-      <span className="text-sm tracking-wider text-white">{children}</span>
+      <span className="ml-8 w-full text-center text-sm tracking-wider text-white sm:ml-0">
+        {children}
+      </span>
     </button>
   );
 }
