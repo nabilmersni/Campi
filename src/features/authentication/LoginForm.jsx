@@ -28,7 +28,7 @@ function LoginForm() {
 
                 <div className="mt-3 h-1 w-20 rounded-full bg-primary opacity-50"></div>
               </div>
-              <form className="flex w-full max-w-[90%] flex-col items-center gap-5">
+              <form className="flex w-full flex-col items-center gap-5">
                 <InputField
                   label={'Email'}
                   type="email"
