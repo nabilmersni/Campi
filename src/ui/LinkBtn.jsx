@@ -141,8 +141,14 @@ function LinkBtn({ to, type, children, size = 1 }) {
   if (type === 'navBarLoginLink') {
     return (
       <NavLink
-        to={to}
+        // to={to}
         className="navLink relative z-20 w-16 rounded-full font-bold text-slate-300 transition-all hover:text-[#fefdff]"
+        onClick={() => {
+          setIsOpen(false);
+          navLogoControls.start(hideNavLogoVars);
+          burgerBtnRef.current.playSegments([98, 0], true);
+          // navigate(to);
+        }}
       >
         {children}
       </NavLink>
@@ -156,10 +162,32 @@ function LinkBtn({ to, type, children, size = 1 }) {
       3: 'px-[4.5rem] py-[1.8rem] text-[3rem]',
     };
 
+    const startAnimation = () => {
+      return new Promise((resolve) => {
+        navLogoControls.start(hideNavLogoVars).then(() => {
+          resolve();
+        });
+      });
+    };
+
+    const playBurgerAnimation = () => {
+      return new Promise((resolve) => {
+        burgerBtnRef.current.playSegments([98, 0], true);
+        resolve(); // Resolve immediately as there's no callback from playSegments
+      });
+    };
+
     return (
       <NavLink
-        to={to}
+        // to={to}
         className={`rounded-full bg-primary-light ${sizeVarinats[size]} min-w-[7rem] text-center font-extrabold text-primary transition-all hover:bg-secondary`}
+        onClick={() => {
+          setIsOpen(false);
+
+          Promise.all([startAnimation(), playBurgerAnimation()]).then(() => {
+            navigate(to);
+          });
+        }}
       >
         {children}
       </NavLink>
