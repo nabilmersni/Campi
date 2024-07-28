@@ -9,6 +9,7 @@ function InputField({
   defaultValue = '',
   placeholder,
   required,
+  shrink,
 }) {
   let sx;
 
@@ -64,6 +65,7 @@ function InputField({
       multiline={isTextArea}
       rows={isTextArea ? 5 : undefined}
       required={required}
+      InputLabelProps={{ shrink: shrink }}
       sx={sx}
     />
   );

@@ -98,7 +98,7 @@ function CollapsedNavBar() {
                 className="flex items-center gap-4"
                 variants={CollapsedNavBarChildVariants}
               >
-                <LinkBtn type={'hero'} to={'/login'}>
+                <LinkBtn isCollapsed={true} type={'hero'} to={'/login'}>
                   <span className="w-[30rem]">Login</span>
                 </LinkBtn>
 
@@ -108,7 +108,7 @@ function CollapsedNavBar() {
                   loop={true}
                 />
 
-                <LinkBtn type={'hero'} to={'/signup'}>
+                <LinkBtn isCollapsed={true} type={'hero'} to={'/signup'}>
                   Sign up
                 </LinkBtn>
               </motion.div>

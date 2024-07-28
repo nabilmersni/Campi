@@ -8,7 +8,7 @@ import campFire2 from '../assets/lottiesAnimations/camp-fire-2.json';
 import { NavBarContext } from 'src/context/NavBarContext';
 import { hideNavLogoVars } from 'src/utils/FramerMotionVariants';
 
-function LinkBtn({ to, type, children, size = 1 }) {
+function LinkBtn({ to, type, children, size = 1, isCollapsed = false }) {
   const lottieRef = useRef(null);
   const { setIsOpen, navLogoControls, burgerBtnRef } =
     useContext(NavBarContext);
@@ -141,14 +141,8 @@ function LinkBtn({ to, type, children, size = 1 }) {
   if (type === 'navBarLoginLink') {
     return (
       <NavLink
-        // to={to}
+        to={to}
         className="navLink relative z-20 w-16 rounded-full font-bold text-slate-300 transition-all hover:text-[#fefdff]"
-        onClick={() => {
-          setIsOpen(false);
-          navLogoControls.start(hideNavLogoVars);
-          burgerBtnRef.current.playSegments([98, 0], true);
-          // navigate(to);
-        }}
       >
         {children}
       </NavLink>
@@ -177,7 +171,7 @@ function LinkBtn({ to, type, children, size = 1 }) {
       });
     };
 
-    return (
+    return isCollapsed ? (
       <NavLink
         // to={to}
         className={`rounded-full bg-primary-light ${sizeVarinats[size]} min-w-[7rem] text-center font-extrabold text-primary transition-all hover:bg-secondary`}
@@ -188,6 +182,13 @@ function LinkBtn({ to, type, children, size = 1 }) {
             navigate(to);
           });
         }}
+      >
+        {children}
+      </NavLink>
+    ) : (
+      <NavLink
+        to={to}
+        className={`rounded-full bg-primary-light ${sizeVarinats[size]} min-w-[7rem] text-center font-extrabold text-primary transition-all hover:bg-secondary`}
       >
         {children}
       </NavLink>
