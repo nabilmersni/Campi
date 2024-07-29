@@ -8,10 +8,26 @@ import campFire2 from '../assets/lottiesAnimations/camp-fire-2.json';
 import { NavBarContext } from 'src/context/NavBarContext';
 import { hideNavLogoVars } from 'src/utils/FramerMotionVariants';
 
-function LinkBtn({ to, type, children, size = 1, isCollapsed = false }) {
+import DashIcon from 'src/assets/svgs/dash-icon.svg';
+import UsersIcon from 'src/assets/svgs/users-icon.svg';
+import EventsIcon from 'src/assets/svgs/events-icon.svg';
+import ShopIcon from 'src/assets/svgs/shop-icon.svg';
+import { DashboardContext } from 'src/context/DashboardContext';
+
+function LinkBtn({
+  to,
+  type = 'navBarLink',
+  children,
+  size = 1,
+  isCollapsed = false,
+  sidebarIcon = 'dash',
+}) {
   const lottieRef = useRef(null);
   const { setIsOpen, navLogoControls, burgerBtnRef } =
     useContext(NavBarContext);
+
+  const { isSidebarCollapsed } = useContext(DashboardContext);
+
   const navigate = useNavigate();
 
   const handleMouseEnter = () => {
@@ -244,6 +260,25 @@ function LinkBtn({ to, type, children, size = 1, isCollapsed = false }) {
       >
         {children}
       </NavLink>
+    );
+  }
+
+  if (type === 'sidebarNavLink') {
+    return (
+      <li className="w-full">
+        <NavLink
+          className={`flex h-[4rem] w-[90%] items-center gap-4 rounded-lg fill-primary-light p-4 transition-all hover:bg-[#474576] ${isSidebarCollapsed ? 'justify-center' : ''}`}
+        >
+          {sidebarIcon === 'dash' ? <DashIcon /> : ''}
+          {sidebarIcon === 'users' ? <UsersIcon /> : ''}
+          {sidebarIcon === 'events' ? <EventsIcon /> : ''}
+          {sidebarIcon === 'shop' ? <ShopIcon /> : ''}
+
+          {!isSidebarCollapsed && (
+            <span className="font-bold text-primary-light">{children}</span>
+          )}
+        </NavLink>
+      </li>
     );
   }
 }

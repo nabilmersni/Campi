@@ -1,10 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import LandingPage from './pages/LandingPage';
-import NavBarProvider from './context/NavBarContext';
 import LoginForm from './features/authentication/LoginForm';
 import AuthFormLayout from './features/authentication/AuthFormLayout';
 import RegisterForm from './features/authentication/RegisterForm';
+import DashboardLayout from './features/dashboard/DashboardLayout';
+import GlobalContextProvider from './context/GlobalContext';
 
 const router = createBrowserRouter([
   {
@@ -24,14 +25,19 @@ const router = createBrowserRouter([
       },
     ],
   },
+
+  {
+    path: '/dashboard',
+    element: <DashboardLayout />,
+  },
 ]);
 
 function App() {
   return (
     <div className="overflow-hidden scroll-smooth font-nunito">
-      <NavBarProvider>
+      <GlobalContextProvider>
         <RouterProvider router={router} />
-      </NavBarProvider>
+      </GlobalContextProvider>
     </div>
   );
 }

@@ -27,7 +27,7 @@ function RegisterForm() {
           <InputField
             label={'Date of Birth'}
             type="date"
-            placeholder={'Your email here'}
+            placeholder={'dd/mm/yyyy'}
             required
             shrink
           />
