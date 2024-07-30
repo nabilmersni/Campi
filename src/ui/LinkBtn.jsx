@@ -267,12 +267,16 @@ function LinkBtn({
     return (
       <li className="w-full">
         <NavLink
-          className={`flex h-[4rem] w-[90%] items-center gap-4 rounded-lg fill-primary-light p-4 transition-all hover:bg-[#474576] ${isSidebarCollapsed ? 'justify-center' : ''}`}
+          className={`flex w-[90%] items-center gap-4 rounded-lg fill-primary-light p-4 transition-all hover:bg-[#474576] ${isSidebarCollapsed ? 'justify-center p-2' : 'h-[4rem]'}`}
         >
-          {sidebarIcon === 'dash' ? <DashIcon /> : ''}
-          {sidebarIcon === 'users' ? <UsersIcon /> : ''}
-          {sidebarIcon === 'events' ? <EventsIcon /> : ''}
-          {sidebarIcon === 'shop' ? <ShopIcon /> : ''}
+          <div
+            className={` ${isSidebarCollapsed ? 'flex size-[2rem] w-6 items-center justify-center' : 'w-7'}`}
+          >
+            {sidebarIcon === 'dash' ? <DashIcon /> : ''}
+            {sidebarIcon === 'users' ? <UsersIcon /> : ''}
+            {sidebarIcon === 'events' ? <EventsIcon /> : ''}
+            {sidebarIcon === 'shop' ? <ShopIcon /> : ''}
+          </div>
 
           {!isSidebarCollapsed && (
             <span className="font-bold text-primary-light">{children}</span>

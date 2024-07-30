@@ -63,3 +63,21 @@ export const CollapsedNavBarChildVariants = {
         transition: {},
     },
 };
+
+export const AvatarDropDownVariants = {
+    initial: {
+        scale: 0.8,
+        opacity: 0,
+        y: -30
+    },
+    visible: {
+        scale: 1,
+        opacity: 1,
+        y: 0
+    },
+    exit: {
+        scale: 0.8,
+        opacity: 0,
+        y: -30
+    },
+};

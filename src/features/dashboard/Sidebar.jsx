@@ -9,11 +9,9 @@ function Sidebar() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 1024 && isSidebarCollapsed === false) {
+      if (window.innerWidth < 1024) {
         setIsSidebarCollapsed(true);
-      }
-
-      if (window.innerWidth >= 1024 && isSidebarCollapsed === true) {
+      } else {
         setIsSidebarCollapsed(false);
       }
     };
@@ -29,12 +27,12 @@ function Sidebar() {
 
   return (
     <div
-      className={`relative flex ${isSidebarCollapsed ? 'w-[6rem]' : 'w-[20rem]'} flex-col items-center px-2 py-8 transition-all`}
+      className={`relative flex ${isSidebarCollapsed ? 'w-[5rem]' : 'w-[20rem]'} flex-col items-center px-2 py-4 transition-all`}
     >
       <img
         src="/img/logoW.svg"
         alt=""
-        className={`mb-[10rem] transition-all`}
+        className={`mb-[8rem] transition-all ${isSidebarCollapsed ? 'w-9' : 'w-12'}`}
       />
 
       <ul className="flex w-full flex-col items-center justify-center gap-2">
@@ -57,7 +55,7 @@ function Sidebar() {
 
       <div
         onClick={() => setIsSidebarCollapsed((toggle) => !toggle)}
-        className={`absolute right-[-2.2rem] top-[1.4rem] w-[2rem] cursor-pointer fill-primary-light ${isSidebarCollapsed ? 'rotate-180' : ''} `}
+        className={`absolute right-[-2.2rem] top-[1.4rem] hidden w-[1.7rem] cursor-pointer fill-primary-light transition-all hover:fill-[#d7cfff] sm:block ${isSidebarCollapsed ? 'rotate-180' : ''} `}
       >
         <SidebarCollapseIcon />
       </div>

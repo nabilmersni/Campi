@@ -1,4 +1,5 @@
 import Sidebar from './Sidebar';
+import TopNavBar from './TopNavBar';
 
 function DashboardLayout() {
   return (
@@ -9,7 +10,7 @@ function DashboardLayout() {
 
       <div className="flex w-full flex-col">
         {/* top nav */}
-        <div className="h-[4.5rem]">top nav</div>
+        <TopNavBar />
         {/* top nav */}
 
         {/* content */}
