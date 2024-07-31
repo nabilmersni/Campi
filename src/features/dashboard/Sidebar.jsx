@@ -27,7 +27,7 @@ function Sidebar() {
 
   return (
     <div
-      className={`relative flex ${isSidebarCollapsed ? 'w-[5rem]' : 'w-[20rem]'} flex-col items-center px-2 py-4 transition-all`}
+      className={`relative flex ${isSidebarCollapsed ? 'w-[4rem]' : 'w-[17rem]'} flex-col items-center px-2 py-4 transition-all`}
     >
       <img
         src="/img/logoW.svg"
@@ -35,20 +35,32 @@ function Sidebar() {
         className={`mb-[8rem] transition-all ${isSidebarCollapsed ? 'w-9' : 'w-12'}`}
       />
 
-      <ul className="flex w-full flex-col items-center justify-center gap-2">
-        <LinkBtn to={'/dash'} type={'sidebarNavLink'} sidebarIcon="dash">
+      <ul className="flex w-full flex-col items-center justify-center gap-3">
+        <LinkBtn to={'/dashboard'} type={'sidebarNavLink'} sidebarIcon="dash">
           Dashboard
         </LinkBtn>
 
-        <LinkBtn to={'/dash'} type={'sidebarNavLink'} sidebarIcon="users">
+        <LinkBtn
+          to={'/dashboard/users'}
+          type={'sidebarNavLink'}
+          sidebarIcon="users"
+        >
           Users
         </LinkBtn>
 
-        <LinkBtn to={'/dash'} type={'sidebarNavLink'} sidebarIcon="events">
+        <LinkBtn
+          to={'/dashboard/events'}
+          type={'sidebarNavLink'}
+          sidebarIcon="events"
+        >
           Events
         </LinkBtn>
 
-        <LinkBtn to={'/dash'} type={'sidebarNavLink'} sidebarIcon="shop">
+        <LinkBtn
+          to={'/dashboard/shop'}
+          type={'sidebarNavLink'}
+          sidebarIcon="shop"
+        >
           Shop
         </LinkBtn>
       </ul>
