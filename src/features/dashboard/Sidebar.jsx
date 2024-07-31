@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { DashboardContext } from 'src/context/DashboardContext';
 import LinkBtn from 'src/ui/LinkBtn';
 import SidebarCollapseIcon from 'src/assets/svgs/sidebarCollapseIcon.svg';
@@ -6,19 +6,26 @@ import SidebarCollapseIcon from 'src/assets/svgs/sidebarCollapseIcon.svg';
 function Sidebar() {
   const { isSidebarCollapsed, setIsSidebarCollapsed } =
     useContext(DashboardContext);
+  const previousWidth = useRef(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 1024) {
-        setIsSidebarCollapsed(true);
-      } else {
-        setIsSidebarCollapsed(false);
+      const currentWidth = window.innerWidth;
+      if (previousWidth.current !== currentWidth) {
+        if (currentWidth < 1024) {
+          setIsSidebarCollapsed(true);
+        } else {
+          setIsSidebarCollapsed(false);
+        }
       }
+      previousWidth.current = currentWidth;
     };
 
     window.addEventListener('resize', handleResize);
 
-    handleResize();
+    if (window.innerWidth < 1024) {
+      setIsSidebarCollapsed(true);
+    }
 
     return () => {
       window.removeEventListener('resize', handleResize);

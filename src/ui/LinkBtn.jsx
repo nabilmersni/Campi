@@ -268,7 +268,7 @@ function LinkBtn({
       <li className="w-full">
         <NavLink
           className={({ isActive }) =>
-            `flex items-center gap-[0.6rem] rounded-lg fill-primary-light transition-all hover:bg-[#474576] ${isSidebarCollapsed ? 'justify-center p-1' : 'h-[3.7rem] p-4'} ${isActive ? 'bg-primary-light fill-primary-dark text-primary-dark hover:bg-primary-light' : 'text-primary-light'} `
+            `flex items-center gap-[0.6rem] rounded-lg transition-all hover:bg-[#474576] ${isSidebarCollapsed ? 'justify-center p-1' : 'h-[3.7rem] p-4'} ${isActive ? 'bg-primary-light fill-primary-dark text-primary-dark hover:bg-primary-light' : 'fill-primary-light text-primary-light'} `
           }
           to={to}
         >
