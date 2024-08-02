@@ -1,9 +1,14 @@
+import UpdateIcon from 'src/assets/svgs/editUser.svg';
+import LockIcon from 'src/assets/svgs/lockUser.svg';
+import UnlockIcon from 'src/assets/svgs/unlockUser.svg';
+
 function Button({
   color = 'primary',
   children,
   size = 1,
   onClick,
   type = 'primary',
+  icon,
 }) {
   const sizeVariants = {
     1: 'px-[1.2rem] py-[.6rem] text-[1rem] ',
@@ -33,7 +38,7 @@ function Button({
         onClick={onClick}
         type="button"
         aria-label="Sign in with Google"
-        className="bg-google-button-blue hover:bg-google-button-blue-hover flex w-full items-center gap-3 rounded-md p-0.5 pr-3 transition-colors duration-300"
+        className="flex w-full items-center gap-3 rounded-md bg-google-button-blue p-0.5 pr-3 transition-colors duration-300 hover:bg-google-button-blue-hover"
       >
         <div className="flex h-9 w-9 items-center justify-center rounded-l bg-white">
           <svg
@@ -62,6 +67,20 @@ function Button({
           </svg>
         </div>
         <span className="text-sm tracking-wider text-white">{children}</span>
+      </button>
+    );
+  }
+
+  if (type === 'iconBtn') {
+    return (
+      <button
+        onClick={onClick}
+        className={`size-10 rounded-full p-[.2rem] transition-all ${icon === 'lockUser' ? 'bg-red-200 fill-[#f00] hover:bg-red-300' : icon === 'unlockUser' ? 'bg-green-200 fill-[#259f1a] hover:bg-green-300' : 'bg-primary-light fill-primary hover:bg-[#d6ceff]'} `}
+        title={icon}
+      >
+        {icon === 'updateUser' && <UpdateIcon />}
+        {icon === 'lockUser' && <LockIcon />}
+        {icon === 'unlockUser' && <UnlockIcon />}
       </button>
     );
   }

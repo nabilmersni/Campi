@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { InputAdornment, TextField } from '@mui/material';
 
 function InputField({
   label,
@@ -67,8 +67,23 @@ function InputField({
       required={required}
       InputLabelProps={{ shrink: shrink }}
       sx={sx}
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <img className="size-6" src="/img/searchIcon.svg" alt="" />
+          </InputAdornment>
+        ),
+      }}
     />
   );
 }
 
 export default InputField;
+
+{
+  /* <img
+className="size-9"
+src="/src/assets/svgs/dash-icon.svg"
+alt=""
+/> */
+}

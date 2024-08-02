@@ -1,5 +1,5 @@
 import { useContext, useRef } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import Lottie from 'lottie-react';
 
@@ -29,6 +29,7 @@ function LinkBtn({
   const { isSidebarCollapsed } = useContext(DashboardContext);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleMouseEnter = () => {
     if (lottieRef.current) {
@@ -264,14 +265,16 @@ function LinkBtn({
   }
 
   if (type === 'sidebarNavLink') {
+    const getClassName = () => {
+      const isExactActive = location.pathname === to;
+      return `flex items-center gap-[0.6rem] rounded-lg transition-all hover:bg-[#474576] ${
+        isSidebarCollapsed ? 'justify-center p-1' : 'h-[3.7rem] p-4'
+      } ${isExactActive ? 'bg-primary-light fill-primary-dark text-primary-dark hover:bg-primary-light' : 'fill-primary-light text-primary-light'}`;
+    };
+
     return (
       <li className="w-full">
-        <NavLink
-          className={({ isActive }) =>
-            `flex items-center gap-[0.6rem] rounded-lg transition-all hover:bg-[#474576] ${isSidebarCollapsed ? 'justify-center p-1' : 'h-[3.7rem] p-4'} ${isActive ? 'bg-primary-light fill-primary-dark text-primary-dark hover:bg-primary-light' : 'fill-primary-light text-primary-light'} `
-          }
-          to={to}
-        >
+        <NavLink className={getClassName} to={to}>
           <div
             className={` ${isSidebarCollapsed ? 'flex size-9 items-center justify-center' : 'size-9'}`}
           >
