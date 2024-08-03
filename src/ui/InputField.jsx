@@ -10,6 +10,7 @@ function InputField({
   placeholder,
   required,
   shrink,
+  size = 'medium',
 }) {
   let sx;
 
@@ -55,6 +56,7 @@ function InputField({
 
   return (
     <TextField
+      size={size}
       label={label}
       defaultValue={defaultValue}
       placeholder={placeholder}

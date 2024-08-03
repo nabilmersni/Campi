@@ -1,6 +1,7 @@
+import Button from 'src/ui/Button';
 import LinkBtn from 'src/ui/LinkBtn';
 
-function EventItemCard({ img = '/img/camp1.jpg' }) {
+function DashEventItemCard({ img = '/img/camp1.jpg' }) {
   return (
     <div className="flex h-fit min-h-[20rem] flex-col items-center rounded-[3rem] border-[.2rem] border-primary bg-white-light p-3 sm:min-w-[23rem]">
       <div className="mb-2 h-[10rem] w-full rounded-[2rem]">
@@ -28,20 +29,15 @@ function EventItemCard({ img = '/img/camp1.jpg' }) {
         </div>
       </div>
 
-      <div className="flex w-full items-center justify-between px-3">
-        <LinkBtn type={'primaryLight'}>more info</LinkBtn>
-        <div className="size-[.3rem] rounded-full bg-primary sm:block"></div>
-        <div className="flex items-center justify-between gap-2 sm:gap-4">
-          <img
-            src="/img/peopleIcon.svg"
-            alt="peopleIcon"
-            className="hidden w-16 xsm:block sm:w-20"
-          />
-          <LinkBtn type={'primaryLight'}>Join</LinkBtn>
-        </div>
+      <div className="mb-4 h-1 w-[5rem] rounded-full bg-primary-light"></div>
+
+      <div className="flex w-full items-center justify-center gap-3 px-3">
+        <Button type="iconBtn" icon={'view'} />
+        <Button type="iconBtn" icon={'update'} />
+        <Button type="iconBtn" icon={'delete'} />
       </div>
     </div>
   );
 }
 
-export default EventItemCard;
+export default DashEventItemCard;

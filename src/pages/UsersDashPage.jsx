@@ -6,7 +6,7 @@ function UsersDashPage() {
   return (
     <div className="mx-auto flex h-full w-full max-w-[85rem] flex-col gap-4">
       <TitleDash title={'Users list'} animation={'users'}>
-        <InputField label={'Seach Users'} />
+        <InputField size="small" label={'Search Users'} />
       </TitleDash>
 
       <div className="flex w-full flex-col overflow-hidden">

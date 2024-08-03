@@ -1,6 +1,9 @@
-import UpdateIcon from 'src/assets/svgs/editUser.svg';
+import UpdateUserIcon from 'src/assets/svgs/editUser.svg';
 import LockIcon from 'src/assets/svgs/lockUser.svg';
 import UnlockIcon from 'src/assets/svgs/unlockUser.svg';
+import ViewIcon from 'src/assets/svgs/view.svg';
+import UpdateIcon from 'src/assets/svgs/edit.svg';
+import DeleteIcon from 'src/assets/svgs/delete.svg';
 
 function Button({
   color = 'primary',
@@ -75,12 +78,15 @@ function Button({
     return (
       <button
         onClick={onClick}
-        className={`size-10 rounded-full p-[.2rem] transition-all ${icon === 'lockUser' ? 'bg-red-200 fill-[#f00] hover:bg-red-300' : icon === 'unlockUser' ? 'bg-green-200 fill-[#259f1a] hover:bg-green-300' : 'bg-primary-light fill-primary hover:bg-[#d6ceff]'} `}
+        className={`size-10 rounded-full p-[.2rem] transition-all ${icon === 'lockUser' || icon === 'delete' ? 'bg-red-200 fill-[#f00] hover:bg-red-300' : icon === 'unlockUser' ? 'bg-green-200 fill-[#259f1a] hover:bg-green-300' : 'bg-primary-light fill-primary hover:bg-[#d6ceff]'} `}
         title={icon}
       >
-        {icon === 'updateUser' && <UpdateIcon />}
+        {icon === 'updateUser' && <UpdateUserIcon />}
         {icon === 'lockUser' && <LockIcon />}
         {icon === 'unlockUser' && <UnlockIcon />}
+        {icon === 'view' && <ViewIcon />}
+        {icon === 'update' && <UpdateIcon />}
+        {icon === 'delete' && <DeleteIcon />}
       </button>
     );
   }

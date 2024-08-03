@@ -3,7 +3,7 @@ import GlobalContextProvider from './context/GlobalContext';
 
 function App() {
   return (
-    <div className="overflow-hidden scroll-smooth font-nunito">
+    <div className="flex flex-col overflow-hidden scroll-smooth font-nunito">
       <GlobalContextProvider>
         <AppRouter />
       </GlobalContextProvider>

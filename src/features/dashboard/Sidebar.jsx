@@ -34,7 +34,7 @@ function Sidebar() {
 
   return (
     <div
-      className={`relative flex ${isSidebarCollapsed ? 'w-[4rem]' : 'w-[17rem]'} flex-col items-center px-2 py-4 transition-all`}
+      className={`relative flex h-full ${isSidebarCollapsed ? 'w-[4rem]' : 'w-[17rem]'} flex-col items-center px-2 py-4 transition-all`}
     >
       <img
         src="/img/logoW.svg"

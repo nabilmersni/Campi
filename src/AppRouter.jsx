@@ -6,6 +6,7 @@ import DashboardLayout from './features/dashboard/DashboardLayout';
 import LandingPage from './pages/LandingPage';
 import UsersDashPage from './pages/UsersDashPage';
 import DashHomePage from './features/dashboard/DashHomePage';
+import EventsDashPage from './pages/EventsDashPage';
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -39,6 +40,10 @@ export default function AppRouter() {
         {
           path: 'users',
           element: <UsersDashPage />,
+        },
+        {
+          path: 'events',
+          element: <EventsDashPage />,
         },
       ],
     },
