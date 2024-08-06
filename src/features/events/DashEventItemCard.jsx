@@ -29,7 +29,11 @@ function DashEventItemCard({ img = '/img/camp1.jpg' }) {
         </div>
       </div>
 
-      <div className="mb-4 h-1 w-[5rem] rounded-full bg-primary-light"></div>
+      <div className="mb-4 flex items-center gap-2">
+        <div className="h-1 w-[3rem] rounded-full bg-primary-light"></div>
+        <div className="h-1 w-[.5rem] rounded-full bg-primary-light"></div>
+        <div className="h-1 w-[3rem] rounded-full bg-primary-light"></div>
+      </div>
 
       <div className="flex w-full items-center justify-center gap-3 px-3">
         <Button type="iconBtn" icon={'view'} />

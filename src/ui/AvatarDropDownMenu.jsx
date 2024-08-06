@@ -45,7 +45,7 @@ function AvatarDropDownMenu({ img }) {
             initial="initial"
             animate="visible"
             exit="exit"
-            className="absolute right-0 top-[5rem] h-[16rem] w-[15rem] rounded-2xl border-2 border-primary bg-slate-100 p-2 shadow-md"
+            className="absolute right-0 top-[5rem] z-20 h-[16rem] w-[15rem] rounded-2xl border-2 border-primary bg-slate-100 p-2 shadow-md"
           >
             content
           </motion.div>

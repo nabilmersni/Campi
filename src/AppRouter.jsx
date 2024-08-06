@@ -7,6 +7,7 @@ import LandingPage from './pages/LandingPage';
 import UsersDashPage from './pages/UsersDashPage';
 import DashHomePage from './features/dashboard/DashHomePage';
 import EventsDashPage from './pages/EventsDashPage';
+import ShopDashPage from './pages/ShopDashPage';
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -44,6 +45,10 @@ export default function AppRouter() {
         {
           path: 'events',
           element: <EventsDashPage />,
+        },
+        {
+          path: 'shop',
+          element: <ShopDashPage />,
         },
       ],
     },

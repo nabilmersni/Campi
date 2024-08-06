@@ -1,6 +1,6 @@
 import LinkBtn from 'src/ui/LinkBtn';
 
-function ShopItemCard({ img }) {
+function DashShopItemCard({ img = '/img/tent.png' }) {
   return (
     <div className="flex min-h-[20rem] w-full flex-col items-center rounded-[3rem] border-[.2rem] border-primary bg-[#F9FDFF] p-3 sm:w-fit sm:min-w-[23rem]">
       <div className="mb-2 h-[10rem] w-full rounded-[2rem] bg-white-light p-3">
@@ -18,17 +18,9 @@ function ShopItemCard({ img }) {
         </span>
       </div>
 
-      <div className="mb-3 flex items-center justify-center gap-5">
-        <div className="flex flex-1 items-center justify-center gap-2">
-          <img src="/img/starsIcon.svg" alt="locationIcon" className="w-20" />
-          <span className="text-sm font-bold text-primary">(26)</span>
-        </div>
-      </div>
-
-      <div className="mb-3 size-[.3rem] rounded-full bg-primary sm:block"></div>
-
       <div className="flex w-full flex-col items-center justify-center gap-2 px-3">
         <span className="text-xl font-extrabold text-primary">$199</span>
+        <div className="mb-3 size-[.3rem] rounded-full bg-primary sm:block"></div>
         <LinkBtn size={4} type={'primaryLight'}>
           Add to cart
         </LinkBtn>
@@ -38,4 +30,4 @@ function ShopItemCard({ img }) {
   );
 }
 
-export default ShopItemCard;
+export default DashShopItemCard;
