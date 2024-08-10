@@ -8,6 +8,7 @@ import UsersDashPage from './pages/UsersDashPage';
 import DashHomePage from './features/dashboard/DashHomePage';
 import EventsDashPage from './pages/EventsDashPage';
 import ShopDashPage from './pages/ShopDashPage';
+import UserSideLayout from './features/userSide/UserSideLayout';
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -49,6 +50,27 @@ export default function AppRouter() {
         {
           path: 'shop',
           element: <ShopDashPage />,
+        },
+      ],
+    },
+    {
+      path: '/userside',
+      element: <UserSideLayout />,
+
+      children: [
+        {
+          index: true,
+          element: <UserSideLayout />,
+        },
+
+        {
+          path: 'events',
+          element: <UserSideLayout />,
+        },
+
+        {
+          path: 'shop',
+          element: <UserSideLayout />,
         },
       ],
     },

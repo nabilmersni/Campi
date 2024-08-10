@@ -13,6 +13,7 @@ export default {
         'secondary': '#DEFEE6',
         'black-light': "#1C315E",
         'white-light': "#F5F1F6",
+        'bg-light': "#F2EFFF",
 
         google: {
           "text-gray": "#3c4043",

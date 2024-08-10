@@ -1,14 +1,14 @@
-import { useContext, useRef, useState } from 'react';
-
-import burgerBtnAnimation from '../assets/lottiesAnimations/burgerBtnAnimation.json';
+import { useContext, useState } from 'react';
 import Lottie from 'lottie-react';
 import { NavBarContext } from 'src/context/NavBarContext';
+import burgerBtnAnimation from '../assets/lottiesAnimations/burgerBtnAnimation.json';
+import burgerBtnLightAnimation from '../assets/lottiesAnimations/burgerBtnLightAnimation.json';
 import {
   hideNavLogoVars,
   showNavLogoVars,
 } from 'src/utils/FramerMotionVariants';
 
-function BurgerBtn() {
+function BurgerBtn({ color = 'dark' }) {
   // const burgerBtnRef = useRef();
   const [isLoop, setIsLoop] = useState(false);
   const { isOpen, setIsOpen, navLogoControls, burgerBtnRef } =
@@ -46,9 +46,11 @@ function BurgerBtn() {
   return (
     <Lottie
       onClick={handleBurgerBtnClick}
-      className="w-11"
+      className="w-11 cursor-pointer"
       loop={false}
-      animationData={burgerBtnAnimation}
+      animationData={
+        color === 'dark' ? burgerBtnAnimation : burgerBtnLightAnimation
+      }
       autoplay={false}
       lottieRef={burgerBtnRef}
       onComplete={handleBurgerLoop}

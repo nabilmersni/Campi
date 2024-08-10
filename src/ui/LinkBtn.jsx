@@ -291,6 +291,40 @@ function LinkBtn({
       </li>
     );
   }
+
+  if (type === 'userSideNavbarLink') {
+    const getClassName = () => {
+      const isExactActive = location.pathname === to;
+      return `w-full h-full cursor-pointer rounded-xl  px-5 py-2 font-bold text-primary transition-all hover:bg-primary-light active:bg-[#D9D2FF] ${isExactActive ? 'bg-primary-light' : ''}`;
+    };
+    return (
+      <NavLink
+        className={getClassName()}
+        to={to}
+        onClick={() => {
+          setIsOpen(false);
+          burgerBtnRef.current.playSegments([98, 0], true);
+        }}
+      >
+        {children}
+      </NavLink>
+    );
+  }
+
+  if (type === 'iconLinkBtn') {
+    return (
+      <Link
+        to={to}
+        className="flex size-10 items-center justify-center rounded-full bg-primary-light fill-primary p-[.5rem] transition-all hover:bg-[#D9D2FF] active:bg-[#d0c8ff]"
+        onClick={() => {
+          setIsOpen(false);
+          burgerBtnRef.current.playSegments([98, 0], true);
+        }}
+      >
+        {children}
+      </Link>
+    );
+  }
 }
 
 export default LinkBtn;
