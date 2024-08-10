@@ -4,12 +4,13 @@ import MessengerIcon from 'src/assets/svgs/messengerIcon.svg';
 import NotifIcon from 'src/assets/svgs/notifIcon.svg';
 import ShopIcon from 'src/assets/svgs/shopIcon.svg';
 import BurgerBtn from 'src/ui/BurgerBtn';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { NavBarContext } from 'src/context/NavBarContext';
 import { AnimatePresence, motion } from 'framer-motion';
 
 function UserSideNavBar() {
   const { isOpen, setIsOpen, burgerBtnRef } = useContext(NavBarContext);
+  const [isScrollable, setIsScrollable] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 1024px)');
@@ -25,6 +26,17 @@ function UserSideNavBar() {
 
     return () => mediaQuery.removeEventListener('change', handleScreenResize);
   }, [setIsOpen, burgerBtnRef]);
+
+  useEffect(() => {
+    if (isOpen) {
+      const timeout = setTimeout(() => {
+        setIsScrollable(true);
+      }, 500); // 0.5s delay
+      return () => clearTimeout(timeout);
+    } else {
+      setIsScrollable(false);
+    }
+  }, [isOpen]);
 
   return (
     <nav className="relative flex min-h-[5.3rem] w-full max-w-[85rem] items-center justify-between rounded-[1rem] bg-white px-7 py-2">
@@ -74,7 +86,9 @@ function UserSideNavBar() {
 
       {/* collapsedNav */}
       <div
-        className={`absolute left-0 right-0 top-0 z-30 mx-auto flex min-h-[5.3rem] w-full max-w-[85rem] flex-col items-center overflow-scroll rounded-[1rem] border-[.25rem] border-primary bg-white shadow-sm transition-all duration-500 ${isOpen ? 'h-nav-height' : 'h-[1rem]'}`}
+        className={`absolute left-0 right-0 top-0 z-30 mx-auto flex min-h-[5.3rem] w-full max-w-[85rem] flex-col items-center rounded-[1rem] border-[.25rem] border-primary bg-white shadow-sm transition-all duration-500 ${
+          isOpen ? 'h-nav-height' : 'h-[1rem]'
+        } ${isScrollable ? 'overflow-y-auto' : 'overflow-y-hidden'}`}
       >
         <AnimatePresence>
           {isOpen && (
