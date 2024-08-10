@@ -74,7 +74,7 @@ function UserSideNavBar() {
 
       {/* collapsedNav */}
       <div
-        className={`absolute left-0 right-0 top-0 z-30 mx-auto flex min-h-[5.3rem] w-full max-w-[85rem] flex-col items-center rounded-[1rem] border-[.25rem] border-primary bg-white shadow-sm transition-all duration-500 ${isOpen ? 'h-[95vh]' : 'h-[1vh]'}`}
+        className={`absolute left-0 right-0 top-0 z-30 mx-auto flex min-h-[5.3rem] w-full max-w-[85rem] flex-col items-center overflow-scroll rounded-[1rem] border-[.25rem] border-primary bg-white shadow-sm transition-all duration-500 ${isOpen ? 'h-nav-height' : 'h-[1rem]'}`}
       >
         <AnimatePresence>
           {isOpen && (
