@@ -1,5 +1,6 @@
 import NotificationListUserSide from 'src/features/notification/NotificationListUserSide';
 import WelcomeTitle from 'src/features/userSide/WelcomeTitle';
+import StatBox from 'src/features/userSide/StatBox';
 
 function HomeUserSidePage() {
   return (
@@ -47,12 +48,9 @@ function HomeUserSidePage() {
             </div>
 
             <div className="flex flex-[1.3] flex-row gap-4 lg:flex-col">
-              <div className="flex-1 rounded-[1rem] border-[4px] border-border-light bg-white p-4">
-                3
-              </div>
-              <div className="flex-1 rounded-[1rem] border-[4px] border-border-light bg-white p-4">
-                3
-              </div>
+              <StatBox num={23} detail={'Events joined'} />
+
+              <StatBox num={15} detail={'Products Purchased'} />
             </div>
           </div>
 
