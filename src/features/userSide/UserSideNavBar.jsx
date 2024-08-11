@@ -39,7 +39,7 @@ function UserSideNavBar() {
   }, [isOpen]);
 
   return (
-    <nav className="relative flex min-h-[5.3rem] w-full max-w-[85rem] items-center justify-between rounded-[1rem] bg-white px-7 py-2">
+    <nav className="relative flex min-h-[5.3rem] w-full max-w-[80rem] items-center justify-between rounded-[1rem] bg-white px-7 py-2">
       <img className="z-40 w-16" src="/img/logouser.svg" alt="logo" />
       <ul className="z-40 hidden items-center gap-3 lg:flex">
         <LinkBtn type="userSideNavbarLink" to={'/userside'}>

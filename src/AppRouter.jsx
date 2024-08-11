@@ -9,6 +9,9 @@ import DashHomePage from './features/dashboard/DashHomePage';
 import EventsDashPage from './pages/EventsDashPage';
 import ShopDashPage from './pages/ShopDashPage';
 import UserSideLayout from './features/userSide/UserSideLayout';
+import HomeUserSidePage from './pages/HomeUserSidePage';
+import EventsUserSidePage from './pages/EventsUserSidePage';
+import ShopUserSidePage from './pages/ShopUserSidePage';
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -60,17 +63,17 @@ export default function AppRouter() {
       children: [
         {
           index: true,
-          element: <UserSideLayout />,
+          element: <HomeUserSidePage />,
         },
 
         {
           path: 'events',
-          element: <UserSideLayout />,
+          element: <EventsUserSidePage />,
         },
 
         {
           path: 'shop',
-          element: <UserSideLayout />,
+          element: <ShopUserSidePage />,
         },
       ],
     },

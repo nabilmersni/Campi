@@ -11,6 +11,7 @@ function InputField({
   required,
   shrink,
   size = 'medium',
+  isWithIcon = false,
 }) {
   let sx;
 
@@ -54,6 +55,33 @@ function InputField({
     };
   }
 
+  if (isWithIcon) {
+    return (
+      <TextField
+        size={size}
+        label={label}
+        defaultValue={defaultValue}
+        placeholder={placeholder}
+        variant="outlined"
+        onChange={onChange}
+        className="w-full"
+        type={type}
+        multiline={isTextArea}
+        rows={isTextArea ? 5 : undefined}
+        required={required}
+        InputLabelProps={{ shrink: shrink }}
+        sx={sx}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <img className="size-6" src="/img/searchIcon.svg" alt="" />
+            </InputAdornment>
+          ),
+        }}
+      />
+    );
+  }
+
   return (
     <TextField
       size={size}
@@ -69,13 +97,6 @@ function InputField({
       required={required}
       InputLabelProps={{ shrink: shrink }}
       sx={sx}
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            <img className="size-6" src="/img/searchIcon.svg" alt="" />
-          </InputAdornment>
-        ),
-      }}
     />
   );
 }

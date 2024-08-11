@@ -32,3 +32,27 @@
   border-radius: 10px;
   border: 3px solid #ffffff;
 }
+
+/* light Scrollbar */
+/* Firefox */
+.light-scrollbar {
+  scrollbar-width: auto;
+  scrollbar-color: #9685db #f2efff;
+}
+
+/* Chrome, Edge, and Safari */
+.light-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  border-radius: 10px;
+}
+
+.light-scrollbar::-webkit-scrollbar-track {
+  background: #f2efff;
+  border-radius: 10px;
+}
+
+.light-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #9685db;
+  border-radius: 10px;
+  border: 3px solid #f3f4f6;
+}

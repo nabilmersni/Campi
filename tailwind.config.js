@@ -14,6 +14,8 @@ export default {
         'black-light': "#1C315E",
         'white-light': "#F5F1F6",
         'bg-light': "#F2EFFF",
+        'border-light': "#BEB3EB",
+
 
         google: {
           "text-gray": "#3c4043",
