@@ -1,6 +1,6 @@
 import NotificationItemUserSide from './NotificationItemUserSide';
 
-function NotificationListUserSide() {
+function NotificationList() {
   return (
     <div className="mt-12 flex w-full flex-col gap-6 overflow-hidden">
       {/* title + filter */}
@@ -32,4 +32,4 @@ function NotificationListUserSide() {
   );
 }
 
-export default NotificationListUserSide;
+export default NotificationList;
