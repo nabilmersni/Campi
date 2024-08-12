@@ -3,6 +3,7 @@ import WelcomeTitle from 'src/features/userSide/WelcomeTitle';
 import StatBox from 'src/features/userSide/StatBox';
 import AvatarNameBox from 'src/ui/AvatarNameBox';
 import Separator from 'src/ui/Separator';
+import EventList from 'src/features/events/EventList';
 
 function HomeUserSidePage() {
   return (
@@ -21,7 +22,7 @@ function HomeUserSidePage() {
         <div className="flex flex-[2] flex-col gap-4">
           <div className="flex flex-grow flex-col gap-4 lg:flex-row">
             <div className="flex-[3] rounded-[1rem] border-[4px] border-border-light bg-white p-4">
-              2
+              <EventList type={'homeuserside'} />
             </div>
 
             <div className="flex flex-[1.3] flex-row gap-4 lg:flex-col">

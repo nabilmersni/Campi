@@ -98,7 +98,56 @@ function EventItemCard({ type = 'landing', img = '/img/camp1.jpg' }) {
   }
 
   if (type === 'homeuserside') {
-    return null;
+    return (
+      <div className="flex h-fit w-full flex-shrink-0 flex-col justify-center gap-3 rounded-[1.5rem] border-[3px] border-border-light bg-[#F5F1F6] p-2 md:h-[12rem] md:flex-row">
+        <div className="h-full w-full flex-shrink-0 self-center sm:w-[12rem]">
+          <img
+            src="/img/camp1.jpg"
+            className="h-full w-full rounded-[1.5rem] object-cover"
+            alt="camp img"
+          />
+        </div>
+
+        <div className="flex w-full flex-col items-center justify-center py-2">
+          <h2 className="mb-4 text-2xl font-bold text-primary">
+            Camping on Testour
+          </h2>
+
+          <div className="mb-6 flex items-center justify-center gap-5">
+            <div className="flex flex-1 items-center justify-center gap-2">
+              <img
+                src="/img/locationIcon.svg"
+                alt="locationIcon"
+                className="w-4"
+              />
+              <span className="text-sm font-bold text-primary">
+                Tunis, Béja
+              </span>
+            </div>
+            <div className="size-[0.3rem] rounded-full bg-primary"></div>
+            <div className="flex flex-1 items-center justify-center gap-2">
+              <img src="/img/dateIcon.svg" alt="locationIcon" className="w-4" />
+              <span className="w-fit whitespace-nowrap text-sm font-bold text-primary">
+                1 Fev - 5 Fev
+              </span>
+            </div>
+          </div>
+
+          <div className="flex w-full items-center justify-center gap-5 px-3">
+            <LinkBtn type={'primaryLight'}>more info</LinkBtn>
+            <div className="size-[.3rem] rounded-full bg-primary sm:block"></div>
+            <div className="flex items-center justify-between gap-2 sm:gap-4">
+              <img
+                src="/img/peopleIcon.svg"
+                alt="peopleIcon"
+                className="sm:w-18 hidden w-16 sm:block"
+              />
+              <LinkBtn type={'primaryLight'}>Join</LinkBtn>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
