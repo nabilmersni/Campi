@@ -35,6 +35,7 @@ export default {
       screens: {
         'xsm': '370px',
         'xlg': '1536px',
+        'mlg': '1460px',
       },
       spacing: {
         'nav-height': 'calc(100dvh - 2rem)',

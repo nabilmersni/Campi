@@ -19,7 +19,7 @@ function NotificationList() {
       </div>
       {/* title + filter */}
 
-      <div className="light-scrollbar flex w-full flex-col gap-4 overflow-y-auto pr-2">
+      <div className="light-scrollbar flex w-full flex-col gap-4 overflow-y-auto pr-3">
         {/* notification items */}
         <NotificationItemUserSide active={true} />
         <NotificationItemUserSide />
