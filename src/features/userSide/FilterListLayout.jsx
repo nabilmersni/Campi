@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useClickOutside from 'src/hooks/useClickOutside';
 
 function FilterListLayout({ children }) {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [topPosition, setTopPosition] = useState('9rem');
 
   const toggleFilterModal = () => {
     setIsFilterModalOpen((isOpen) => !isOpen);
@@ -11,6 +12,17 @@ function FilterListLayout({ children }) {
   const filterModalRef = useClickOutside(() => {
     setIsFilterModalOpen(false);
   });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const newTopPosition = scrollY > 40 ? '3rem' : '9rem'; // Adjust the scroll value and positions as needed
+      setTopPosition(newTopPosition);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="relative flex gap-7">
@@ -21,7 +33,8 @@ function FilterListLayout({ children }) {
       {/* filter modal */}
       <div
         ref={filterModalRef}
-        className={`fixed ${isFilterModalOpen ? 'left-[20rem]' : 'left-[0rem]'} top-[9rem] z-20 w-full transition-all duration-300 lg:hidden`}
+        className={`fixed ${isFilterModalOpen ? 'left-[20rem]' : 'left-[0rem]'} z-20 w-full transition-all duration-300 lg:hidden`}
+        style={{ top: topPosition }}
       >
         <div
           onClick={toggleFilterModal}
@@ -30,7 +43,7 @@ function FilterListLayout({ children }) {
           <img src="/img/filterIcon.svg" alt="filterIcon" className="w-6" />
         </div>
 
-        <div className="absolute right-full top-0 z-10 h-[30rem] min-h-[30rem] w-full max-w-[19.5rem] rounded-[1rem] rounded-tr-none border-[3px] border-border-light bg-white p-4 shadow-lg">
+        <div className="light-scrollbar absolute right-full top-0 h-[80vh] max-h-[30rem] w-full max-w-[19.5rem] overflow-y-auto rounded-[1rem] rounded-tr-none border-[3px] border-border-light bg-white p-4 shadow-lg">
           {children[0]}
         </div>
       </div>
