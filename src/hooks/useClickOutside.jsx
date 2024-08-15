@@ -6,6 +6,9 @@ function useClickOutside(onClick) {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (elementRef.current && !elementRef.current.contains(event.target)) {
+        if (event.target.closest('.ignore-click-outside')) {
+          return;
+        }
         onClick?.();
       }
     };
