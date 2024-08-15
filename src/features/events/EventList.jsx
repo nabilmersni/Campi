@@ -1,5 +1,6 @@
 import Separator from 'src/ui/Separator';
 import EventItemCard from './EventItemCard';
+import InputField from 'src/ui/InputField';
 
 function EventList({ type }) {
   if (type === 'homeuserside') {
@@ -13,6 +14,27 @@ function EventList({ type }) {
           <EventItemCard type="homeuserside" />
           <EventItemCard type="homeuserside" />
           <EventItemCard type="homeuserside" />
+        </div>
+      </div>
+    );
+  }
+
+  if (type === 'eventsuserside') {
+    return (
+      <div className="flex flex-col items-center text-black-light">
+        <div className="flex w-full flex-col items-center justify-between gap-3 px-6 sm:flex-row">
+          <h2 className="text-lg font-semibold">Event list</h2>
+          <div className="flex items-center gap-4 self-end">
+            <p>Sort by:</p>
+            <InputField color="primary" isSelect={true} />
+          </div>
+        </div>
+        <Separator size="big" />
+
+        <div className="mt-9 flex w-full flex-col gap-7">
+          <EventItemCard type="eventuserside" />
+          <EventItemCard type="eventuserside" />
+          <EventItemCard type="eventuserside" />
         </div>
       </div>
     );

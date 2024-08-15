@@ -4,6 +4,7 @@ import useClickOutside from 'src/hooks/useClickOutside';
 function FilterListLayout({ children }) {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [topPosition, setTopPosition] = useState('9rem');
+  const [topPositionLG, setTopPositionLG] = useState('12.3rem');
 
   const toggleFilterModal = () => {
     setIsFilterModalOpen((isOpen) => !isOpen);
@@ -16,8 +17,11 @@ function FilterListLayout({ children }) {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const newTopPosition = scrollY > 40 ? '3rem' : '9rem'; // Adjust the scroll value and positions as needed
+      const newTopPosition = scrollY > 40 ? '3rem' : '9rem';
+      const newTopPosition2 = scrollY > 100 ? '3rem' : '12.3rem';
+
       setTopPosition(newTopPosition);
+      setTopPositionLG(newTopPosition2);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -26,9 +30,14 @@ function FilterListLayout({ children }) {
 
   return (
     <div className="relative flex gap-7">
-      <div className="hidden min-h-[30rem] w-[19.5rem] flex-shrink-0 flex-col rounded-[1rem] border-[3px] border-border-light bg-white p-4 lg:flex">
+      <div
+        className="fixed hidden h-[30rem] max-h-[30rem] w-[19.5rem] flex-shrink-0 flex-col rounded-[1rem] border-[3px] border-border-light bg-white p-4 transition-all duration-300 lg:flex"
+        style={{ top: topPositionLG }}
+      >
         {children[0]}
       </div>
+
+      <div className="hidden max-h-[30rem] w-[19.5rem] flex-shrink-0 lg:block"></div>
 
       {/* filter modal */}
       <div
