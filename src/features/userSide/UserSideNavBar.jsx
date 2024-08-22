@@ -73,7 +73,7 @@ function UserSideNavBar() {
               <MessengerIcon />
             </LinkBtn>
 
-            <LinkBtn to={''} type="iconLinkBtn">
+            <LinkBtn to={'/userside/cart'} type="iconLinkBtn">
               <div className="w-[1.28rem] stroke-primary stroke-[.2px]">
                 <ShopIcon />
               </div>
@@ -125,7 +125,7 @@ function UserSideNavBar() {
                     <MessengerIcon />
                   </LinkBtn>
 
-                  <LinkBtn to={''} type="iconLinkBtn">
+                  <LinkBtn to={'/userside/cart'} type="iconLinkBtn">
                     <div className="w-[1.28rem] stroke-primary stroke-[.2px]">
                       <ShopIcon />
                     </div>

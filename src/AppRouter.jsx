@@ -12,6 +12,9 @@ import UserSideLayout from './features/userSide/UserSideLayout';
 import HomeUserSidePage from './pages/HomeUserSidePage';
 import EventsUserSidePage from './pages/EventsUserSidePage';
 import ShopUserSidePage from './pages/ShopUserSidePage';
+import CartDetailPage from './pages/CartDetailPage';
+import CartAddressPage from './pages/CartAddressPage';
+import CartPaymentPage from './pages/CartPaymentPage';
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -74,6 +77,24 @@ export default function AppRouter() {
         {
           path: 'shop',
           element: <ShopUserSidePage />,
+        },
+
+        {
+          path: 'cart',
+          children: [
+            {
+              index: true,
+              element: <CartDetailPage />,
+            },
+            {
+              path: 'address',
+              element: <CartAddressPage />,
+            },
+            {
+              path: 'payment',
+              element: <CartPaymentPage />,
+            },
+          ],
         },
       ],
     },

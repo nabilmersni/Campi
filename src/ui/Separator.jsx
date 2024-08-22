@@ -7,6 +7,8 @@ function Separator({ size = 'small' }) {
     style = 'h-[0.25rem] w-[35%]';
   } else if (size === 'big') {
     style = 'h-[0.25rem] w-[90%]  mt-4';
+  } else if (size === 'xl') {
+    style = 'h-[0.25rem] w-[95%]  mt-4';
   }
 
   return (
