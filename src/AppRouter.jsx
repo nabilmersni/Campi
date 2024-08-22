@@ -15,6 +15,7 @@ import ShopUserSidePage from './pages/ShopUserSidePage';
 import CartDetailPage from './pages/CartDetailPage';
 import CartAddressPage from './pages/CartAddressPage';
 import CartPaymentPage from './pages/CartPaymentPage';
+import EventDetailsPage from './pages/EventDetailsPage';
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -72,6 +73,11 @@ export default function AppRouter() {
         {
           path: 'events',
           element: <EventsUserSidePage />,
+        },
+
+        {
+          path: 'events/:id',
+          element: <EventDetailsPage />,
         },
 
         {
