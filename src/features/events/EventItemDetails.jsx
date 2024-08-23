@@ -69,7 +69,7 @@ function EventItemDetails() {
           </button>
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <h2 className="text-xl font-extrabold text-primary">Description</h2>
           <p className="font-semibold text-black-light">
             Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -85,7 +85,7 @@ function EventItemDetails() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <h2 className="text-xl font-extrabold text-primary">
             Participants (5/10)
           </h2>
@@ -98,7 +98,7 @@ function EventItemDetails() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <h2 className="text-xl font-extrabold text-primary">Rules</h2>
           <EventRules />
         </div>

@@ -1,3 +1,4 @@
+import EventBooking from 'src/features/events/EventBooking';
 import EventItemDetails from 'src/features/events/EventItemDetails';
 import ItemDetailLayout from 'src/features/userSide/ItemDetailLayout';
 
@@ -8,7 +9,7 @@ function EventDetailsPage() {
         <EventItemDetails />
 
         {/*  */}
-        <div>hello</div>
+        <EventBooking />
       </ItemDetailLayout>
     </div>
   );

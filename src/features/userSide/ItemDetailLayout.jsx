@@ -21,18 +21,18 @@ function ItemDetailLayout({ children }) {
         {children?.[0]}
       </div>
 
-      <div className="relative hidden max-h-[31rem] w-full flex-shrink-0 flex-col rounded-[1rem] lg:flex lg:w-[22rem]">
+      <div className="relative hidden h-fit max-h-[31rem] w-full flex-shrink-0 flex-col rounded-[1rem] lg:flex lg:w-[22rem]">
         <div
-          className="fixed flex h-[31rem] w-full flex-shrink-0 flex-col rounded-[1rem] border-[3px] border-b-[0.7rem] border-t-[0.7rem] border-border-light bg-border-light transition-all lg:w-[22rem]"
+          className="fixed flex h-fit w-full flex-shrink-0 flex-col rounded-[1rem] border-[3px] border-b-[0.7rem] border-t-[0.7rem] border-border-light bg-border-light transition-all lg:w-[22rem]"
           style={{ top: topPosition }}
         >
-          <div className="flex h-full w-full flex-shrink-0 flex-col rounded-[0.5rem] border-[3px] border-border-light bg-white p-4">
+          <div className="flex h-fit w-full flex-shrink-0 flex-col rounded-[0.5rem] border-[3px] border-border-light bg-white p-4">
             {children?.[1]}
           </div>
         </div>
       </div>
 
-      <div className="flex max-h-[31rem] w-full flex-shrink-0 flex-col rounded-[1rem] border-[3px] border-b-[0.7rem] border-t-[0.7rem] border-border-light bg-border-light transition-all lg:hidden lg:w-[22rem]">
+      <div className="flex h-fit max-h-[31rem] w-full flex-shrink-0 flex-col rounded-[1rem] border-[3px] border-b-[0.7rem] border-t-[0.7rem] border-border-light bg-border-light transition-all lg:hidden lg:w-[22rem]">
         <div className="flex h-full w-full flex-shrink-0 flex-col rounded-[0.5rem] border-[3px] border-border-light bg-white p-4">
           {children?.[1]}
         </div>

@@ -7,7 +7,7 @@ function ParticipantItem() {
     <div className="flex w-full items-center gap-10 rounded-[0.5rem] border-[3px] border-border-light bg-bg-light p-2 sm:w-fit sm:gap-4">
       <div className="size-14 flex-shrink-0">
         <img
-          className="h-full w-full rounded-full border-[3px] border-border-light bg-white object-cover p-1"
+          className="h-full w-full rounded-full border-[3px] border-border-light bg-bg-light object-cover p-[0.2rem]"
           src="/img/avatar2.png"
           alt="avatar"
         />
