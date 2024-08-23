@@ -1,7 +1,7 @@
 function ItemDetailLayout({ children }) {
   return (
     <div className="relative flex flex-col gap-6 text-black-light lg:flex-row">
-      <div className="flex min-h-[30rem] flex-grow flex-col rounded-[1rem] border-[3px] border-border-light bg-white bg-[url('/img/Cartpattern.svg')] bg-center bg-repeat p-4 lg:w-[22rem]">
+      <div className="flex min-h-[30rem] flex-grow flex-col rounded-[1rem] border-[3px] border-border-light bg-white bg-[url('/img/Cartpattern.svg')] bg-center bg-repeat p-4 sm:p-6 lg:w-[22rem]">
         {children?.[0]}
       </div>
 
