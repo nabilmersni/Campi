@@ -1,4 +1,4 @@
-import CheckmarksInput from 'src/ui/CheckmarksInput';
+import StatesInput from 'src/ui/StatesInput';
 import FilterTag from 'src/ui/FilterTag';
 import MultiRangeSlider from 'src/ui/MultiRangeSlider';
 import Separator from 'src/ui/Separator';
@@ -30,7 +30,7 @@ function EventFilter() {
 
           <div className="flex flex-col items-center">
             <p className="mb-2 self-start text-sm font-semibold">States</p>
-            <CheckmarksInput />
+            <StatesInput />
           </div>
         </div>
       </div>

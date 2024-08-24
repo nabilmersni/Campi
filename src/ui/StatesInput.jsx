@@ -39,7 +39,7 @@ const MenuProps = {
   },
 };
 
-function CheckmarksInput() {
+function StatesInput() {
   const [personName, setPersonName] = useState([]);
 
   const handleChange = (event) => {
@@ -104,4 +104,4 @@ function CheckmarksInput() {
   );
 }
 
-export default CheckmarksInput;
+export default StatesInput;

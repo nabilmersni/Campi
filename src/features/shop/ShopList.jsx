@@ -46,8 +46,7 @@ function ShopList({ type }) {
           </div>
         </div>
         <Separator size="big" />
-
-        <div className="mt-9 flex w-full flex-col gap-7">
+        <div className="mt-9 flex flex-wrap justify-center gap-7 sm:justify-start">
           <ShopItemCard type="userside" />
           <ShopItemCard type="userside" />
           <ShopItemCard type="userside" />

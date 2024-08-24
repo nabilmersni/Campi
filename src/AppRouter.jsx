@@ -16,6 +16,7 @@ import CartDetailPage from './pages/CartDetailPage';
 import CartAddressPage from './pages/CartAddressPage';
 import CartPaymentPage from './pages/CartPaymentPage';
 import EventDetailsPage from './pages/EventDetailsPage';
+import ProductDetailsPage from './pages/ProductDetailsPage';
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -83,6 +84,11 @@ export default function AppRouter() {
         {
           path: 'shop',
           element: <ShopUserSidePage />,
+        },
+
+        {
+          path: 'shop/:id',
+          element: <ProductDetailsPage />,
         },
 
         {

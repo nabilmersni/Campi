@@ -1,7 +1,7 @@
-import CheckmarksInput from 'src/ui/CheckmarksInput';
 import FilterTag from 'src/ui/FilterTag';
 import MultiRangeSlider from 'src/ui/MultiRangeSlider';
 import Separator from 'src/ui/Separator';
+import CategoriesInput from 'src/ui/CategoriesInput';
 
 function ShopFilter() {
   return (
@@ -14,8 +14,8 @@ function ShopFilter() {
       </div>
 
       <div className="flex w-full flex-wrap gap-3">
-        <FilterTag data={'Beja'} />
-        <FilterTag data={'Jendouba'} />
+        <FilterTag data={'Tent'} />
+        <FilterTag data={'Backpack'} />
       </div>
 
       <Separator size="medium" />
@@ -29,8 +29,8 @@ function ShopFilter() {
           </div>
 
           <div className="flex flex-col items-center">
-            <p className="mb-2 self-start text-sm font-semibold">States</p>
-            <CheckmarksInput />
+            <p className="mb-2 self-start text-sm font-semibold">Categories</p>
+            <CategoriesInput />
           </div>
         </div>
       </div>
