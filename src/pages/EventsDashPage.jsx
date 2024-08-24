@@ -1,4 +1,5 @@
 import EventItemCard from 'src/features/events/EventItemCard';
+import EventList from 'src/features/events/EventList';
 import InputField from 'src/ui/InputField';
 import TitleDash from 'src/ui/TitleDash';
 
@@ -10,13 +11,7 @@ function EventsDashPage() {
       </TitleDash>
 
       <div className="h-full w-full overflow-auto">
-        <div className="flex h-full w-full min-w-[21rem] flex-wrap justify-center gap-4 gap-y-8">
-          <EventItemCard type="dash" />
-          <EventItemCard type="dash" />
-          <EventItemCard type="dash" />
-          <EventItemCard type="dash" />
-          <EventItemCard type="dash" />
-        </div>
+        <EventList type={'dash'} />
       </div>
     </div>
   );

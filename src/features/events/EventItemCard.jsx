@@ -1,8 +1,8 @@
 import LinkBtn from 'src/ui/LinkBtn';
 import Button from 'src/ui/Button';
 
-function EventItemCard({ type = 'landing', img = '/img/camp1.jpg' }) {
-  if (type === 'landing') {
+function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg' }) {
+  if (type === 'landingPage') {
     return (
       <div className="flex h-fit min-h-[20rem] flex-col items-center rounded-[3rem] border-[.2rem] border-primary bg-white-light p-3 sm:min-w-[23rem]">
         <div className="mb-2 h-[10rem] w-full rounded-[2rem]">

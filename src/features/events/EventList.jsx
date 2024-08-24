@@ -3,6 +3,31 @@ import EventItemCard from './EventItemCard';
 import InputField from 'src/ui/InputField';
 
 function EventList({ type }) {
+  if (type === 'landingPage') {
+    return (
+      <div className="mb-12 mt-16 flex flex-wrap items-center justify-center gap-4 gap-y-10 sm:mb-16 lg:gap-x-24">
+        <EventItemCard type="landingPage" img={'/img/camp1.jpg'} />
+        <EventItemCard type="landingPage" img={'/img/camp2.jpg'} />
+        <EventItemCard type="landingPage" img={'/img/camp3.jpg'} />
+        <EventItemCard type="landingPage" img={'/img/camp1.jpg'} />
+        <EventItemCard type="landingPage" img={'/img/camp2.jpg'} />
+        <EventItemCard type="landingPage" img={'/img/camp3.jpg'} />
+      </div>
+    );
+  }
+
+  if (type === 'dash') {
+    return (
+      <div className="flex h-full w-full min-w-[21rem] flex-wrap justify-center gap-4 gap-y-8 sm:justify-start">
+        <EventItemCard type="dash" />
+        <EventItemCard type="dash" />
+        <EventItemCard type="dash" />
+        <EventItemCard type="dash" />
+        <EventItemCard type="dash" />
+      </div>
+    );
+  }
+
   if (type === 'homeuserside') {
     return (
       <div className="flex max-h-[25rem] flex-col items-center gap-10 overflow-hidden">

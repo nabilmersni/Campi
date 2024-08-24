@@ -2,7 +2,7 @@ import EventRules from 'src/ui/EventRules';
 import GaloryCarousel from 'src/ui/GaloryCarousel';
 import ParticipantItem from 'src/ui/ParticipantItem';
 
-function EventItemDetails() {
+function EventDetails() {
   return (
     <div className="flex w-full flex-col items-center gap-4">
       <div className="flex w-full flex-col items-center justify-between gap-1 px-4 sm:flex-row sm:px-16">
@@ -107,4 +107,4 @@ function EventItemDetails() {
   );
 }
 
-export default EventItemDetails;
+export default EventDetails;
