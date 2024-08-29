@@ -10,7 +10,7 @@ function HeroSection() {
   return (
     <section
       id="home"
-      className="relative h-[100vh] max-h-[55rem] bg-primary-dark p-5 lg:px-[10rem] lg:pr-0"
+      className="relative h-[100vh] max-h-[55rem] bg-primary-dark p-5 pt-10 sm:pt-5 lg:px-[10rem] lg:pr-0"
     >
       <div className="relative z-10 mx-auto hidden h-full max-w-[86rem] gap-8 lg:flex lg:items-center lg:justify-between">
         {/* left */}

@@ -25,7 +25,7 @@ function ProductDetailsAddCart() {
         ></div>
 
         <div className="flex items-center justify-between text-lg font-bold">
-          <p>Total Amount</p>
+          <p>Price</p>
           <p>360TND</p>
         </div>
 

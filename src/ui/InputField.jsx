@@ -14,6 +14,7 @@ function InputField({
   size = 'medium',
   isWithIcon = false,
   isSelect,
+  register,
 }) {
   let sx;
 
@@ -80,6 +81,7 @@ function InputField({
             </InputAdornment>
           ),
         }}
+        {...register}
       />
     );
   }
@@ -163,6 +165,7 @@ function InputField({
         className="w-[10rem] fill-primary"
         IconComponent={ExpandMoreIcon}
         MenuProps={menuProps}
+        {...register}
       >
         <MenuItem sx={menuItemSx} className="text-gray-400" value="">
           Default
@@ -185,6 +188,7 @@ function InputField({
 
   return (
     <TextField
+      {...register}
       size={size}
       label={label}
       defaultValue={defaultValue}
