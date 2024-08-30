@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { login } from './AuthSlice';
 import InputField from 'src/ui/InputField';
@@ -7,10 +7,12 @@ import Button from 'src/ui/Button';
 import LinkBtn from 'src/ui/LinkBtn';
 import GoogleAuth from './GoogleAuth';
 import FacebookAuth from './FacebookAuth';
+import Loader from 'src/ui/Loader';
 
 function LoginForm() {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.auth);
 
   const onSubmit = (data) => {
     dispatch(login(data));
@@ -18,6 +20,8 @@ function LoginForm() {
 
   return (
     <div className="w-full flex-1 p-3 sm:max-w-[80%] md:min-w-[32rem] md:max-w-[40%]">
+      {loading && <Loader />}
+
       <div className="flex flex-col items-center rounded-3xl border-[.2rem] border-[#ac9ee8] bg-[#F9FDFF] p-6 px-4 shadow-lg sm:p-8">
         <div className="mb-14 flex flex-col items-center">
           <h1 className="mb-2 text-5xl font-bold text-primary">Sign in</h1>

@@ -9,20 +9,19 @@ const initialState = {
   loading: false,
 };
 
-export const login = createAsyncThunk("auth/login", async (data, thunkAPI) => {
+export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
   try {
-    const { user: currentUser } = await authService.login(data);
-    toast.success('You are successfully logged in')
+    const currentUser = await authService.login(data);
+    toast.success('You are successfully logged in');
 
-    secureLocalStorage.setItem('currentUser', currentUser)
+    secureLocalStorage.setItem('currentUser', currentUser);
     return currentUser;
   } catch (error) {
     console.log(error);
     AuthErrorToastMsg(error.message);
     return thunkAPI.rejectWithValue(error.message);
   }
-})
-
+});
 
 const authSlice = createSlice({
   name: 'auth',
@@ -30,22 +29,24 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.currentUser = null;
-      secureLocalStorage.removeItem('currentUser')
+      secureLocalStorage.removeItem('currentUser');
     },
   },
   extraReducers: (builder) => {
     // login
-    builder.addCase(login.pending, (state) => {
-      state.loading = true;
-    }).addCase(login.fulfilled, (state, action) => {
-      state.currentUser = action.payload
-      state.loading = false;
-    }).addCase(login.rejected, (state) => {
-      state.loading = false;
-    })
-
-  }
+    builder
+      .addCase(login.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.currentUser = action.payload;
+        state.loading = false;
+      })
+      .addCase(login.rejected, (state) => {
+        state.loading = false;
+      });
+  },
 });
 
-export const { logout } = authSlice.actions
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;
