@@ -3,6 +3,7 @@ import ExpandMoreIcon from 'src/assets/svgs/chevronIconSelect.svg';
 
 function InputField({
   label,
+  name,
   onChange,
   color = 'primary',
   isTextArea,
@@ -63,6 +64,7 @@ function InputField({
       <TextField
         size={size}
         label={label}
+        name={name}
         defaultValue={defaultValue}
         placeholder={placeholder}
         variant="outlined"
@@ -158,6 +160,7 @@ function InputField({
     return (
       <Select
         value=""
+        name={name}
         onChange={onChange}
         displayEmpty
         size="small"
@@ -190,6 +193,7 @@ function InputField({
     <TextField
       {...register}
       size={size}
+      name={name}
       label={label}
       defaultValue={defaultValue}
       placeholder={placeholder}

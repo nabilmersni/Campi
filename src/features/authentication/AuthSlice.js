@@ -23,18 +23,23 @@ export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
   }
 });
 
+export const logout = createAsyncThunk('auth/logout', async () => {
+  try {
+    await authService.logout();
+    secureLocalStorage.removeItem('currentUser');
+    toast.success('Signed out successfully.');
+  } catch (error) {
+    AuthErrorToastMsg(error.message);
+  }
+});
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    logout: (state) => {
-      state.currentUser = null;
-      secureLocalStorage.removeItem('currentUser');
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    // login
     builder
+      // login
       .addCase(login.pending, (state) => {
         state.loading = true;
       })
@@ -44,9 +49,18 @@ const authSlice = createSlice({
       })
       .addCase(login.rejected, (state) => {
         state.loading = false;
+      })
+
+      // logout
+      .addCase(logout.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.loading = false;
+        state.currentUser = null;
       });
   },
 });
 
-export const { logout } = authSlice.actions;
+// export const { logout } = authSlice.actions;
 export default authSlice.reducer;

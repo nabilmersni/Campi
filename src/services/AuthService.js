@@ -4,7 +4,7 @@ import {
   sendEmailVerification,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
 import { auth, db } from 'src/firebase';
 
 const register = async (data) => {
@@ -23,6 +23,7 @@ const register = async (data) => {
         fullname: data.fullname,
         email: data.email,
         phoneNumber: data.phoneNumber,
+        birthDay: Timestamp.fromDate(new Date(data.birthDay)),
         role: 'user',
         state: true,
         photoURL: null,
@@ -60,6 +61,14 @@ const login = async (data) => {
   }
 };
 
+const logout = async () => {
+  try {
+    await auth.signOut();
+  } catch (error) {
+    throw new Error('Sign out failed. Please try again.');
+  }
+};
+
 const sendVerificationEmail = async () => {
   try {
     await sendEmailVerification(auth.currentUser);
@@ -71,6 +80,7 @@ const sendVerificationEmail = async () => {
 const authService = {
   register,
   login,
+  logout,
 };
 
 export default authService;

@@ -3,11 +3,14 @@ import Sidebar from './Sidebar';
 import TopNavBar from './TopNavBar';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import Loader from 'src/ui/Loader';
 
 function DashboardLayout() {
   const location = useLocation();
   const { error } = location.state || {};
   const navigate = useNavigate();
+  const { loading } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (error) {
@@ -18,6 +21,8 @@ function DashboardLayout() {
 
   return (
     <div className="flex h-screen w-screen bg-[url('/img/dash-bg.svg')] bg-cover bg-left-top">
+      {loading && <Loader />}
+
       {/* sidebar */}
       <Sidebar />
       {/* sidebar */}

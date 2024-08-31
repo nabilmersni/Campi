@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthErrorToastMsg } from 'src/utils/AuthErrorToastMsg';
 
 function RegisterForm() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -31,6 +31,11 @@ function RegisterForm() {
     }
 
     setLoading(false);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setValue(name, value);
   };
 
   return (
@@ -53,46 +58,63 @@ function RegisterForm() {
         >
           <InputField
             label={'FullName'}
+            name={'fullname'}
             type="text"
             placeholder={'Your fullname here'}
             required
             register={register('fullname')}
+            onChange={handleInputChange}
           />
 
           <InputField
             label={'Email'}
+            name={'email'}
             type="email"
             placeholder={'Your email here'}
             required
             register={register('email')}
+            onChange={handleInputChange}
           />
 
           <InputField
             label={'Phone number'}
+            name={'phoneNumber'}
             type="tel"
             placeholder={'Your phone num here'}
             required
             register={register('phoneNumber')}
+            onChange={handleInputChange}
           />
 
           <InputField
             label={'Date of Birth'}
+            name={'birthDay'}
             type="date"
             placeholder={'dd/mm/yyyy'}
             required
             shrink
-            register={register('BirthDay')}
+            register={register('birthDay')}
+            onChange={handleInputChange}
           />
 
           <div className="mb-4 flex w-full items-center justify-between gap-2">
             <InputField
               label={'Password'}
+              name={'password'}
               type="password"
               required
               register={register('password')}
+              onChange={handleInputChange}
             />
 
-            <InputField label={'Confirm Password'} type="password" required />
+            <InputField
+              label={'Confirm Password'}
+              name={'rePassword'}
+              type="password"
+              required
+              register={register('rePassword')}
+              onChange={handleInputChange}
+            />
           </div>
 
           <Button color={'primaryForm'}>Sign Up</Button>

@@ -7,10 +7,12 @@ import BurgerBtn from 'src/ui/BurgerBtn';
 import { useContext, useEffect, useState } from 'react';
 import { NavBarContext } from 'src/context/NavBarContext';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useSelector } from 'react-redux';
 
 function UserSideNavBar() {
   const { isOpen, setIsOpen, burgerBtnRef } = useContext(NavBarContext);
   const [isScrollable, setIsScrollable] = useState(false);
+  const { currentUser } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 1024px)');
@@ -61,17 +63,36 @@ function UserSideNavBar() {
         </div>
 
         <div className="hidden flex-row-reverse items-center gap-4 lg:flex">
-          <AvatarDropDownMenu img={'/img/avatar2.png'} type="userside" />
+          {currentUser && (
+            <AvatarDropDownMenu img={'/img/avatar2.png'} type="userside" />
+          )}
+
+          {!currentUser && (
+            <div className="-ml-12 flex gap-2">
+              <LinkBtn type="userSideNavbarLink2" to={'/login'}>
+                Login
+              </LinkBtn>
+
+              <LinkBtn type="userSideNavbarLink2" to={'/signup'}>
+                Sign up
+              </LinkBtn>
+            </div>
+          )}
+
           <div className="mr-10 size-2 rounded-full bg-primary-light"></div>
 
           <div className="flex flex-row-reverse items-center gap-3">
-            <LinkBtn to={''} type="iconLinkBtn">
-              <NotifIcon />
-            </LinkBtn>
+            {currentUser && (
+              <LinkBtn to={''} type="iconLinkBtn">
+                <NotifIcon />
+              </LinkBtn>
+            )}
 
-            <LinkBtn to={''} type="iconLinkBtn">
-              <MessengerIcon />
-            </LinkBtn>
+            {currentUser && (
+              <LinkBtn to={''} type="iconLinkBtn">
+                <MessengerIcon />
+              </LinkBtn>
+            )}
 
             <LinkBtn to={'/userside/cart'} type="iconLinkBtn">
               <div className="w-[1.28rem] stroke-primary stroke-[.2px]">
@@ -109,21 +130,40 @@ function UserSideNavBar() {
                   },
                 }}
               >
-                <AvatarDropDownMenu
-                  isCenter={true}
-                  img={'/img/avatar2.png'}
-                  type="userside"
-                />
+                {currentUser && (
+                  <AvatarDropDownMenu
+                    isCenter={true}
+                    img={'/img/avatar2.png'}
+                    type="userside"
+                  />
+                )}
+
+                {!currentUser && (
+                  <div className="flex flex-col items-center gap-2">
+                    <LinkBtn type="userSideNavbarLink2" to={'/login'}>
+                      Login
+                    </LinkBtn>
+
+                    <LinkBtn type="userSideNavbarLink2" to={'/signup'}>
+                      Sign up
+                    </LinkBtn>
+                  </div>
+                )}
+
                 <div className="h-1 w-6 rounded-full bg-primary-light"></div>
 
                 <div className="flex flex-row-reverse items-center gap-3">
-                  <LinkBtn to={''} type="iconLinkBtn">
-                    <NotifIcon />
-                  </LinkBtn>
+                  {currentUser && (
+                    <LinkBtn to={''} type="iconLinkBtn">
+                      <NotifIcon />
+                    </LinkBtn>
+                  )}
 
-                  <LinkBtn to={''} type="iconLinkBtn">
-                    <MessengerIcon />
-                  </LinkBtn>
+                  {currentUser && (
+                    <LinkBtn to={''} type="iconLinkBtn">
+                      <MessengerIcon />
+                    </LinkBtn>
+                  )}
 
                   <LinkBtn to={'/userside/cart'} type="iconLinkBtn">
                     <div className="w-[1.28rem] stroke-primary stroke-[.2px]">

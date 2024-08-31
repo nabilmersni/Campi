@@ -10,12 +10,18 @@ import FacebookAuth from './FacebookAuth';
 import Loader from 'src/ui/Loader';
 
 function LoginForm() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
 
   const onSubmit = (data) => {
     dispatch(login(data));
+    console.log(data);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setValue(name, value);
   };
 
   return (
@@ -39,38 +45,39 @@ function LoginForm() {
           <InputField
             label={'Email'}
             type="email"
+            name={'email'}
             placeholder={'Your email here'}
             required
-            register={{ ...register('email') }}
+            register={{
+              ...register('email'),
+            }}
+            onChange={handleInputChange}
           />
-
           <div className="flex w-full flex-col items-end">
             <InputField
               label={'Password'}
               type="password"
+              name={'password'}
               placeholder={'Your Password here'}
               required
               register={{ ...register('password') }}
+              onChange={handleInputChange}
             />
 
             <LinkBtn type={'formLink'} to={'/'}>
               Forgot password?
             </LinkBtn>
           </div>
-
           <Button color={'primaryForm'}>Login</Button>
-
           <div className="my-2 flex items-center gap-2">
             <div className="h-[.15rem] w-20 rounded-full bg-primary opacity-50"></div>
             <span className="text-md font-semibold text-primary">or</span>
             <div className="h-[.15rem] w-20 rounded-full bg-primary opacity-50"></div>
           </div>
-
           <div className="flex w-full flex-col items-center justify-center gap-2">
             <GoogleAuth>Sign in with Google</GoogleAuth>
             <FacebookAuth>Sign in with Facebook</FacebookAuth>
           </div>
-
           <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-center">
             <span className="text-nowrap">New on our platform ?</span>
             <LinkBtn type={'formLink'} to={'/signup'}>

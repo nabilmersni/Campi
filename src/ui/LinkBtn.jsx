@@ -295,7 +295,7 @@ function LinkBtn({
   if (type === 'userSideNavbarLink') {
     const getClassName = () => {
       const isExactActive = location.pathname === to;
-      return `w-full h-full cursor-pointer rounded-xl  px-5 py-2 font-bold text-primary transition-all hover:bg-primary-light active:bg-[#D9D2FF] ${isExactActive ? 'bg-primary-light' : ''}`;
+      return `text-nowrap w-full h-full cursor-pointer rounded-xl  px-5 py-2 font-bold text-primary transition-all hover:bg-primary-light active:bg-[#D9D2FF] ${isExactActive ? 'bg-primary-light' : ''}`;
     };
     return (
       <NavLink
@@ -305,6 +305,25 @@ function LinkBtn({
           setIsOpen(false);
           burgerBtnRef.current.playSegments([98, 0], true);
         }}
+      >
+        {children}
+      </NavLink>
+    );
+  }
+
+  if (type === 'userSideNavbarLink2') {
+    const getClassName = () => {
+      const isExactActive = location.pathname === to;
+      return `text-nowrap w-full h-full cursor-pointer rounded-xl  px-5 py-2 font-bold text-primary border-[2px] border-[#D9D2FF] text-center transition-all hover:bg-primary-light active:bg-[#D9D2FF] ${isExactActive ? 'bg-primary-light' : ''}`;
+    };
+    return (
+      <NavLink
+        className={getClassName()}
+        to={to}
+        // onClick={() => {
+        //   setIsOpen(false);
+        //   burgerBtnRef.current.playSegments([98, 0], true);
+        // }}
       >
         {children}
       </NavLink>
