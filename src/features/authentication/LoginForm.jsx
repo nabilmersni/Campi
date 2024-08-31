@@ -10,7 +10,14 @@ import FacebookAuth from './FacebookAuth';
 import Loader from 'src/ui/Loader';
 
 function LoginForm() {
-  const { register, handleSubmit, setValue } = useForm();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    mode: 'all',
+  });
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
 
@@ -41,6 +48,7 @@ function LoginForm() {
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex w-full flex-col items-center gap-5"
+          noValidate
         >
           <InputField
             label={'Email'}
@@ -49,24 +57,48 @@ function LoginForm() {
             placeholder={'Your email here'}
             required
             register={{
-              ...register('email'),
+              ...register('email', {
+                required: 'Email is required.',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Please enter a valid email!',
+                },
+              }),
             }}
             onChange={handleInputChange}
           />
-          <div className="flex w-full flex-col items-end">
+
+          <p className="-mt-4 self-start text-sm text-red-400">
+            {errors.email?.message}
+          </p>
+
+          <div className="flex w-full flex-col items-end gap-1">
             <InputField
               label={'Password'}
               type="password"
               name={'password'}
               placeholder={'Your Password here'}
               required
-              register={{ ...register('password') }}
+              register={{
+                ...register('password', {
+                  required: 'password is required',
+                  minLength: {
+                    value: 8,
+                    message: 'Password must be at least 8 characters.',
+                  },
+                }),
+              }}
               onChange={handleInputChange}
             />
+            <div className="flex w-full items-center justify-between">
+              <p className="mt- self-start text-sm text-red-400">
+                {errors.password?.message}
+              </p>
 
-            <LinkBtn type={'formLink'} to={'/'}>
-              Forgot password?
-            </LinkBtn>
+              <LinkBtn type={'formLink'} to={'/'}>
+                Forgot password?
+              </LinkBtn>
+            </div>
           </div>
           <Button color={'primaryForm'}>Login</Button>
           <div className="my-2 flex items-center gap-2">
