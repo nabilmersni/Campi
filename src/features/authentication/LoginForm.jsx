@@ -95,7 +95,7 @@ function LoginForm() {
                 {errors.password?.message}
               </p>
 
-              <LinkBtn type={'formLink'} to={'/'}>
+              <LinkBtn type={'formLink'} to={'/forgotpassword'}>
                 Forgot password?
               </LinkBtn>
             </div>

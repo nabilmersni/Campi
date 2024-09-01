@@ -5,12 +5,14 @@ import { toast } from 'react-toastify';
 import UserSideNavBar from './UserSideNavBar';
 import { useSelector } from 'react-redux';
 import Loader from 'src/ui/Loader';
+import useScrollToTop from 'src/hooks/useScrollToTop';
 
 function UserSideLayout() {
   const location = useLocation();
   const { error } = location.state || {};
   const navigate = useNavigate();
   const { loading } = useSelector((state) => state.auth);
+  useScrollToTop();
 
   useEffect(() => {
     if (error) {

@@ -23,6 +23,7 @@ import EventDetailsPage from './pages/EventDetailsPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import ForgotPassword from './features/authentication/ForgotPassword';
 
 const PrivateRoute = ({ children, role }) => {
   const { currentUser } = useSelector((state) => state.auth);
@@ -109,6 +110,10 @@ export default function AppRouter() {
         {
           path: '/signup',
           element: <RegisterForm />,
+        },
+        {
+          path: '/forgotpassword',
+          element: <ForgotPassword />,
         },
       ],
     },

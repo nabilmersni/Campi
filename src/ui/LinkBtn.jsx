@@ -190,7 +190,7 @@ function LinkBtn({
 
     return isCollapsed ? (
       <NavLink
-        // to={to}
+        to={to}
         className={`rounded-full bg-primary-light ${sizeVarinats[size]} min-w-[7rem] text-center font-extrabold text-primary transition-all hover:bg-secondary`}
         onClick={() => {
           setIsOpen(false);
@@ -320,10 +320,10 @@ function LinkBtn({
       <NavLink
         className={getClassName()}
         to={to}
-        // onClick={() => {
-        //   setIsOpen(false);
-        //   burgerBtnRef.current.playSegments([98, 0], true);
-        // }}
+        onClick={() => {
+          setIsOpen(false);
+          burgerBtnRef.current.playSegments([98, 0], true);
+        }}
       >
         {children}
       </NavLink>

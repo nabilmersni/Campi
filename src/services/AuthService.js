@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   deleteUser,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
@@ -69,6 +70,14 @@ const logout = async () => {
   }
 };
 
+const fogotPassword = async (data) => {
+  try {
+    await sendPasswordResetEmail(auth, data.email);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const sendVerificationEmail = async () => {
   try {
     await sendEmailVerification(auth.currentUser);
@@ -81,6 +90,7 @@ const authService = {
   register,
   login,
   logout,
+  fogotPassword,
 };
 
 export default authService;
