@@ -1,9 +1,18 @@
+import { useDispatch } from 'react-redux';
+import { login } from './AuthSlice';
+
 function GoogleAuth({ children }) {
+  const dispatch = useDispatch();
+  const test = async () => {
+    dispatch(login());
+  };
+
   return (
     <button
       type="button"
       aria-label="Sign in with Google"
-      className="bg-google-button-blue hover:bg-google-button-blue-hover relative flex h-11 w-full items-center gap-3 rounded-md p-0.5 pr-3 transition-colors duration-300"
+      className="relative flex h-11 w-full items-center gap-3 rounded-md bg-google-button-blue p-0.5 pr-3 transition-colors duration-300 hover:bg-google-button-blue-hover"
+      onClick={test}
     >
       <div className="absolute left-1 flex h-9 w-12 items-center justify-center justify-self-start rounded-sm bg-white">
         <svg

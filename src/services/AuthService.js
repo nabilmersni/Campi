@@ -1,12 +1,15 @@
 import {
   createUserWithEmailAndPassword,
   deleteUser,
+  GoogleAuthProvider,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from 'firebase/auth';
 import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
 import { auth, db } from 'src/firebase';
+const provider = new GoogleAuthProvider();
 
 const register = async (data) => {
   try {
@@ -86,11 +89,35 @@ const sendVerificationEmail = async () => {
   }
 };
 
+const signInWithGmail = async () => {
+  try {
+    const res = await signInWithPopup(auth, provider);
+    const user = res.user;
+
+    const docRef = doc(db, 'users', user.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.data()) {
+      await auth.signOut();
+      await deleteUser(user);
+      throw new Error('No account linked with this email.');
+    }
+
+    // console.log(user);
+    // console.log(docSnap.data());
+
+    return docSnap.data();
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const authService = {
   register,
   login,
   logout,
   fogotPassword,
+  signInWithGmail,
 };
 
 export default authService;

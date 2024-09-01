@@ -108,7 +108,7 @@ function LoginForm() {
           </div>
           <div className="flex w-full flex-col items-center justify-center gap-2">
             <GoogleAuth>Sign in with Google</GoogleAuth>
-            <FacebookAuth>Sign in with Facebook</FacebookAuth>
+            {/* <FacebookAuth>Sign in with Facebook</FacebookAuth> */}
           </div>
           <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-center">
             <span className="text-nowrap">New on our platform ?</span>

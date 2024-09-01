@@ -11,8 +11,19 @@ const initialState = {
 
 export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
   try {
-    const currentUser = await authService.login(data);
+    let currentUser;
+    if (data) {
+      currentUser = await authService.login(data);
+    } else {
+      currentUser = await authService.signInWithGmail();
+    }
+
     toast.success('You are successfully logged in');
+
+    currentUser = {
+      ...currentUser,
+      birthDay: currentUser.birthDay.toDate().toLocaleDateString('en-GB'),
+    };
 
     secureLocalStorage.setItem('currentUser', currentUser);
     return currentUser;
