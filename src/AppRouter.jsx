@@ -30,6 +30,34 @@ const PrivateRoute = ({ children, role }) => {
 
   const navigate = useNavigate();
 
+  const test = () => {
+    if (!currentUser) {
+      return navigate('/login', {
+        state: { error: 'Not authenticated. Please log in.' },
+      });
+    }
+
+    if (currentUser.role !== role) {
+      switch (currentUser.role) {
+        case 'admin':
+          return navigate('/dashboard', {
+            state: { error: 'Access denied: Route not allowed.' },
+          });
+
+        case 'user':
+          return navigate('/userside', {
+            state: { error: 'Access denied: Route not allowed.' },
+          });
+
+        default:
+          break;
+      }
+    }
+    if (currentUser?.role === role) {
+      return <>{children}</>;
+    }
+  };
+
   useEffect(() => {
     if (!currentUser) {
       return navigate('/login', {
@@ -53,12 +81,11 @@ const PrivateRoute = ({ children, role }) => {
           break;
       }
     }
-  }, [currentUser, navigate, role]);
+  }, [currentUser, navigate, role, children]);
 
-  if (currentUser.role === role) {
+  if (currentUser?.role === role) {
     return <>{children}</>;
   }
-
   return null;
 };
 

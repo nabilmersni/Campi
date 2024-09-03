@@ -1,3 +1,4 @@
+import Button from 'src/ui/Button';
 import LinkBtn from 'src/ui/LinkBtn';
 
 function ShopItemCard({ type = 'landingPage', img = '/img/tent.png' }) {
@@ -60,62 +61,16 @@ function ShopItemCard({ type = 'landingPage', img = '/img/tent.png' }) {
         <div className="flex w-full flex-col items-center justify-center gap-2 px-3">
           <span className="text-xl font-extrabold text-primary">$199</span>
           <div className="mb-3 size-[.3rem] rounded-full bg-primary sm:block"></div>
-          <LinkBtn size={4} type={'primaryLight'}>
-            Add to cart
-          </LinkBtn>
+          <div className="flex w-full items-center justify-center gap-3 px-3">
+            <Button type="iconBtn" icon={'view'} />
+            <Button type="iconBtn" icon={'update'} />
+            <Button type="iconBtn" icon={'delete'} />
+          </div>
           {/* <div className="size-[.3rem] rounded-full bg-primary sm:block"></div> */}
         </div>
       </div>
     );
   }
-
-  // if (type === 'userside') {
-  //   return (
-  //     <div className="flex h-fit min-h-[16rem] w-full flex-shrink-0 flex-col gap-5 rounded-[1.5rem] border-[3px] border-border-light bg-[#F5F1F6] p-2 md:flex-row">
-  //       <div className="h-[11rem] w-full flex-shrink-0 rounded-[1rem] bg-[#eae4ff] md:h-full md:w-[17rem] lg:w-[15rem] xl:w-[17rem]">
-  //         <img
-  //           src="/img/tent.png"
-  //           className="h-full w-full rounded-[1.5rem] object-contain"
-  //           alt="camp img"
-  //         />
-  //       </div>
-
-  //       <div className="flex w-full flex-col items-center justify-center py-2 md:items-start">
-  //         <h2 className="mb-2 text-2xl font-bold text-primary">
-  //           Camping on Testour
-  //         </h2>
-
-  //         <p className="mb-4 line-clamp-2 md:line-clamp-3" title="text">
-  //           Lorem Ipsum is simply dummy text of the printing and typesetting
-  //           industry. Lorem Ipsum has been the industry standard dummy text ever
-  //           since the 1500s, when an unknown printer took a galley of type and
-  //           scrambled it
-  //         </p>
-
-  //         <div className="mb-6 flex items-center gap-5">
-  //           <div className="flex flex-1 items-center justify-center gap-2">
-  //             <img
-  //               src="/img/locationIcon.svg"
-  //               alt="locationIcon"
-  //               className="w-4"
-  //             />
-  //             <span className="text-sm font-bold text-primary">Backpack</span>
-  //           </div>
-  //         </div>
-
-  //         <div className="flex flex-col items-center justify-between gap-3 md:w-full md:flex-row md:gap-1">
-  //           <div className="flex w-full items-center gap-5">
-  //             <LinkBtn type={'primaryLight'}>more info</LinkBtn>
-  //             <div className="size-[.3rem] rounded-full bg-primary sm:block"></div>
-  //             <LinkBtn type={'primaryLight'}>Add to cart</LinkBtn>
-  //           </div>
-
-  //           <p className="mr-3 font-bold text-primary">30TND</p>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
 
   if (type === 'userside') {
     return (

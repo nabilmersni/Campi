@@ -6,7 +6,7 @@ import ShopAnimation from 'src/assets/lottiesAnimations/shop.json';
 function TitleDash({ title, animation, children }) {
   return (
     <div
-      className={`flex w-full items-center justify-center rounded-2xl border-4 border-primary-light bg-white-light px-6 ${animation === 'shop' ? 'py-0' : 'py-2'} shadow-sm sm:justify-between`}
+      className={`flex w-full items-center justify-center rounded-2xl border-4 border-primary-light bg-white-light px-6 py-2 shadow-sm sm:min-h-[6rem] sm:justify-between`}
     >
       <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
         <h1 className="text-nowrap text-xl font-bold text-primary sm:text-2xl">

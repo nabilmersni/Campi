@@ -18,14 +18,14 @@ export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
       currentUser = await authService.signInWithGmail();
     }
 
-    toast.success('You are successfully logged in');
-
     currentUser = {
       ...currentUser,
       birthDay: currentUser.birthDay.toDate().toLocaleDateString('en-GB'),
+      createdAt: currentUser.createdAt.toDate().toLocaleDateString('en-GB'),
     };
 
     secureLocalStorage.setItem('currentUser', currentUser);
+    toast.success('You are successfully logged in');
     return currentUser;
   } catch (error) {
     console.log(error);

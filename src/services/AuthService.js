@@ -28,6 +28,7 @@ const register = async (data) => {
         email: data.email,
         phoneNumber: data.phoneNumber,
         birthDay: Timestamp.fromDate(new Date(data.birthDay)),
+        createdAt: Timestamp.fromDate(new Date()),
         role: 'user',
         state: true,
         photoURL: null,

@@ -6,7 +6,6 @@ import InputField from 'src/ui/InputField';
 import Button from 'src/ui/Button';
 import LinkBtn from 'src/ui/LinkBtn';
 import GoogleAuth from './GoogleAuth';
-import FacebookAuth from './FacebookAuth';
 import Loader from 'src/ui/Loader';
 
 function LoginForm() {
@@ -23,7 +22,6 @@ function LoginForm() {
 
   const onSubmit = (data) => {
     dispatch(login(data));
-    console.log(data);
   };
 
   const handleInputChange = (event) => {
