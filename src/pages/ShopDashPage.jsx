@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AddProductForm from 'src/features/shop/AddProductForm';
 import ShopList from 'src/features/shop/ShopList';
 import FormModal from 'src/ui/FormModal';
 import InputField from 'src/ui/InputField';
@@ -32,7 +33,7 @@ function ShopDashPage() {
       <div className="h-full w-full overflow-auto">
         <ShopList type="dash" />
         <FormModal isOpen={isOpen} handleToggleModal={handleToggleModal}>
-          <div>hello</div>
+          <AddProductForm />
         </FormModal>
       </div>
     </div>

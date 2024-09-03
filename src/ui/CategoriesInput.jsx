@@ -26,7 +26,7 @@ const MenuProps = {
   },
 };
 
-function CategoriesInput() {
+function CategoriesInput({ size = 'small', register }) {
   const [personName, setPersonName] = useState([]);
 
   const handleChange = (event) => {
@@ -44,6 +44,7 @@ function CategoriesInput() {
     },
     '& .MuiOutlinedInput-notchedOutline': {
       borderColor: '#7262AF', // Default border color
+      borderRadius: 2,
     },
     '&:hover .MuiOutlinedInput-notchedOutline': {
       borderColor: '#3A3D64', // Border color on hover
@@ -56,7 +57,7 @@ function CategoriesInput() {
   return (
     <Select
       multiple
-      size="small"
+      size={size}
       value={personName}
       onChange={handleChange}
       renderValue={(selected) =>
@@ -66,6 +67,7 @@ function CategoriesInput() {
       MenuProps={MenuProps}
       className="ignore-click-outside w-full font-black"
       sx={sx}
+      {...register}
     >
       {names.map((name) => (
         <MenuItem key={name} value={name}>
