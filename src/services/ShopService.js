@@ -20,6 +20,14 @@ const addProduct = async (data) => {
   }
 };
 
-const shopService = { addProduct };
+const getAllProducts = async () => {
+  try {
+    //
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const shopService = { addProduct, getAllProducts };
 
 export default shopService;
