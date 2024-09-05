@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import secureLocalStorage from 'react-secure-storage';
 import authService from 'src/services/AuthService';
 import { toast } from 'react-toastify';
-import { AuthErrorToastMsg } from 'src/utils/AuthErrorToastMsg';
+import { ToastErrorMsg } from 'src/utils/ToastErrorMsg';
 
 const initialState = {
   currentUser: secureLocalStorage.getItem('currentUser') || null,
@@ -29,7 +29,7 @@ export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
     return currentUser;
   } catch (error) {
     console.log(error);
-    AuthErrorToastMsg(error.message);
+    ToastErrorMsg(error.message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -40,7 +40,7 @@ export const logout = createAsyncThunk('auth/logout', async () => {
     secureLocalStorage.removeItem('currentUser');
     toast.success('Signed out successfully.');
   } catch (error) {
-    AuthErrorToastMsg(error.message);
+    ToastErrorMsg(error.message);
   }
 });
 

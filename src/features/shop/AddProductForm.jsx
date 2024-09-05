@@ -1,10 +1,22 @@
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { storage } from 'src/firebase';
+import shopService from 'src/services/ShopService';
 import Button from 'src/ui/Button';
 import CategoriesInput from 'src/ui/CategoriesInput';
 import InputField from 'src/ui/InputField';
+import Loader from 'src/ui/Loader';
 import MultiImageInput from 'src/ui/MultiImageInput';
+import { ToastErrorMsg } from 'src/utils/ToastErrorMsg';
 
-function AddProductForm() {
+function AddProductForm({ handleToggleModal }) {
+  const [imageFiles, setImageFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  let imageDownloadURL = [];
+
   const {
     register,
     handleSubmit,
@@ -15,7 +27,21 @@ function AddProductForm() {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
+    if (imageFiles.length < 3) {
+      return setImageFiles(false);
+    }
+
+    try {
+      setLoading(true);
+      await uploadImages();
+      const productData = { ...data, photoURLs: imageDownloadURL };
+      await shopService.addProduct(productData);
+      toast.success('Product added successfully!');
+      handleToggleModal();
+    } catch (error) {
+      ToastErrorMsg(error.message);
+    }
+    setLoading(false);
   };
 
   const handleInputChange = (event) => {
@@ -28,12 +54,67 @@ function AddProductForm() {
     required: 'Category is required.',
   });
 
+  const uploadImages = async () => {
+    const uploadPromises = imageFiles.map((imageFile) => {
+      return new Promise((resolve, reject) => {
+        // Upload file and metadata to the object 'images/mountains.jpg'
+        const storageRef = ref(
+          storage,
+          `productImages/${imageFile.name}-${Date.now()}`,
+        );
+        const uploadTask = uploadBytesResumable(storageRef, imageFile);
+
+        uploadTask.on(
+          'state_changed',
+          (snapshot) => {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+
+            // const progress =
+            //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            // console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+              case 'paused':
+                console.log('Upload is paused');
+                break;
+              case 'running':
+                console.log('Upload is running');
+                break;
+            }
+          },
+          (error) => {
+            // Handle unsuccessful uploads
+            console.log(error);
+            reject(error);
+          },
+          () => {
+            // Handle successful uploads on complete
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              console.log('File available at', downloadURL);
+              resolve(downloadURL);
+              // imageDownloadURL.push(downloadURL);
+            });
+          },
+        );
+      });
+    });
+
+    imageDownloadURL = await Promise.all(uploadPromises);
+    // return downloadURLs;
+  };
+
   return (
     <div className="relative flex h-full flex-col">
+      {loading && <Loader />}
       <h1 className="text-2xl font-semibold text-primary">Add product</h1>
 
       <div className="mt-10 flex flex-col items-center gap-4 overflow-hidden overflow-y-auto pr-4">
-        <MultiImageInput />
+        <MultiImageInput setImageFiles={setImageFiles} />
+        {!imageFiles && (
+          <p className="mt-1 self-start text-sm text-red-400">
+            Product must have at least 3 images.
+          </p>
+        )}
 
         <form
           onSubmit={handleSubmit(onSubmit)}

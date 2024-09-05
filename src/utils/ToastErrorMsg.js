@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-export function AuthErrorToastMsg(errorMessage) {
+export function ToastErrorMsg(errorMessage) {
   switch (errorMessage) {
     case 'Firebase: Error (auth/invalid-credential).':
       toast.error('Wrong email or password!');

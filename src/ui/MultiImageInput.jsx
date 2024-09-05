@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -8,14 +9,10 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
-// import required modules
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
-
-function MultiImageInput() {
+function MultiImageInput({ setImageFiles }) {
   const [slidesPerView, setSlidesPerView] = useState(4);
   const uploadFiles = useRef();
   const [images, setImages] = useState([]);
-  const [imageFiles, setImageFiles] = useState([]);
 
   const handleUploadImagesClick = () => {
     uploadFiles.current.click();

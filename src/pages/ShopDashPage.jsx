@@ -33,7 +33,7 @@ function ShopDashPage() {
       <div className="h-full w-full overflow-auto">
         <ShopList type="dash" />
         <FormModal isOpen={isOpen} handleToggleModal={handleToggleModal}>
-          <AddProductForm />
+          <AddProductForm handleToggleModal={handleToggleModal} />
         </FormModal>
       </div>
     </div>

@@ -7,7 +7,7 @@ import Button from 'src/ui/Button';
 import InputField from 'src/ui/InputField';
 import LinkBtn from 'src/ui/LinkBtn';
 import Loader from 'src/ui/Loader';
-import { AuthErrorToastMsg } from 'src/utils/AuthErrorToastMsg';
+import { ToastErrorMsg } from 'src/utils/ToastErrorMsg';
 
 function ForgotPassword() {
   const [loading, setLoading] = useState(false);
@@ -29,7 +29,7 @@ function ForgotPassword() {
       toast.success('Password reset email has been sent to you.');
       navigate('/login');
     } catch (error) {
-      AuthErrorToastMsg(error.message);
+      ToastErrorMsg(error.message);
     }
     setLoading(true);
   };

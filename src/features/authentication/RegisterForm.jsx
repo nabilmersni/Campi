@@ -10,7 +10,7 @@ import authService from 'src/services/AuthService';
 import Loader from 'src/ui/Loader';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { AuthErrorToastMsg } from 'src/utils/AuthErrorToastMsg';
+import { ToastErrorMsg } from 'src/utils/ToastErrorMsg';
 import { calculateAge } from 'src/utils/UtilsFunctions';
 
 function RegisterForm() {
@@ -36,7 +36,7 @@ function RegisterForm() {
       navigate('/login');
     } catch (error) {
       console.log(error.message);
-      AuthErrorToastMsg(error.message);
+      ToastErrorMsg(error.message);
     }
 
     setLoading(false);
