@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -14,6 +15,16 @@ import { ToastErrorMsg } from 'src/utils/ToastErrorMsg';
 function AddProductForm({ handleToggleModal }) {
   const [imageFiles, setImageFiles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: () => {},
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['products'],
+      });
+    },
+  });
 
   let imageDownloadURL = [];
 
@@ -36,6 +47,7 @@ function AddProductForm({ handleToggleModal }) {
       await uploadImages();
       const productData = { ...data, photoURLs: imageDownloadURL };
       await shopService.addProduct(productData);
+      mutate();
       toast.success('Product added successfully!');
       handleToggleModal();
     } catch (error) {
@@ -206,6 +218,7 @@ function AddProductForm({ handleToggleModal }) {
                 message: 'Description must be at least 3 characters long!',
               },
             })}
+            onChange={handleInputChange}
           />
           <p className="-mt-4 self-start text-sm text-red-400">
             {errors.description?.message}

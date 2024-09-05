@@ -1,4 +1,13 @@
-import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+  Timestamp,
+} from 'firebase/firestore';
 import { db } from 'src/firebase';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,8 +30,17 @@ const addProduct = async (data) => {
 };
 
 const getAllProducts = async () => {
+  const products = [];
   try {
     //
+    const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      products.push(doc.data());
+    });
+
+    return products;
   } catch (error) {
     throw new Error(error.message);
   }
