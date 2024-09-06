@@ -1,5 +1,7 @@
 import { Checkbox, ListItemText, MenuItem, Select } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCategories } from 'src/features/shop/ShopSlice';
 
 const names = [
   'Tent',
@@ -28,13 +30,22 @@ const MenuProps = {
 
 function CategoriesInput({ size = 'small', register }) {
   const [personName, setPersonName] = useState([]);
+  const { categories } = useSelector((state) => state.shop);
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
     setPersonName(typeof value === 'string' ? value.split(',') : value);
+    dispatch(setCategories(value));
   };
+
+  useEffect(() => {
+    setPersonName(
+      typeof categories === 'string' ? categories.split(',') : categories,
+    );
+  }, [categories]);
 
   const sx = {
     '& .MuiSelect-select': {

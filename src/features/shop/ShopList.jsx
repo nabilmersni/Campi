@@ -5,6 +5,9 @@ import Separator from 'src/ui/Separator';
 import { useQuery } from '@tanstack/react-query';
 import shopService from 'src/services/ShopService';
 import Loader from 'src/ui/Loader';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { setFiltredProducts } from './ShopSlice';
 
 function ShopList({ type }) {
   const {
@@ -15,6 +18,13 @@ function ShopList({ type }) {
     queryKey: ['products'],
     queryFn: shopService.getAllProducts,
   });
+
+  const { filtredProducts } = useSelector((state) => state.shop);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setFiltredProducts(products));
+  }, [products, dispatch]);
 
   if (type === 'landingPage') {
     return (
@@ -61,8 +71,8 @@ function ShopList({ type }) {
           </div>
         </div>
         <Separator size="big" />
-        <div className="mt-9 flex w-full flex-wrap justify-center gap-7 sm:justify-start">
-          {products?.map((product) => (
+        <div className="mx-auto mt-9 flex w-full flex-wrap justify-center gap-7 sm:justify-start">
+          {filtredProducts?.map((product) => (
             <ShopItemCard key={product.id} type="userside" item={product} />
           ))}
         </div>

@@ -10,15 +10,14 @@ import {
 import { db } from 'src/firebase';
 import { v4 as uuidv4 } from 'uuid';
 
-const addProduct = async (data) => {
+const addEvent = async (data) => {
   try {
     const id = uuidv4();
-    await setDoc(doc(db, 'products', id), {
+    await setDoc(doc(db, 'events', id), {
       id,
       title: data.title,
-      subtitle: data.subtitle,
       price: Number(data.price),
-      category: data.category[0],
+      state: data.state[0],
       description: data.description,
       createdAt: new Date().toLocaleDateString('en-GB'),
 
@@ -29,23 +28,23 @@ const addProduct = async (data) => {
   }
 };
 
-const getAllProducts = async () => {
-  const products = [];
+const getAllEvents = async () => {
+  const events = [];
   try {
     //
-    const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'));
+    const q = query(collection(db, 'events'), orderBy('createdAt', 'desc'));
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
-      products.push(doc.data());
+      events.push(doc.data());
     });
 
-    return products;
+    return events;
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-const shopService = { addProduct, getAllProducts };
+const eventService = { addEvent, getAllEvents };
 
-export default shopService;
+export default eventService;

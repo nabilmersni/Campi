@@ -1,6 +1,8 @@
 import Slider from '@mui/material/Slider';
 import { useState } from 'react';
 import { styled } from '@mui/material/styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPriceRange } from 'src/features/shop/ShopSlice';
 
 const minDistance = 10;
 
@@ -39,7 +41,9 @@ const CustomSlider = styled(Slider)({
 });
 
 function MultiRangeSlider() {
-  const [value, setValue] = useState([20, 37]);
+  // const [value, setValue] = useState([20, 37]);
+  const { priceRange } = useSelector((state) => state.shop);
+  const dispatch = useDispatch();
 
   const handleChange1 = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
@@ -47,49 +51,35 @@ function MultiRangeSlider() {
     }
 
     if (activeThumb === 0) {
-      setValue([Math.min(newValue[0], value[1] - minDistance), value[1]]);
+      // setValue([Math.min(newValue[0], value[1] - minDistance), value[1]]);
+      dispatch(
+        setPriceRange([
+          Math.min(newValue[0], priceRange[1] - minDistance),
+          priceRange[1],
+        ]),
+      );
     } else {
-      setValue([value[0], Math.max(newValue[1], value[0] + minDistance)]);
+      // setValue([value[0], Math.max(newValue[1], value[0] + minDistance)]);
+      dispatch(
+        setPriceRange([
+          priceRange[0],
+          Math.max(newValue[1], priceRange[0] + minDistance),
+        ]),
+      );
     }
   };
 
-  // return (
-  //   <div className="flex w-[100%] flex-col gap-4">
-  //     <div className="flex items-center justify-between">
-  //       <span className="rounded-[0.5rem] bg-bg-light px-4 py-1 text-sm">
-  //         {value.at(0)}
-  //       </span>
-  //       <span className="rounded-[0.5rem] bg-bg-light px-4 py-1 text-sm">
-  //         {value.at(1)}
-  //       </span>
-  //     </div>
-  //     <CustomSlider
-  //       value={value}
-  //       onChange={handleChange1}
-  //       disableSwap
-  //       className="mx-auto max-w-[85%] self-center"
-  //     />
-  //   </div>
-  // );
-
   return (
     <div className="flex w-[100%] flex-col gap-2">
-      {/* <div className="flex items-center justify-between">
-        <span className="rounded-[0.5rem] bg-bg-light px-4 py-1 text-sm">
-          {value.at(0)}
-        </span>
-        <span className="rounded-[0.5rem] bg-bg-light px-4 py-1 text-sm">
-          {value.at(1)}
-        </span>
-      </div> */}
-
       <div className="flex items-center justify-center gap-3 rounded-[0.5rem] bg-bg-light px-4 py-1 text-sm">
-        <span className="font-semibold">{value.at(0)}TND </span>
+        <span className="font-semibold">{priceRange.at(0)}TND </span>
         <div className="h-1 w-3 rounded-full bg-border-light"></div>
-        <span className="font-semibold">{value.at(1)}TND </span>
+        <span className="font-semibold">{priceRange.at(1)}TND </span>
       </div>
       <CustomSlider
-        value={value}
+        value={priceRange}
+        min={0}
+        max={1000}
         onChange={handleChange1}
         disableSwap
         className="mx-auto max-w-[93%] self-center"

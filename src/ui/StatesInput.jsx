@@ -39,7 +39,7 @@ const MenuProps = {
   },
 };
 
-function StatesInput() {
+function StatesInput({ size = 'small', isMultiple = true, register }) {
   const [personName, setPersonName] = useState([]);
 
   const handleChange = (event) => {
@@ -57,6 +57,7 @@ function StatesInput() {
     },
     '& .MuiOutlinedInput-notchedOutline': {
       borderColor: '#7262AF', // Default border color
+      borderRadius: 2,
     },
     '&:hover .MuiOutlinedInput-notchedOutline': {
       borderColor: '#3A3D64', // Border color on hover
@@ -68,8 +69,8 @@ function StatesInput() {
 
   return (
     <Select
-      multiple
-      size="small"
+      multiple={isMultiple}
+      size={size}
       value={personName}
       onChange={handleChange}
       renderValue={(selected) =>
@@ -79,6 +80,7 @@ function StatesInput() {
       MenuProps={MenuProps}
       className="ignore-click-outside w-full font-black"
       sx={sx}
+      {...register}
     >
       {names.map((name) => (
         <MenuItem key={name} value={name}>

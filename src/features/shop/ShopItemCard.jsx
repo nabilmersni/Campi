@@ -76,7 +76,7 @@ function ShopItemCard({ type = 'landingPage', img = '/img/tent.png', item }) {
 
   if (type === 'userside') {
     return (
-      <div className="flex min-h-[20rem] w-fit flex-col items-center rounded-[2rem] border-[.2rem] border-primary bg-[#F9FDFF] p-3 shadow-md sm:w-fit sm:min-w-[22rem]">
+      <div className="flex min-h-[20rem] w-full flex-col items-center rounded-[2rem] border-[.2rem] border-primary bg-[#F9FDFF] p-3 shadow-md sm:w-fit sm:min-w-[20rem]">
         <div className="relative mb-2 h-[10rem] w-full rounded-[2rem] bg-white-light p-3">
           <img
             src={item.photoURLs[0]}
