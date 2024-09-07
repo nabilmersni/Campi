@@ -1,5 +1,7 @@
 import { Checkbox, ListItemText, MenuItem, Select } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setstates } from 'src/features/events/EventSlice';
 
 const names = [
   'Ariana',
@@ -41,13 +43,20 @@ const MenuProps = {
 
 function StatesInput({ size = 'small', isMultiple = true, register }) {
   const [personName, setPersonName] = useState([]);
+  const { states } = useSelector((state) => state.event);
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
     setPersonName(typeof value === 'string' ? value.split(',') : value);
+    dispatch(setstates(value));
   };
+
+  useEffect(() => {
+    setPersonName(typeof states === 'string' ? states.split(',') : states);
+  }, [states]);
 
   const sx = {
     '& .MuiSelect-select': {

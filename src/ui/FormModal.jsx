@@ -11,7 +11,7 @@ function FormModal({ isOpen, handleToggleModal, children }) {
         <div className="absolute left-0 top-0 flex h-[100vh] w-dvw items-center justify-center bg-[#2b283b] bg-opacity-45">
           <div
             // ref={modalRef}
-            className="relative z-[100] h-full max-h-[80dvh] w-[40rem] max-w-[80dvw] rounded-[1rem] border-[5px] border-[#b3a2f7] bg-white p-5 pr-2 shadow-md"
+            className="relative z-[100] h-full max-h-[80dvh] w-[40rem] max-w-[90dvw] rounded-[1rem] border-[5px] border-[#b3a2f7] bg-white p-5 pr-2 shadow-md sm:max-w-[80dvw]"
           >
             <button
               onClick={handleToggleModal}

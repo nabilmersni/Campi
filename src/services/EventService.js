@@ -19,6 +19,8 @@ const addEvent = async (data) => {
       price: Number(data.price),
       state: data.state[0],
       description: data.description,
+      startDate: data.startDate,
+      endDate: data.endDate,
       createdAt: new Date().toLocaleDateString('en-GB'),
 
       photoURLs: data.photoURLs,

@@ -11,3 +11,37 @@ export const calculateAge = (birthDate) => {
   }
   return age;
 };
+
+export function formatDateRange(startDate, endDate) {
+  const months = [
+    'Jan',
+    'Fev',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
+  // Convert the date strings to Date objects
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  // Extract the day and month
+  const startDay = start.getDate();
+  const endDay = end.getDate();
+  const startMonth = months[start.getMonth()];
+  const endMonth = months[end.getMonth()];
+
+  // Check if the month is the same
+  if (startMonth === endMonth) {
+    return `${startDay} ${startMonth} - ${endDay} ${endMonth}`;
+  } else {
+    return `${startDay} ${startMonth} - ${endDay} ${endMonth}`;
+  }
+}

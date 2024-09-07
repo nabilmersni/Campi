@@ -31,6 +31,7 @@ function AddEventForm({ handleToggleModal }) {
   const {
     register,
     handleSubmit,
+    getValues,
     setValue,
     formState: { errors },
   } = useForm({
@@ -39,22 +40,22 @@ function AddEventForm({ handleToggleModal }) {
 
   const onSubmit = async (data) => {
     console.log(data);
-    // if (imageFiles.length < 3) {
-    //   return setImageFiles(false);
-    // }
+    if (imageFiles.length < 3) {
+      return setImageFiles(false);
+    }
 
-    // try {
-    //   setLoading(true);
-    //   await uploadImages();
-    //   const eventData = { ...data, photoURLs: imageDownloadURL };
-    //   await eventService.addProduct(eventData);
-    //   mutate();
-    //   toast.success('Event added successfully!');
-    //   handleToggleModal();
-    // } catch (error) {
-    //   ToastErrorMsg(error.message);
-    // }
-    // setLoading(false);
+    try {
+      setLoading(true);
+      await uploadImages();
+      const eventData = { ...data, photoURLs: imageDownloadURL };
+      await eventService.addEvent(eventData);
+      mutate();
+      toast.success('Event added successfully!');
+      handleToggleModal();
+    } catch (error) {
+      ToastErrorMsg(error.message);
+    }
+    setLoading(false);
   };
 
   const handleInputChange = (event) => {
@@ -156,7 +157,7 @@ function AddEventForm({ handleToggleModal }) {
             </div>
           </div>
 
-          <div className="flex w-full items-start justify-between gap-2">
+          <div className="flex w-full flex-col items-start justify-between gap-3 sm:flex-row">
             <div className="w-full">
               <StatesInput size="medium" isMultiple={false} register={rest} />
 
@@ -184,7 +185,7 @@ function AddEventForm({ handleToggleModal }) {
             </div>
           </div>
 
-          <div className="flex w-full items-start justify-between gap-2">
+          <div className="flex w-full flex-col items-start justify-between gap-3 sm:flex-row">
             <div className="w-full">
               <InputField
                 label={'Start Date'}
@@ -195,13 +196,17 @@ function AddEventForm({ handleToggleModal }) {
                 shrink
                 register={register('startDate', {
                   required: 'Start Date is required',
-                  // validate: {
-                  //   isAtLeastTwelveYearsOld: (value) => {
-                  //     if (!value) return true; // Skip validation if no value
-                  //     const age = calculateAge(value);
-                  //     return age >= 12 || 'You must be at least 12 years old';
-                  //   },
-                  // },
+                  validate: {
+                    notPastDate: (value) => {
+                      const selectedDate = new Date(value);
+                      const currentDate = new Date();
+                      currentDate.setHours(0, 0, 0, 0); // Set current date to midnight to only compare dates, not times
+                      return (
+                        selectedDate >= currentDate ||
+                        'Start Date cannot be in the past'
+                      );
+                    },
+                  },
                 })}
                 onChange={handleInputChange}
               />
@@ -221,13 +226,13 @@ function AddEventForm({ handleToggleModal }) {
                 shrink
                 register={register('endDate', {
                   required: 'End Date is required',
-                  // validate: {
-                  //   isAtLeastTwelveYearsOld: (value) => {
-                  //     if (!value) return true; // Skip validation if no value
-                  //     const age = calculateAge(value);
-                  //     return age >= 12 || 'You must be at least 12 years old';
-                  //   },
-                  // },
+                  validate: (endDate) => {
+                    const startDate = getValues('startDate');
+                    return (
+                      endDate > startDate ||
+                      'End Date cannot be less that the Start Date'
+                    );
+                  },
                 })}
                 onChange={handleInputChange}
               />

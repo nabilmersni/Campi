@@ -4,7 +4,8 @@ import Separator from 'src/ui/Separator';
 import CategoriesInput from 'src/ui/CategoriesInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
-import { reset, setFiltredProducts } from './ShopSlice';
+import { deleteCategory, reset, setFiltredProducts } from './ShopSlice';
+import { deleteState } from '../events/EventSlice';
 
 function ShopFilter() {
   const { filtredProducts, categories, priceRange } = useSelector(
@@ -36,6 +37,10 @@ function ShopFilter() {
     dispatch(setFiltredProducts(products));
   };
 
+  const handleDeleteTag = (category) => {
+    dispatch(deleteCategory(category));
+  };
+
   return (
     <div className="flex h-full flex-col items-center gap-6 overflow-hidden text-black-light">
       <div className="flex w-full items-center justify-between">
@@ -51,7 +56,11 @@ function ShopFilter() {
       {categories.length > 0 && (
         <div className="flex w-full flex-wrap gap-3">
           {categories.map((category) => (
-            <FilterTag key={category} data={category} />
+            <FilterTag
+              key={category}
+              handleDeleteTag={() => handleDeleteTag(category)}
+              data={category}
+            />
           ))}
         </div>
       )}

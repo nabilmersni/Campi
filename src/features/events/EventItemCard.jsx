@@ -1,7 +1,8 @@
 import LinkBtn from 'src/ui/LinkBtn';
 import Button from 'src/ui/Button';
+import { formatDateRange } from 'src/utils/UtilsFunctions';
 
-function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg' }) {
+function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg', item }) {
   if (type === 'landingPage') {
     return (
       <div className="flex h-fit min-h-[20rem] flex-col items-center rounded-[3rem] border-[.2rem] border-primary bg-white-light p-3 sm:min-w-[23rem]">
@@ -55,14 +56,12 @@ function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg' }) {
       <div className="flex h-fit min-h-[20rem] flex-col items-center rounded-[3rem] border-[.2rem] border-primary bg-white-light p-3 sm:min-w-[23rem]">
         <div className="mb-2 h-[10rem] w-full rounded-[2rem]">
           <img
-            src={img}
+            src={item.photoURLs[0] || img}
             alt="camp-img"
             className="h-full w-full rounded-[2rem] rounded-t-[3rem] object-cover"
           />
         </div>
-        <h2 className="mb-4 text-xl font-bold text-primary">
-          Camping on Testour
-        </h2>
+        <h2 className="mb-4 text-xl font-bold text-primary">{item.title}</h2>
 
         <div className="mb-6 flex items-center justify-center gap-5">
           <div className="flex flex-1 items-center justify-center gap-2">
@@ -71,13 +70,15 @@ function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg' }) {
               alt="locationIcon"
               className="w-5"
             />
-            <span className="text-sm font-bold text-primary">Tunis, Béja</span>
+            <span className="text-sm font-bold text-primary">
+              Tunisia, {item.state}
+            </span>
           </div>
           <div className="size-2 rounded-full bg-primary"></div>
           <div className="flex flex-1 items-center justify-center gap-2">
             <img src="/img/dateIcon.svg" alt="locationIcon" className="w-5" />
             <span className="w-fit whitespace-nowrap text-sm font-bold text-primary">
-              1 Fev - 5 Fev
+              {formatDateRange(item.startDate, item.endDate)}
             </span>
           </div>
         </div>
@@ -155,22 +156,17 @@ function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg' }) {
       <div className="flex h-fit min-h-[16rem] w-full flex-shrink-0 flex-col gap-5 rounded-[1.5rem] border-[3px] border-border-light bg-[#F5F1F6] p-2 md:flex-row">
         <div className="h-[11rem] w-full flex-shrink-0 md:h-full md:w-[17rem] lg:w-[15rem] xl:w-[17rem]">
           <img
-            src="/img/camp1.jpg"
+            src={item.photoURLs[0] || img}
             className="h-full w-full rounded-[1.5rem] object-center md:object-cover"
             alt="camp img"
           />
         </div>
 
         <div className="flex w-full flex-col items-center justify-center py-2 md:items-start">
-          <h2 className="mb-2 text-2xl font-bold text-primary">
-            Camping on Testour
-          </h2>
+          <h2 className="mb-2 text-2xl font-bold text-primary">{item.title}</h2>
 
           <p className="mb-4 line-clamp-2 md:line-clamp-3" title="text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry standard dummy text ever
-            since the 1500s, when an unknown printer took a galley of type and
-            scrambled it
+            {item.description}
           </p>
 
           <div className="mb-6 flex items-center gap-5">
@@ -181,14 +177,14 @@ function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg' }) {
                 className="w-4"
               />
               <span className="text-sm font-bold text-primary">
-                Tunis, Béja
+                Tunis, {item.state}
               </span>
             </div>
             <div className="size-[0.3rem] rounded-full bg-primary"></div>
             <div className="flex flex-1 items-center justify-center gap-2">
               <img src="/img/dateIcon.svg" alt="locationIcon" className="w-4" />
               <span className="w-fit whitespace-nowrap text-sm font-bold text-primary">
-                1 Fev - 5 Fev
+                {formatDateRange(item.startDate, item.endDate)}
               </span>
             </div>
           </div>
@@ -207,7 +203,7 @@ function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg' }) {
               </div>
             </div>
 
-            <p className="mr-3 font-bold text-primary">30TND</p>
+            <p className="mr-3 font-bold text-primary">{item.price}TND</p>
           </div>
         </div>
       </div>

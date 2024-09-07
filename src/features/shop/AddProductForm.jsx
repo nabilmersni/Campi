@@ -133,7 +133,7 @@ function AddProductForm({ handleToggleModal }) {
           className="mt-6 flex w-full flex-col items-center gap-5"
           noValidate
         >
-          <div className="flex w-full items-start justify-between gap-3">
+          <div className="flex w-full flex-col items-start justify-between gap-3 sm:flex-row">
             <div className="w-full">
               <InputField
                 label={'Title'}
@@ -177,7 +177,7 @@ function AddProductForm({ handleToggleModal }) {
             </div>
           </div>
 
-          <div className="flex w-full items-start justify-between gap-2">
+          <div className="flex w-full flex-col items-start justify-between gap-3 sm:flex-row">
             <div className="w-full">
               <CategoriesInput size="medium" register={rest} />
 
