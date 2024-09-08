@@ -1,13 +1,25 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  decCartItemQuantity,
+  deleteCartItem,
+  incCartItemQuantity,
+} from 'src/features/cart/CartSlice';
 
-function NumberInput() {
+function NumberInput({ item }) {
   const [value, setValue] = useState(1);
+  const dispatch = useDispatch();
 
   const handleOnchange = (type) => {
-    if (type === 'dec') {
-      setValue((value) => value - 1);
-    } else if (type === 'inc') {
+    if (type === 'inc') {
       setValue((value) => value + 1);
+      dispatch(incCartItemQuantity(item));
+    } else if (type === 'dec') {
+      setValue((value) => value - 1);
+      dispatch(decCartItemQuantity(item));
+      if (value - 1 < 1) {
+        dispatch(deleteCartItem(item));
+      }
     }
   };
 
@@ -22,7 +34,8 @@ function NumberInput() {
             className="w-full rounded-md border-0 bg-transparent p-1 text-black-light outline-none ring-primary focus:ring-1 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
             type="number"
             aria-roledescription="Number field"
-            value={value}
+            value={item.quantity}
+            onChange={() => {}}
           />
         </div>
         <div className="flex items-center justify-end gap-x-1.5">

@@ -1,14 +1,26 @@
+import { useSelector } from 'react-redux';
+
 function CartLayout({ children }) {
+  const { stage } = useSelector((state) => state.cart);
+
   return (
     <div className="flex flex-col gap-4 text-black-light">
       <div className="mb-4 flex items-center justify-center gap-3 md:justify-start">
-        <span className="font-bold text-primary sm:text-lg">Cart</span>
+        <span
+          className={`font-bold ${stage === 'cart' ? 'text-primary' : 'text-[#BEB3EB]'} sm:text-lg`}
+        >
+          Cart
+        </span>
         <div className="h-[0.2rem] w-[6rem] bg-[#E2DBFF]"></div>
-        <span className="text-lg font-bold text-[#BEB3EB] sm:text-lg">
+        <span
+          className={`font-bold ${stage === 'address' ? 'text-primary' : 'text-[#BEB3EB]'} sm:text-lg`}
+        >
           Address
         </span>
         <div className="h-[0.2rem] w-[6rem] bg-[#E2DBFF]"></div>
-        <span className="text-lg font-bold text-[#BEB3EB] sm:text-lg">
+        <span
+          className={`font-bold ${stage === 'payment' ? 'text-primary' : 'text-[#BEB3EB]'} sm:text-lg`}
+        >
           Payment
         </span>
       </div>

@@ -1,9 +1,12 @@
+import { useSelector } from 'react-redux';
 import CartChekout from 'src/features/cart/CartChekout';
 import CartLayout from 'src/features/cart/CartLayout';
 import CartList from 'src/features/cart/CartList';
 import Separator from 'src/ui/Separator';
 
 function CartDetailPage() {
+  const { itemsCount, cartItems, stage } = useSelector((state) => state.cart);
+
   return (
     <div>
       <CartLayout>
@@ -21,11 +24,13 @@ function CartDetailPage() {
               </h2>
             </div>
 
-            <span className="text-lg font-bold text-primary">3 Items</span>
+            <span className="text-lg font-bold text-primary">
+              {itemsCount} Items
+            </span>
           </div>
           <Separator size="xl" />
 
-          <CartList />
+          {stage === 'cart' && <CartList cartItems={cartItems} />}
         </div>
         {/* cart detail */}
 

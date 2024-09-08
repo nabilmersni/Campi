@@ -1,7 +1,21 @@
+import { useDispatch } from 'react-redux';
 import Button from 'src/ui/Button';
 import LinkBtn from 'src/ui/LinkBtn';
+import { addCartItem } from '../cart/CartSlice';
+import useCheckCartItemAdded from 'src/hooks/useCheckCartItemAdded';
+import { toast } from 'react-toastify';
 
 function ShopItemCard({ type = 'landingPage', img = '/img/tent.png', item }) {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    const cartItem = { ...item, quantity: 1, total: item.price };
+    dispatch(addCartItem(cartItem));
+    toast.success('Item added to cart successfully!');
+  };
+
+  const isAdded = useCheckCartItemAdded(item);
+
   if (type === 'landingPage') {
     return (
       <div className="flex min-h-[20rem] w-full flex-col items-center rounded-[3rem] border-[.2rem] border-primary bg-[#F9FDFF] p-3 sm:w-fit sm:min-w-[23rem]">
@@ -101,9 +115,15 @@ function ShopItemCard({ type = 'landingPage', img = '/img/tent.png', item }) {
             ${item.price}
           </span>
           <div className="mb-3 size-[.3rem] rounded-full bg-primary sm:block"></div>
-          <LinkBtn size={4} type={'primaryLight'}>
-            Add to cart
-          </LinkBtn>
+
+          <button
+            disabled={isAdded}
+            onClick={handleAddToCart}
+            className={`rounded-full px-[1.1rem] py-[.4rem] text-center text-[1rem] font-extrabold transition-all ${isAdded ? 'bg-[#ece9ff] text-[#9d97c7]' : 'bg-primary-light text-primary hover:bg-[#d3caff]'}`}
+          >
+            {isAdded ? 'Already in Cart' : 'Add to cart'}
+          </button>
+
           {/* <div className="size-[.3rem] rounded-full bg-primary sm:block"></div> */}
         </div>
       </div>

@@ -1,6 +1,6 @@
 import CartProductItem from './CartProductItem';
 
-function CartList() {
+function CartList({ cartItems }) {
   return (
     <div className="mt-12 w-full">
       {/* Table Header */}
@@ -15,17 +15,11 @@ function CartList() {
 
       {/* Table Body */}
       <div className="light-scrollbar mt-4 grid max-h-[30rem] grid-cols-4 gap-4 overflow-y-auto pr-5">
-        {/* Row */}
-        <CartProductItem />
-        {/* Row */}
-
-        {/* Row */}
-        <CartProductItem />
-        {/* Row */}
-
-        {/* Row */}
-        <CartProductItem />
-        {/* Row */}
+        {cartItems.length > 0 ? (
+          cartItems.map((item) => <CartProductItem key={item.id} item={item} />)
+        ) : (
+          <p>Cart is empty</p>
+        )}
       </div>
     </div>
   );

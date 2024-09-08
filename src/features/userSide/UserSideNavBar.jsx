@@ -13,6 +13,7 @@ function UserSideNavBar() {
   const { isOpen, setIsOpen, burgerBtnRef } = useContext(NavBarContext);
   const [isScrollable, setIsScrollable] = useState(false);
   const { currentUser } = useSelector((state) => state.auth);
+  const { itemsCount } = useSelector((state) => state.cart);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 1024px)');
@@ -95,8 +96,13 @@ function UserSideNavBar() {
             )}
 
             <LinkBtn to={'/userside/cart'} type="iconLinkBtn">
-              <div className="w-[1.28rem] stroke-primary stroke-[.2px]">
+              <div className="relative w-[1.28rem] stroke-primary stroke-[.2px]">
                 <ShopIcon />
+                {itemsCount > 0 && (
+                  <div className="absolute -right-3 -top-3 flex size-2 items-center justify-center rounded-full bg-[#ff675d] p-2 text-[0.7rem] font-bold text-white">
+                    {itemsCount}
+                  </div>
+                )}
               </div>
             </LinkBtn>
           </div>
