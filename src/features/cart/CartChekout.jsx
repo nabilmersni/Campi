@@ -48,14 +48,14 @@ function CartChekout() {
           </button>
         )}
 
-        {stage === 'address' && (
+        {/* {stage === 'address' && (
           <button
             onClick={() => dispatch(setStage('payment'))}
             className="my-2 w-full rounded-[0.5rem] bg-bg-light p-2 text-sm font-bold text-primary transition-all hover:bg-[#e6dfff]"
           >
             CHECKOUT
           </button>
-        )}
+        )} */}
 
         <div className="mt-2 flex items-center gap-2">
           <img src="/img/safePayIcon.png" alt="safePayIcon" className="w-4" />

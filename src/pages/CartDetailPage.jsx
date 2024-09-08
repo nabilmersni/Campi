@@ -1,7 +1,9 @@
 import { useSelector } from 'react-redux';
+import CartAddressForm from 'src/features/cart/CartAddressForm';
 import CartChekout from 'src/features/cart/CartChekout';
 import CartLayout from 'src/features/cart/CartLayout';
 import CartList from 'src/features/cart/CartList';
+import CartPayment from 'src/features/cart/CartPayment';
 import Separator from 'src/ui/Separator';
 
 function CartDetailPage() {
@@ -31,6 +33,8 @@ function CartDetailPage() {
           <Separator size="xl" />
 
           {stage === 'cart' && <CartList cartItems={cartItems} />}
+          {stage === 'address' && <CartAddressForm />}
+          {stage === 'payment' && <CartPayment />}
         </div>
         {/* cart detail */}
 

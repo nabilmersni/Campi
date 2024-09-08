@@ -16,6 +16,8 @@ const cartSlice = createSlice({
       state.cartItems = [];
       state.itemsCount = 0;
       state.totalPrice = 0;
+      state.stage = 'cart';
+      state.addressFormData = {};
     },
 
     addCartItem: (state, action) => {
@@ -57,6 +59,11 @@ const cartSlice = createSlice({
     setStage: (state, action) => {
       state.stage = action.payload;
     },
+
+    setAddressFormData: (state, action) => {
+      state.addressFormData = action.payload;
+      state.stage = 'payment';
+    },
   },
 });
 
@@ -67,5 +74,6 @@ export const {
   decCartItemQuantity,
   deleteCartItem,
   setStage,
+  setAddressFormData,
 } = cartSlice.actions;
 export default cartSlice.reducer;
