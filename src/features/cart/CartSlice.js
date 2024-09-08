@@ -4,7 +4,7 @@ const initialState = {
   cartItems: [],
   itemsCount: 0,
   totalPrice: 0,
-  stage: 'cart',
+  stage: 'payment',
   addressFormData: {},
 };
 
