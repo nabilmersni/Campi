@@ -4,11 +4,18 @@ import {
   useStripe,
 } from '@stripe/react-stripe-js';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import orderService from 'src/services/OrderService';
+import { resetCart } from './CartSlice';
 
 function CartPaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -30,6 +37,17 @@ function CartPaymentForm() {
       // Additional logic upon successful payment
       console.log('Payment successful', paymentIntent);
 
+      try {
+        await orderService.confirmOrder(paymentIntent.id);
+        toast.success('Payment successful! Your order has been created');
+        dispatch(resetCart());
+        navigate('/userside');
+      } catch (error) {
+        console.log(error.message);
+      }
+      // const products = JSON.parse(paymentIntent.metadata.products);
+
+      // console.log(products);
       // Example: Redirect to a confirmation page
 
       // Example: Update application state or notify the user

@@ -45,3 +45,10 @@ export function formatDateRange(startDate, endDate) {
     return `${startDay} ${startMonth} - ${endDay} ${endMonth}`;
   }
 }
+
+export function extractCartIdAndQuantity(cartItems) {
+  return cartItems.reduce((acc, item) => {
+    acc[item.id] = item.quantity;
+    return acc;
+  }, {});
+}

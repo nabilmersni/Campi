@@ -2,7 +2,7 @@ import CartProductItem from './CartProductItem';
 
 function CartList({ cartItems }) {
   return (
-    <div className="mt-12 w-full">
+    <div className="mt-8 w-full">
       {/* Table Header */}
       <div className="grid grid-cols-4 gap-4 border-b-2 border-bg-light p-3 pr-12 shadow-sm">
         <div className="col-span-4 grid grid-cols-[2.5fr_1fr_1fr_1fr] gap-4">

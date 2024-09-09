@@ -15,11 +15,15 @@ function NumberInput({ item }) {
       setValue((value) => value + 1);
       dispatch(incCartItemQuantity(item));
     } else if (type === 'dec') {
-      setValue((value) => value - 1);
-      dispatch(decCartItemQuantity(item));
-      if (value - 1 < 1) {
-        dispatch(deleteCartItem(item));
-      }
+      setValue((value) => {
+        const newValue = value - 1;
+        if (newValue < 0) {
+          dispatch(deleteCartItem(item));
+        } else {
+          dispatch(decCartItemQuantity(item));
+        }
+        return newValue;
+      });
     }
   };
 

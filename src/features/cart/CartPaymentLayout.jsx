@@ -2,20 +2,35 @@ import { Elements } from '@stripe/react-stripe-js';
 import { useEffect, useState } from 'react';
 import { stripePromise } from 'src/stripe';
 import CartPaymentForm from './CartPaymentForm';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { extractCartIdAndQuantity } from 'src/utils/UtilsFunctions';
 
 function CartPaymentLayout() {
   const [clientSecret, setClientSecret] = useState('');
+  const { currentUser } = useSelector((state) => state.auth);
+  const { addressFormData, cartItems } = useSelector((state) => state.cart);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (!currentUser || !addressFormData) {
+      navigate('/login');
+    }
+
     // Fetch the clientSecret from the backend
     const fetchClientSecret = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_CAMPI_SERVER_URL}/create-payment-intent`,
+          `${import.meta.env.VITE_CAMPI_SERVER_URL}/payment/create-cart-payment-intent`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ amount: 65, currency: 'usd' }),
+            body: JSON.stringify({
+              userID: currentUser.uid,
+              cartItems: extractCartIdAndQuantity(cartItems),
+              currency: 'usd',
+              addressFormData,
+            }),
           },
         );
         const data = await response.json();
@@ -27,7 +42,7 @@ function CartPaymentLayout() {
     };
 
     fetchClientSecret();
-  }, []);
+  }, [addressFormData, cartItems, currentUser, navigate]);
 
   const appearance = {
     theme: 'stripe',

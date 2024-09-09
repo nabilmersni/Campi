@@ -4,8 +4,8 @@ const initialState = {
   cartItems: [],
   itemsCount: 0,
   totalPrice: 0,
-  stage: 'payment',
-  addressFormData: {},
+  stage: 'cart',
+  addressFormData: null,
 };
 
 const cartSlice = createSlice({
@@ -17,7 +17,23 @@ const cartSlice = createSlice({
       state.itemsCount = 0;
       state.totalPrice = 0;
       state.stage = 'cart';
-      state.addressFormData = {};
+      state.addressFormData = null;
+    },
+
+    refreshCart: (state, action) => {
+      state.totalPrice = 0;
+      state.cartItems = state.cartItems.map((item) => {
+        const refreshedItem = action.payload.find((i) => i.id === item.id);
+        const updatedItem = {
+          ...item,
+          ...refreshedItem,
+          total: item.quantity * refreshedItem.price,
+        };
+
+        state.totalPrice += updatedItem.total;
+
+        return updatedItem;
+      });
     },
 
     addCartItem: (state, action) => {
@@ -69,6 +85,7 @@ const cartSlice = createSlice({
 
 export const {
   resetCart,
+  refreshCart,
   addCartItem,
   incCartItemQuantity,
   decCartItemQuantity,
