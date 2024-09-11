@@ -16,7 +16,6 @@ function CartAddressForm() {
   const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
-    console.log(data);
     dispatch(setAddressFormData(data));
   };
 

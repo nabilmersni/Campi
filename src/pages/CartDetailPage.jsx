@@ -24,7 +24,6 @@ function CartDetailPage() {
 
   useEffect(() => {
     if (products) {
-      console.log(products);
       dispatch(refreshCart(products));
     }
   }, [products, dispatch]);

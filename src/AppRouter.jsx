@@ -19,44 +19,19 @@ import ShopUserSidePage from './pages/ShopUserSidePage';
 import CartDetailPage from './pages/CartDetailPage';
 import CartAddressPage from './pages/CartAddressPage';
 import CartPaymentPage from './pages/CartPaymentPage';
-import EventDetailsPage from './pages/EventDetailsPage';
+import EventDetailsPage, {
+  loader as eventDetailLoader,
+} from './pages/EventDetailsPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import ForgotPassword from './features/authentication/ForgotPassword';
+import OrdersUserSidePage from './pages/OrdersUserSidePage';
 
 const PrivateRoute = ({ children, role }) => {
   const { currentUser } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
-
-  const test = () => {
-    if (!currentUser) {
-      return navigate('/login', {
-        state: { error: 'Not authenticated. Please log in.' },
-      });
-    }
-
-    if (currentUser.role !== role) {
-      switch (currentUser.role) {
-        case 'admin':
-          return navigate('/dashboard', {
-            state: { error: 'Access denied: Route not allowed.' },
-          });
-
-        case 'user':
-          return navigate('/userside', {
-            state: { error: 'Access denied: Route not allowed.' },
-          });
-
-        default:
-          break;
-      }
-    }
-    if (currentUser?.role === role) {
-      return <>{children}</>;
-    }
-  };
 
   useEffect(() => {
     if (!currentUser) {
@@ -190,6 +165,7 @@ export default function AppRouter() {
         {
           path: 'events/:id',
           element: <EventDetailsPage />,
+          loader: eventDetailLoader,
         },
 
         {
@@ -200,6 +176,11 @@ export default function AppRouter() {
         {
           path: 'shop/:id',
           element: <ProductDetailsPage />,
+        },
+
+        {
+          path: 'orders',
+          element: <OrdersUserSidePage />,
         },
 
         {

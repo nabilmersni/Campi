@@ -1,6 +1,7 @@
 import LinkBtn from 'src/ui/LinkBtn';
 import Button from 'src/ui/Button';
 import { formatDateRange } from 'src/utils/UtilsFunctions';
+import { Link } from 'react-router-dom';
 
 function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg', item }) {
   if (type === 'landingPage') {
@@ -153,46 +154,53 @@ function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg', item }) {
 
   if (type === 'eventuserside') {
     return (
-      <div className="flex h-fit min-h-[16rem] w-full flex-shrink-0 flex-col gap-5 rounded-[1.5rem] border-[3px] border-border-light bg-[#F5F1F6] p-2 md:flex-row">
-        <div className="h-[11rem] w-full flex-shrink-0 md:h-full md:w-[17rem] lg:w-[15rem] xl:w-[17rem]">
-          <img
-            src={item.photoURLs[0] || img}
-            className="h-full w-full rounded-[1.5rem] object-center md:object-cover"
-            alt="camp img"
-          />
-        </div>
-
-        <div className="flex w-full flex-col items-center justify-center py-2 md:items-start">
-          <h2 className="mb-2 text-2xl font-bold text-primary">{item.title}</h2>
-
-          <p className="mb-4 line-clamp-2 md:line-clamp-3" title="text">
-            {item.description}
-          </p>
-
-          <div className="mb-6 flex items-center gap-5">
-            <div className="flex flex-1 items-center justify-center gap-2">
-              <img
-                src="/img/locationIcon.svg"
-                alt="locationIcon"
-                className="w-4"
-              />
-              <span className="text-sm font-bold text-primary">
-                Tunis, {item.state}
-              </span>
-            </div>
-            <div className="size-[0.3rem] rounded-full bg-primary"></div>
-            <div className="flex flex-1 items-center justify-center gap-2">
-              <img src="/img/dateIcon.svg" alt="locationIcon" className="w-4" />
-              <span className="w-fit whitespace-nowrap text-sm font-bold text-primary">
-                {formatDateRange(item.startDate, item.endDate)}
-              </span>
-            </div>
+      <Link to={`/userside/events/${item.id}`}>
+        <div className="flex h-fit min-h-[16rem] w-full flex-shrink-0 flex-col gap-5 rounded-[1.5rem] border-[3px] border-border-light bg-[#F5F1F6] p-2 md:flex-row">
+          <div className="h-[11rem] w-full flex-shrink-0 md:h-full md:w-[17rem] lg:w-[15rem] xl:w-[17rem]">
+            <img
+              src={item.photoURLs[0] || img}
+              className="h-full w-full rounded-[1.5rem] object-center md:object-cover"
+              alt="camp img"
+            />
           </div>
 
-          <div className="flex flex-col items-center justify-between gap-3 md:w-full md:flex-row md:gap-1">
-            <div className="flex w-full items-center gap-5">
-              <LinkBtn type={'primaryLight'}>more info</LinkBtn>
-              <div className="size-[.3rem] rounded-full bg-primary sm:block"></div>
+          <div className="flex w-full flex-col items-center justify-center py-2 md:items-start">
+            <h2 className="mb-2 text-2xl font-bold text-primary">
+              {item.title}
+            </h2>
+
+            <p className="mb-4 line-clamp-2 md:line-clamp-3" title="text">
+              {item.description}
+            </p>
+
+            <div className="mb-6 flex items-center gap-5">
+              <div className="flex flex-1 items-center justify-center gap-2">
+                <img
+                  src="/img/locationIcon.svg"
+                  alt="locationIcon"
+                  className="w-4"
+                />
+                <span className="text-sm font-bold text-primary">
+                  Tunis, {item.state}
+                </span>
+              </div>
+              <div className="size-[0.3rem] rounded-full bg-primary"></div>
+              <div className="flex flex-1 items-center justify-center gap-2">
+                <img
+                  src="/img/dateIcon.svg"
+                  alt="locationIcon"
+                  className="w-4"
+                />
+                <span className="w-fit whitespace-nowrap text-sm font-bold text-primary">
+                  {formatDateRange(item.startDate, item.endDate)}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center justify-between gap-3 md:w-full md:flex-row md:gap-1">
+              <div className="flex w-full items-center gap-5">
+                {/* <LinkBtn type={'primaryLight'}>more info</LinkBtn> */}
+                {/* <div className="size-[.3rem] rounded-full bg-primary sm:block"></div>
               <div className="flex items-center justify-between gap-2 sm:gap-4">
                 <img
                   src="/img/peopleIcon.svg"
@@ -200,13 +208,16 @@ function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg', item }) {
                   className="sm:w-18 hidden w-16 xl:block"
                 />
                 <LinkBtn type={'primaryLight'}>Join</LinkBtn>
+              </div> */}
               </div>
-            </div>
 
-            <p className="mr-3 font-bold text-primary">{item.price}TND</p>
+              <p className="mr-0 font-bold text-primary sm:mr-3">
+                {item.price}TND
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 }

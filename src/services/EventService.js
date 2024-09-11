@@ -47,6 +47,16 @@ const getAllEvents = async () => {
   }
 };
 
-const eventService = { addEvent, getAllEvents };
+const getEventDetails = async (id) => {
+  try {
+    const docSnap = await getDoc(doc(db, 'events', id));
+
+    return docSnap.data();
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const eventService = { addEvent, getAllEvents, getEventDetails };
 
 export default eventService;

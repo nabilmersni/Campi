@@ -1,26 +1,29 @@
 import EventRules from 'src/ui/EventRules';
 import GaloryCarousel from 'src/ui/GaloryCarousel';
 import ParticipantItem from 'src/ui/ParticipantItem';
+import { formatDateRange, formatDateV2 } from 'src/utils/UtilsFunctions';
 
-function EventDetails() {
+function EventDetails({ event }) {
   return (
     <div className="flex w-full flex-col items-center gap-4">
       <div className="flex w-full flex-col items-center justify-between gap-1 px-4 sm:flex-row sm:px-16">
         <div className="flex items-center gap-3">
           <img src="/img/campIcon.svg" alt="campIcon" className="w-6" />
           <h2 className="truncate text-nowrap text-[1.7rem] font-extrabold text-primary sm:max-w-[25rem]">
-            Camping Testour
+            {event.title}
           </h2>
         </div>
 
-        <span className="text-xl font-bold text-primary">Tunisia, Beja</span>
+        <span className="text-xl font-bold text-primary">
+          Tunisia, {event.state}
+        </span>
       </div>
 
       <div
         className={`mb-6 mt-4 h-[0.25rem] w-[95%] flex-shrink-0 rounded-full bg-bg-light`}
       ></div>
 
-      <GaloryCarousel />
+      <GaloryCarousel images={event.photoURLs} />
 
       <div
         className={`my-8 h-[0.35rem] w-[30%] flex-shrink-0 rounded-full bg-bg-light`}
@@ -33,7 +36,8 @@ function EventDetails() {
             <p className="text-lg font-extrabold text-primary">
               Camping Period:{' '}
               <span className="font-semibold text-black-light">
-                From 15/08/2024 To 19/08/2024
+                From {formatDateV2(event.startDate)} To{' '}
+                {formatDateV2(event.endDate)}
               </span>
             </p>
           </div>
@@ -46,7 +50,9 @@ function EventDetails() {
             />
             <p className="text-lg font-bold text-primary">
               Price:{' '}
-              <span className="font-semibold text-black-light">20 TND</span>
+              <span className="font-semibold text-black-light">
+                {event.price} TND
+              </span>
             </p>
           </div>
         </div>
@@ -56,7 +62,7 @@ function EventDetails() {
           <p className="text-lg font-extrabold text-primary">
             Location:{' '}
             <span className="font-semibold text-black-light">
-              Tunisia, Beja
+              Tunisia, {event.state}
             </span>
           </p>
 
@@ -71,18 +77,7 @@ function EventDetails() {
 
         <div className="flex flex-col gap-4">
           <h2 className="text-xl font-extrabold text-primary">Description</h2>
-          <p className="font-semibold text-black-light">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the standard dummy text ever since
-            the 1500s, when an unknown printer took a galley of type and
-            scrambled it. Lorem Ipsum is simply dummy text of the printing and
-            typesetting industry. Lorem Ipsum has been the standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it. Lorem Ipsum has been the standard dummy text ever
-            since the 1500s, when an unknown printer took a galley of type and
-            scrambled it. Lorem Ipsum has been the standard dummy text ever
-            since the 1500s.
-          </p>
+          <p className="font-semibold text-black-light">{event.description}</p>
         </div>
 
         <div className="flex flex-col gap-4">

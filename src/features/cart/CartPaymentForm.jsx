@@ -35,13 +35,13 @@ function CartPaymentForm() {
       console.log(error.message);
     } else if (paymentIntent) {
       // Additional logic upon successful payment
-      console.log('Payment successful', paymentIntent);
+      // console.log('Payment successful', paymentIntent);
 
       try {
         await orderService.confirmOrder(paymentIntent.id);
-        toast.success('Payment successful! Your order has been created');
+        toast.success('Payment successful! Your order has been placed.');
         dispatch(resetCart());
-        navigate('/userside');
+        navigate('/userside/orders');
       } catch (error) {
         console.log(error.message);
       }

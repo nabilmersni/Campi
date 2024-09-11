@@ -7,6 +7,7 @@ import { AvatarDropDownVariants } from 'src/utils/FramerMotionVariants';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import ProfileIcon from 'src/assets/svgs/profileIcon.svg';
+import OrdersIcon from 'src/assets/svgs/ordersIcon.svg';
 import SettingIcon from 'src/assets/svgs/settingIcon.svg';
 import SignOutIcon from 'src/assets/svgs/signOutIcon.svg';
 import { logout } from 'src/features/authentication/AuthSlice';
@@ -123,6 +124,18 @@ function AvatarDropDownMenu({ img, type = 'dash', isCenter = false }) {
                   </div>
                   <span className="font-semibold">My profile</span>
                 </Link>
+                {currentUser.role !== 'user' && (
+                  <Link
+                    to={'/userside/orders'}
+                    onClick={() => setIsDropDownOpen(false)}
+                    className="flex h-10 w-full items-center gap-3 rounded-[0.25rem] fill-[#4e4e4e] px-2 text-[#4e4e4e] transition-all hover:bg-bg-light hover:fill-primary-dark hover:text-primary-dark"
+                  >
+                    <div className="w-6">
+                      <OrdersIcon />
+                    </div>
+                    <span className="-ml-1 font-semibold">Oders</span>
+                  </Link>
+                )}
 
                 <Link
                   to={''}
