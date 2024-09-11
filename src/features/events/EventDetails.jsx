@@ -1,7 +1,7 @@
 import EventRules from 'src/ui/EventRules';
 import GaloryCarousel from 'src/ui/GaloryCarousel';
 import ParticipantItem from 'src/ui/ParticipantItem';
-import { formatDateRange, formatDateV2 } from 'src/utils/UtilsFunctions';
+import { formatDateV2 } from 'src/utils/UtilsFunctions';
 
 function EventDetails({ event }) {
   return (

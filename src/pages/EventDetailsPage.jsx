@@ -11,8 +11,7 @@ function EventDetailsPage() {
       <ItemDetailLayout>
         <EventDetails event={event} />
 
-        {/*  */}
-        <EventBooking />
+        <EventBooking event={event} />
       </ItemDetailLayout>
     </div>
   );

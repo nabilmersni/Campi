@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { useSelector } from 'react-redux';
 import EventItemCard from 'src/features/events/EventItemCard';
 import OrderList from 'src/features/orders/OrderList';
 import eventService from 'src/services/EventService';
@@ -8,13 +9,17 @@ import Loader from 'src/ui/Loader';
 import Separator from 'src/ui/Separator';
 
 function OrdersUserSidePage() {
+  const { currentUser } = useSelector((state) => state.auth);
   const {
     isPending,
     data: orders,
     error,
   } = useQuery({
     queryKey: ['orders'],
-    queryFn: orderService.getAllOrders,
+    queryFn: async () => {
+      const data = await orderService.getMyOrders(currentUser.uid);
+      return data;
+    },
   });
 
   return (
