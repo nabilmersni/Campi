@@ -45,7 +45,11 @@ const getMyRes = async (id) => {
   const reservations = [];
   try {
     //
-    const q = query(collection(db, 'reservations'), where('userID', '==', id));
+    const q = query(
+      collection(db, 'reservations'),
+      where('userID', '==', id),
+      where('state', '==', true),
+    );
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {

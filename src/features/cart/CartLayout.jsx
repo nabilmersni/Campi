@@ -1,7 +1,14 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setStage } from './CartSlice';
 
 function CartLayout({ children }) {
   const { stage } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setStage('cart'));
+  }, []);
 
   return (
     <div className="flex flex-col gap-4 text-black-light">

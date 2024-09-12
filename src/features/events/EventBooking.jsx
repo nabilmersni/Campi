@@ -3,11 +3,14 @@ import { useState } from 'react';
 import Separator from 'src/ui/Separator';
 import { formatDateRange } from 'src/utils/UtilsFunctions';
 import EventPaymentLayout from './EventPaymentLayout';
+import useCheckReservedEvent from 'src/hooks/useCheckReservedEvent';
 
 function EventBooking({ event }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const isReserved = useCheckReservedEvent(event);
 
   return (
     <div className="flex h-full w-full flex-col items-center">
@@ -40,10 +43,11 @@ function EventBooking({ event }) {
         </div>
 
         <button
+          disabled={isReserved}
           onClick={handleOpen}
-          className="my-2 w-full rounded-[0.5rem] bg-bg-light p-2 text-sm font-bold text-primary transition-all hover:bg-[#e6dfff]"
+          className={`my-2 w-full rounded-[0.5rem] bg-bg-light p-2 text-sm font-bold text-primary transition-all ${isReserved ? 'bg-[#ece9ff] text-[#9890cd]' : 'bg-primary-light text-primary hover:bg-[#d3caff]'}`}
         >
-          RESERVE A PLACE
+          {isReserved ? 'ALREADY RESERVED' : 'RESERVE A PLACE'}
         </button>
 
         <div className="mt-5 flex items-center gap-2">

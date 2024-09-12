@@ -11,7 +11,7 @@ import 'swiper/css/thumbs';
 // import required modules
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
-function GaloryCarousel({ images }) {
+function GaloryCarousel({ images, type }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const [slidesPerView, setSlidesPerView] = useState(4);
@@ -46,22 +46,29 @@ function GaloryCarousel({ images }) {
   return (
     <div className="flex h-fit w-full flex-col overflow-hidden">
       <Swiper
-        style={{
-          '--swiper-navigation-color': '#fff',
-          '--swiper-pagination-color': '#fff',
-        }}
+        style={
+          type === 'shop'
+            ? {
+                '--swiper-navigation-color': '#7262AF',
+                '--swiper-pagination-color': '#7262AF',
+              }
+            : {
+                '--swiper-navigation-color': '#fff',
+                '--swiper-pagination-color': '#fff',
+              }
+        }
         spaceBetween={10}
         slidesPerView={1}
         navigation={true}
         thumbs={{ swiper: thumbsSwiper?.destroyed ? undefined : thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="h-[26rem] w-full cursor-grab rounded-[2rem] shadow-sm sm:h-[30rem]"
+        className={`h-[26rem] w-full cursor-grab rounded-[2rem] shadow-sm sm:h-[30rem] ${type === 'shop' ? 'bg-bg-light' : ''}`}
       >
         {images.map((image, i) => (
           <SwiperSlide key={i} className="w-full rounded-[2rem]">
-            <div className="h-full w-full rounded-[2rem]">
+            <div className="flex h-full w-full items-center justify-center rounded-[2rem]">
               <img
-                className="h-full w-full rounded-[2rem] object-cover"
+                className={`rounded-[2rem] ${type === 'shop' ? 'h-full object-contain p-3' : 'h-full w-full object-cover'}`}
                 src={image || '/img/camp4.jpg'}
                 loading="lazy"
               />
@@ -77,13 +84,13 @@ function GaloryCarousel({ images }) {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper mt-6 h-[6rem] w-full cursor-pointer rounded-[1rem]"
+        className={`mySwiper mt-6 h-[6rem] w-full cursor-pointer rounded-[1rem]`}
       >
         {images.map((image, i) => (
           <SwiperSlide key={i}>
             <div className="h-full w-full rounded-[1rem]">
               <img
-                className="h-full w-full rounded-[1rem] object-cover"
+                className={`rounded-[1rem] object-cover ${type === 'shop' ? 'h-full bg-[#E2E8F0] p-2' : 'h-full w-full'}`}
                 src={image || '/img/camp4.jpg'}
                 loading="lazy"
               />

@@ -1,7 +1,6 @@
 import LinkBtn from 'src/ui/LinkBtn';
 import Button from 'src/ui/Button';
 import { formatDateRange } from 'src/utils/UtilsFunctions';
-import { Link } from 'react-router-dom';
 
 function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg', item }) {
   if (type === 'landingPage') {
@@ -214,6 +213,47 @@ function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg', item }) {
         </div>
       </div>
       // </Link>
+    );
+  }
+
+  if (type === 'reservationuserside') {
+    return (
+      <div className="flex h-fit min-h-[20rem] flex-col items-center rounded-[2.5rem] border-[.2rem] border-primary bg-white-light p-3 sm:min-w-[23rem]">
+        <div className="mb-2 h-[10rem] w-full">
+          <img
+            src={item.photoURLs[0] || img}
+            alt="camp-img"
+            className="h-full w-full rounded-[2rem] rounded-t-[2rem] object-cover"
+          />
+        </div>
+        <h2 className="mb-4 text-xl font-bold text-primary">{item.title}</h2>
+
+        <div className="mb-6 flex items-center justify-center gap-5">
+          <div className="flex flex-1 items-center justify-center gap-2">
+            <img
+              src="/img/locationIcon.svg"
+              alt="locationIcon"
+              className="w-5"
+            />
+            <span className="text-sm font-bold text-primary">
+              Tunis, {item.state}
+            </span>
+          </div>
+          <div className="size-2 rounded-full bg-primary"></div>
+          <div className="flex flex-1 items-center justify-center gap-2">
+            <img src="/img/dateIcon.svg" alt="locationIcon" className="w-5" />
+            <span className="w-fit whitespace-nowrap text-sm font-bold text-primary">
+              {formatDateRange(item.startDate, item.endDate)}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex w-full items-center justify-center px-3">
+          <LinkBtn to={`/userside/events/${item.id}`} type={'primaryLight'}>
+            more info
+          </LinkBtn>
+        </div>
+      </div>
     );
   }
 }

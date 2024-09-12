@@ -41,21 +41,13 @@ function CartChekout() {
 
         {stage === 'cart' && (
           <button
+            disabled={totalPrice === 0}
             onClick={() => dispatch(setStage('address'))}
-            className="my-2 w-full rounded-[0.5rem] bg-bg-light p-2 text-sm font-bold text-primary transition-all hover:bg-[#e6dfff]"
+            className={`my-2 w-full rounded-[0.5rem] p-2 text-sm font-bold transition-all ${totalPrice === 0 ? 'bg-[#f4f2ff] text-[#a79adb]' : 'bg-bg-light text-primary hover:bg-[#e6dfff]'}`}
           >
             PLACE ORDER
           </button>
         )}
-
-        {/* {stage === 'address' && (
-          <button
-            onClick={() => dispatch(setStage('payment'))}
-            className="my-2 w-full rounded-[0.5rem] bg-bg-light p-2 text-sm font-bold text-primary transition-all hover:bg-[#e6dfff]"
-          >
-            CHECKOUT
-          </button>
-        )} */}
 
         <div className="mt-2 flex items-center gap-2">
           <img src="/img/safePayIcon.png" alt="safePayIcon" className="w-4" />

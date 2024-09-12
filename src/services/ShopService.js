@@ -46,6 +46,16 @@ const getAllProducts = async () => {
   }
 };
 
-const shopService = { addProduct, getAllProducts };
+const getProductDetails = async (id) => {
+  try {
+    const docSnap = await getDoc(doc(db, 'products', id));
+
+    return docSnap.data();
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const shopService = { addProduct, getAllProducts, getProductDetails };
 
 export default shopService;

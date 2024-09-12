@@ -4,6 +4,7 @@ import LinkBtn from 'src/ui/LinkBtn';
 import { addCartItem } from '../cart/CartSlice';
 import useCheckCartItemAdded from 'src/hooks/useCheckCartItemAdded';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 function ShopItemCard({ type = 'landingPage', img = '/img/tent.png', item }) {
   const dispatch = useDispatch();
@@ -90,43 +91,48 @@ function ShopItemCard({ type = 'landingPage', img = '/img/tent.png', item }) {
 
   if (type === 'userside') {
     return (
-      <div className="flex min-h-[20rem] w-full flex-col items-center rounded-[2rem] border-[.2rem] border-primary bg-[#F9FDFF] p-3 shadow-md sm:w-fit sm:min-w-[20rem]">
-        <div className="relative mb-2 h-[10rem] w-full rounded-[2rem] bg-white-light p-3">
-          <img
-            src={item.photoURLs[0]}
-            alt="camp-img"
-            className="h-full w-full rounded-[2rem] rounded-t-[3rem] object-contain"
-          />
+      <Link to={`/userside/shop/${item.id}`}>
+        <div className="flex min-h-[20rem] w-full flex-col items-center rounded-[2rem] border-[.2rem] border-primary bg-[#F9FDFF] p-3 shadow-md sm:w-fit sm:min-w-[20rem]">
+          <div className="relative mb-2 h-[10rem] w-full rounded-[2rem] bg-white-light p-3">
+            <img
+              src={item.photoURLs[0]}
+              alt="camp-img"
+              className="h-full w-full rounded-[2rem] rounded-t-[3rem] object-contain"
+            />
 
-          <div className="absolute right-2 top-2 rounded-full border-[3px] border-border-light bg-primary-light p-1 px-4 text-sm font-semibold">
-            {item.category}
+            <div className="absolute right-2 top-2 rounded-full border-[3px] border-border-light bg-primary-light p-1 px-4 text-sm font-semibold">
+              {item.category}
+            </div>
+          </div>
+
+          <div className="mb-3 flex flex-col items-center justify-center">
+            <h2 className="text-xl font-bold text-primary">{item.title}</h2>
+            <span className="max-w-[15rem] overflow-hidden truncate whitespace-nowrap text-[.8rem] text-primary">
+              {item.subtitle}
+            </span>
+          </div>
+
+          <div className="flex w-full flex-col items-center justify-center gap-2 px-3">
+            <span className="text-xl font-extrabold text-primary">
+              ${item.price}
+            </span>
+            <div className="mb-3 size-[.3rem] rounded-full bg-primary sm:block"></div>
+
+            <button
+              disabled={isAdded}
+              onClick={(e) => {
+                handleAddToCart();
+                e.preventDefault();
+              }}
+              className={`rounded-full px-[1.1rem] py-[.4rem] text-center text-[1rem] font-extrabold transition-all ${isAdded ? 'bg-[#ece9ff] text-[#9d97c7]' : 'bg-primary-light text-primary hover:bg-[#d3caff]'}`}
+            >
+              {isAdded ? 'Already in Cart' : 'Add to cart'}
+            </button>
+
+            {/* <div className="size-[.3rem] rounded-full bg-primary sm:block"></div> */}
           </div>
         </div>
-
-        <div className="mb-3 flex flex-col items-center justify-center">
-          <h2 className="text-xl font-bold text-primary">{item.title}</h2>
-          <span className="max-w-[15rem] overflow-hidden truncate whitespace-nowrap text-[.8rem] text-primary">
-            {item.subtitle}
-          </span>
-        </div>
-
-        <div className="flex w-full flex-col items-center justify-center gap-2 px-3">
-          <span className="text-xl font-extrabold text-primary">
-            ${item.price}
-          </span>
-          <div className="mb-3 size-[.3rem] rounded-full bg-primary sm:block"></div>
-
-          <button
-            disabled={isAdded}
-            onClick={handleAddToCart}
-            className={`rounded-full px-[1.1rem] py-[.4rem] text-center text-[1rem] font-extrabold transition-all ${isAdded ? 'bg-[#ece9ff] text-[#9d97c7]' : 'bg-primary-light text-primary hover:bg-[#d3caff]'}`}
-          >
-            {isAdded ? 'Already in Cart' : 'Add to cart'}
-          </button>
-
-          {/* <div className="size-[.3rem] rounded-full bg-primary sm:block"></div> */}
-        </div>
-      </div>
+      </Link>
     );
   }
 }

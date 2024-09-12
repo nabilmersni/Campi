@@ -22,11 +22,14 @@ import CartPaymentPage from './pages/CartPaymentPage';
 import EventDetailsPage, {
   loader as eventDetailLoader,
 } from './pages/EventDetailsPage';
-import ProductDetailsPage from './pages/ProductDetailsPage';
+import ProductDetailsPage, {
+  loader as productDetailLoader,
+} from './pages/ProductDetailsPage';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import ForgotPassword from './features/authentication/ForgotPassword';
 import OrdersUserSidePage from './pages/OrdersUserSidePage';
+import ReservationsUserSidePage from './pages/ReservationsUserSidePage';
 
 const PrivateRoute = ({ children, role }) => {
   const { currentUser } = useSelector((state) => state.auth);
@@ -176,11 +179,17 @@ export default function AppRouter() {
         {
           path: 'shop/:id',
           element: <ProductDetailsPage />,
+          loader: productDetailLoader,
         },
 
         {
           path: 'orders',
           element: <OrdersUserSidePage />,
+        },
+
+        {
+          path: 'reservations',
+          element: <ReservationsUserSidePage />,
         },
 
         {

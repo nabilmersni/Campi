@@ -18,7 +18,7 @@ function CartList({ cartItems }) {
         {cartItems.length > 0 ? (
           cartItems.map((item) => <CartProductItem key={item.id} item={item} />)
         ) : (
-          <p>Cart is empty</p>
+          <p className="text-lg font-semibold">Cart is empty</p>
         )}
       </div>
     </div>

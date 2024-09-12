@@ -1,11 +1,33 @@
+import { useEffect, useState } from 'react';
+import eventService from 'src/services/EventService';
 import EventRules from 'src/ui/EventRules';
 import GaloryCarousel from 'src/ui/GaloryCarousel';
+import Loader from 'src/ui/Loader';
 import ParticipantItem from 'src/ui/ParticipantItem';
 import { formatDateV2 } from 'src/utils/UtilsFunctions';
 
 function EventDetails({ event }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [participants, setParticipants] = useState([]);
+
+  useEffect(() => {
+    const fetchParticipants = async () => {
+      try {
+        setIsLoading(true);
+        const res = await eventService.getEventParticipants(event.id);
+        setParticipants(res);
+      } catch (error) {
+        throw new Error(error.message);
+      }
+      setIsLoading(false);
+    };
+
+    fetchParticipants();
+  }, [event]);
+
   return (
     <div className="flex w-full flex-col items-center gap-4">
+      {isLoading && <Loader />}
       <div className="flex w-full flex-col items-center justify-between gap-1 px-4 sm:flex-row sm:px-16">
         <div className="flex items-center gap-3">
           <img src="/img/campIcon.svg" alt="campIcon" className="w-6" />
@@ -85,11 +107,12 @@ function EventDetails({ event }) {
             Participants (5/10)
           </h2>
           <div className="flex flex-wrap gap-4">
-            <ParticipantItem />
-            <ParticipantItem />
-            <ParticipantItem />
-            <ParticipantItem />
-            <ParticipantItem />
+            {participants?.map((participant) => (
+              <ParticipantItem
+                key={participant.uid}
+                participant={participant}
+              />
+            ))}
           </div>
         </div>
 
