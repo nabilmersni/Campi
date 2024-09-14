@@ -1,11 +1,13 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
   orderBy,
   query,
   setDoc,
+  updateDoc,
 } from 'firebase/firestore';
 import { db } from 'src/firebase';
 import { v4 as uuidv4 } from 'uuid';
@@ -56,6 +58,34 @@ const getProductDetails = async (id) => {
   }
 };
 
-const shopService = { addProduct, getAllProducts, getProductDetails };
+const deleteProduct = async (id) => {
+  try {
+    await deleteDoc(doc(db, 'products', id));
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const updateProduct = async (data) => {
+  try {
+    await updateDoc(doc(db, 'products', data.id), {
+      title: data.title,
+      subtitle: data.subtitle,
+      description: data.description,
+      price: data.price,
+      category: data.category,
+    });
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const shopService = {
+  addProduct,
+  getAllProducts,
+  getProductDetails,
+  deleteProduct,
+  updateProduct,
+};
 
 export default shopService;

@@ -5,14 +5,25 @@ import { addCartItem } from '../cart/CartSlice';
 import useCheckCartItemAdded from 'src/hooks/useCheckCartItemAdded';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import DeleteProductModal from './DeleteProductModal';
+import { useState } from 'react';
+import { setCategories } from './ShopSlice';
+import FormModal from 'src/ui/FormModal';
+import UpdateProductForm from './UpdateProductForm';
 
 function ShopItemCard({ type = 'landingPage', img = '/img/tent.png', item }) {
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
     const cartItem = { ...item, quantity: 1, total: item.price };
     dispatch(addCartItem(cartItem));
     toast.success('Item added to cart successfully!');
+  };
+
+  const handleToggleModal = () => {
+    setIsOpen((isOpen) => !isOpen);
+    dispatch(setCategories(item.category));
   };
 
   const isAdded = useCheckCartItemAdded(item);
@@ -79,11 +90,23 @@ function ShopItemCard({ type = 'landingPage', img = '/img/tent.png', item }) {
           </span>
           <div className="mb-3 size-[.3rem] rounded-full bg-primary sm:block"></div>
           <div className="flex w-full items-center justify-center gap-3 px-3">
-            <Button type="iconBtn" icon={'view'} />
-            <Button type="iconBtn" icon={'update'} />
-            <Button type="iconBtn" icon={'delete'} />
+            <Link to={`/userside/shop/${item.id}`}>
+              <Button type="iconBtn" icon={'view'} />
+            </Link>
+            <Button
+              onClick={handleToggleModal}
+              type="iconBtn"
+              icon={'update'}
+            />
+            <DeleteProductModal product={item} />
           </div>
-          {/* <div className="size-[.3rem] rounded-full bg-primary sm:block"></div> */}
+
+          <FormModal isOpen={isOpen} handleToggleModal={handleToggleModal}>
+            <UpdateProductForm
+              product={item}
+              handleToggleModal={handleToggleModal}
+            />
+          </FormModal>
         </div>
       </div>
     );

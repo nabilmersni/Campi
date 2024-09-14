@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import eventService from 'src/services/EventService';
+import shopService from 'src/services/ShopService';
 import Button from 'src/ui/Button';
 import Loader from 'src/ui/Loader';
 
-function DeleteEventModal({ event }) {
+function DeleteProductModal({ product }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const queryClient = useQueryClient();
@@ -14,7 +14,7 @@ function DeleteEventModal({ event }) {
     mutationFn: () => {},
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['events'],
+        queryKey: ['products'],
       });
     },
   });
@@ -23,11 +23,11 @@ function DeleteEventModal({ event }) {
     setIsOpen((isOpen) => !isOpen);
   };
 
-  const handleDeleteEvent = async () => {
+  const handleDeleteProduct = async () => {
     setIsLoading(true);
     try {
-      await eventService.deleteEvent(event.id);
-      toast.success('Event deleted successfully');
+      await shopService.deleteProduct(product.id);
+      toast.success('Product deleted successfully');
       mutate();
     } catch (error) {
       console.log(error.message);
@@ -55,12 +55,12 @@ function DeleteEventModal({ event }) {
             <div className="relative flex h-full flex-col">
               <h1 className="pr-10 text-2xl font-semibold text-primary">
                 Are you sure you want to delete{' '}
-                <span className="font-bold">{event.title}</span> event ?
+                <span className="font-bold">{product.title}</span> product ?
               </h1>
 
               <div className="mt-10 flex justify-end gap-3 pr-4">
                 <button
-                  onClick={handleDeleteEvent}
+                  onClick={handleDeleteProduct}
                   className="rounded-md bg-green-400 px-6 py-1 text-white hover:bg-green-500"
                 >
                   Yes
@@ -81,4 +81,4 @@ function DeleteEventModal({ event }) {
   );
 }
 
-export default DeleteEventModal;
+export default DeleteProductModal;

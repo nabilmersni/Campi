@@ -28,7 +28,7 @@ const MenuProps = {
   },
 };
 
-function CategoriesInput({ size = 'small', register }) {
+function CategoriesInput({ size = 'small', isMultiple = true, register }) {
   const [personName, setPersonName] = useState([]);
   const { categories } = useSelector((state) => state.shop);
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ function CategoriesInput({ size = 'small', register }) {
 
   return (
     <Select
-      multiple
+      multiple={isMultiple}
       size={size}
       value={personName}
       onChange={handleChange}
