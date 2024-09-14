@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setstates } from 'src/features/events/EventSlice';
 
-const names = [
+const stateNames = [
   'Ariana',
   'Beja',
   'Ben Arous',
@@ -91,7 +91,7 @@ function StatesInput({ size = 'small', isMultiple = true, register }) {
       sx={sx}
       {...register}
     >
-      {names.map((name) => (
+      {stateNames.map((name) => (
         <MenuItem key={name} value={name}>
           <Checkbox
             checked={personName.indexOf(name) > -1}

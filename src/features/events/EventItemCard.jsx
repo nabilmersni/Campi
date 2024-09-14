@@ -2,8 +2,22 @@ import LinkBtn from 'src/ui/LinkBtn';
 import Button from 'src/ui/Button';
 import { formatDateRange } from 'src/utils/UtilsFunctions';
 import { Link } from 'react-router-dom';
+import DeleteEventModal from './DeleteEventModal';
+import { useState } from 'react';
+import FormModal from 'src/ui/FormModal';
+import UpdateEventForm from './UpdateEventForm';
+import { setstates } from './EventSlice';
+import { useDispatch } from 'react-redux';
 
 function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg', item }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleToggleModal = () => {
+    dispatch(setstates(item.state));
+    setIsOpen((isOpen) => !isOpen);
+  };
+
   if (type === 'landingPage') {
     return (
       <div className="flex h-fit min-h-[20rem] flex-col items-center rounded-[3rem] border-[.2rem] border-primary bg-white-light p-3 sm:min-w-[23rem]">
@@ -71,7 +85,7 @@ function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg', item }) {
               alt="locationIcon"
               className="w-5"
             />
-            <span className="text-sm font-bold text-primary">
+            <span className="text-nowrap text-sm font-bold text-primary">
               Tunisia, {item.state}
             </span>
           </div>
@@ -94,9 +108,13 @@ function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg', item }) {
           <Link to={`/userside/events/${item.id}`}>
             <Button type="iconBtn" icon={'view'} />
           </Link>
-          <Button type="iconBtn" icon={'update'} />
-          <Button type="iconBtn" icon={'delete'} />
+          <Button onClick={handleToggleModal} type="iconBtn" icon={'update'} />
+          <DeleteEventModal event={item} />
         </div>
+
+        <FormModal isOpen={isOpen} handleToggleModal={handleToggleModal}>
+          <UpdateEventForm event={item} handleToggleModal={handleToggleModal} />
+        </FormModal>
       </div>
     );
   }

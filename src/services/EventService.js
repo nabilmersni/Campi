@@ -1,11 +1,13 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
   orderBy,
   query,
   setDoc,
+  updateDoc,
   where,
 } from 'firebase/firestore';
 import { db } from 'src/firebase';
@@ -89,11 +91,36 @@ const getEventParticipants = async (eventID) => {
   }
 };
 
+const deleteEvent = async (id) => {
+  try {
+    await deleteDoc(doc(db, 'events', id));
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const updateEvent = async (data) => {
+  try {
+    await updateDoc(doc(db, 'events', data.id), {
+      title: data.title,
+      startDate: data.startDate,
+      endDate: data.endDate,
+      description: data.description,
+      price: data.price,
+      state: data.state,
+    });
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const eventService = {
   addEvent,
   getAllEvents,
   getEventDetails,
   getEventParticipants,
+  deleteEvent,
+  updateEvent,
 };
 
 export default eventService;
