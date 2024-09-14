@@ -30,6 +30,8 @@ import { useEffect } from 'react';
 import ForgotPassword from './features/authentication/ForgotPassword';
 import OrdersUserSidePage from './pages/OrdersUserSidePage';
 import ReservationsUserSidePage from './pages/ReservationsUserSidePage';
+import OdersDashPage from './pages/OdersDashPage';
+import ReservationsDashPage from './pages/ReservationsDashPage';
 
 const PrivateRoute = ({ children, role }) => {
   const { currentUser } = useSelector((state) => state.auth);
@@ -148,8 +150,19 @@ export default function AppRouter() {
           path: 'shop',
           element: <ShopDashPage />,
         },
+
+        {
+          path: 'orders',
+          element: <OdersDashPage />,
+        },
+
+        {
+          path: 'reservations',
+          element: <ReservationsDashPage />,
+        },
       ],
     },
+
     {
       path: '/userside',
       element: <UserSideLayout />,

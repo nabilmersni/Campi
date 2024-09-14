@@ -23,6 +23,7 @@ function EventDetails({ event }) {
     };
 
     fetchParticipants();
+    setIsLoading(false);
   }, [event]);
 
   return (
@@ -104,7 +105,7 @@ function EventDetails({ event }) {
 
         <div className="flex flex-col gap-4">
           <h2 className="text-xl font-extrabold text-primary">
-            Participants (5/10)
+            Participants ({participants?.length}/10)
           </h2>
           <div className="flex flex-wrap gap-4">
             {participants?.map((participant) => (
@@ -113,6 +114,9 @@ function EventDetails({ event }) {
                 participant={participant}
               />
             ))}
+            {participants.length === 0 && (
+              <p className="font-semibold">No participants yet</p>
+            )}
           </div>
         </div>
 

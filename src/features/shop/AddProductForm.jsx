@@ -121,7 +121,7 @@ function AddProductForm({ handleToggleModal }) {
       <h1 className="text-2xl font-semibold text-primary">Add product</h1>
 
       <div className="mt-10 flex flex-col items-center gap-4 overflow-hidden overflow-y-auto pr-4">
-        <MultiImageInput setImageFiles={setImageFiles} />
+        <MultiImageInput type={'shop'} setImageFiles={setImageFiles} />
         {!imageFiles && (
           <p className="mt-1 self-start text-sm text-red-400">
             Product must have at least 3 images.

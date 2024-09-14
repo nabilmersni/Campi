@@ -9,7 +9,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
-function MultiImageInput({ setImageFiles }) {
+function MultiImageInput({ setImageFiles, type }) {
   const [slidesPerView, setSlidesPerView] = useState(4);
   const uploadFiles = useRef();
   const [images, setImages] = useState([]);
@@ -88,11 +88,9 @@ function MultiImageInput({ setImageFiles }) {
             >
               {images.map((image, index) => (
                 <SwiperSlide key={index}>
-                  <div className="h-full w-full select-none rounded-[1rem]">
+                  <div className="flex h-full w-full select-none items-center justify-center rounded-[1rem]">
                     <img
-                      className="h-full w-full rounded-[1rem] object-cover"
-                      // srcSet="/img/camp4.jpg 500w, /img/camp4.jpg 1000w"
-                      sizes="(max-width: 600px) 500px, 1000px"
+                      className={`rounded-[1rem] ${type === 'shop' ? 'h-full bg-bg-light object-contain p-2' : 'h-full w-full object-cover'}`}
                       loading="lazy"
                       src={image.url}
                       alt="product img"
@@ -112,96 +110,6 @@ function MultiImageInput({ setImageFiles }) {
           hidden
           accept="image/*"
         />
-
-        {/* <div className="mt-4 flex w-full flex-wrap gap-4">
-          <div className="h-[5rem] w-[7rem] rounded-[0.5rem]">
-            <img
-              src="/img/camp1.jpg"
-              alt="camp"
-              className="h-full w-full rounded-[0.5rem] object-cover"
-            />
-          </div>
-
-          <div className="h-[5rem] w-[7rem] rounded-[0.5rem]">
-            <img
-              src="/img/camp2.jpg"
-              alt="camp"
-              className="h-full w-full rounded-[0.5rem] object-cover"
-            />
-          </div>
-
-          <div className="h-[5rem] w-[7rem] rounded-[0.5rem]">
-            <img
-              src="/img/camp3.jpg"
-              alt="camp"
-              className="h-full w-full rounded-[0.5rem] object-cover"
-            />
-          </div>
-
-          <div className="h-[5rem] w-[7rem] rounded-[0.5rem]">
-            <img
-              src="/img/camp4.jpg"
-              alt="camp"
-              className="h-full w-full rounded-[0.5rem] object-cover"
-            />
-          </div>
-
-          <div className="h-[5rem] w-[7rem] rounded-[0.5rem]">
-            <img
-              src="/img/camp5.jpg"
-              alt="camp"
-              className="h-full w-full rounded-[0.5rem] object-cover"
-            />
-          </div>
-
-          <div className="h-[5rem] w-[7rem] rounded-[0.5rem]">
-            <img
-              src="/img/camp6.jpg"
-              alt="camp"
-              className="h-full w-full rounded-[0.5rem] object-cover"
-            />
-          </div>
-
-          <div className="h-[5rem] w-[7rem] rounded-[0.5rem]">
-            <img
-              src="/img/camp7.jpg"
-              alt="camp"
-              className="h-full w-full rounded-[0.5rem] object-cover"
-            />
-          </div>
-
-          <div className="h-[5rem] w-[7rem] rounded-[0.5rem]">
-            <img
-              src="/img/camp8.jpg"
-              alt="camp"
-              className="h-full w-full rounded-[0.5rem] object-cover"
-            />
-          </div>
-
-          <div className="h-[5rem] w-[7rem] rounded-[0.5rem]">
-            <img
-              src="/img/camp9.jpg"
-              alt="camp"
-              className="h-full w-full rounded-[0.5rem] object-cover"
-            />
-          </div>
-
-          <div className="h-[5rem] w-[7rem] rounded-[0.5rem]">
-            <img
-              src="/img/camp10.jpg"
-              alt="camp"
-              className="h-full w-full rounded-[0.5rem] object-cover"
-            />
-          </div>
-
-          <div className="h-[5rem] w-[7rem] rounded-[0.5rem]">
-            <img
-              src="/img/camp11.jpg"
-              alt="camp"
-              className="h-full w-full rounded-[0.5rem] object-cover"
-            />
-          </div>
-        </div> */}
       </div>
     </div>
   );

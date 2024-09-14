@@ -70,6 +70,22 @@ function Sidebar() {
         >
           Shop
         </LinkBtn>
+
+        <LinkBtn
+          to={'/dashboard/orders'}
+          type={'sidebarNavLink'}
+          sidebarIcon="orders"
+        >
+          Orders
+        </LinkBtn>
+
+        <LinkBtn
+          to={'/dashboard/reservations'}
+          type={'sidebarNavLink'}
+          sidebarIcon="reservations"
+        >
+          Reservations
+        </LinkBtn>
       </ul>
 
       <div

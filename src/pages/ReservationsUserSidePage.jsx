@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import ReservationList from 'src/features/reservations/ReservationList';
@@ -9,17 +9,23 @@ import Separator from 'src/ui/Separator';
 
 function ReservationsUserSidePage() {
   const { currentUser } = useSelector((state) => state.auth);
-  const {
-    isPending,
-    data: reservations,
-    error,
-  } = useQuery({
-    queryKey: ['myReservations'],
-    queryFn: async () => {
-      const data = await reservationService.getMyRes(currentUser.uid);
-      return data;
-    },
-  });
+  const [reservations, setReservations] = useState([]);
+  const [isPending, setIsPending] = useState(false);
+
+  useEffect(() => {
+    const fetchMyReservations = async () => {
+      setIsPending(true);
+      try {
+        const data = await reservationService.getMyRes(currentUser.uid);
+        setReservations(data);
+      } catch (error) {
+        throw new Error(error.message);
+      }
+      setIsPending(false);
+    };
+
+    fetchMyReservations();
+  }, [currentUser]);
 
   return (
     <div className="flex min-h-[30rem] flex-grow flex-col rounded-[1rem] border-[3px] border-border-light bg-white p-4">

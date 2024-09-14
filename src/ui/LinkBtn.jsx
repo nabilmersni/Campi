@@ -12,6 +12,9 @@ import DashIcon from 'src/assets/svgs/dash-icon.svg';
 import UsersIcon from 'src/assets/svgs/users-icon.svg';
 import EventsIcon from 'src/assets/svgs/events-icon.svg';
 import ShopIcon from 'src/assets/svgs/shop-icon.svg';
+import OrderDashIcon from 'src/assets/svgs/orderDashIcon.svg';
+import ReservationIcon from 'src/assets/svgs/reservationDashIcon.svg';
+
 import { DashboardContext } from 'src/context/DashboardContext';
 
 function LinkBtn({
@@ -276,12 +279,28 @@ function LinkBtn({
       <li className="w-full">
         <NavLink className={getClassName} to={to}>
           <div
-            className={` ${isSidebarCollapsed ? 'flex size-9 items-center justify-center' : 'size-9'}`}
+            className={` ${isSidebarCollapsed ? 'flex size-9 items-center justify-center' : 'size-9'} `}
           >
             {sidebarIcon === 'dash' ? <DashIcon /> : ''}
             {sidebarIcon === 'users' ? <UsersIcon /> : ''}
             {sidebarIcon === 'events' ? <EventsIcon /> : ''}
             {sidebarIcon === 'shop' ? <ShopIcon /> : ''}
+
+            {sidebarIcon === 'orders' ? (
+              <div className="ml-[0.2rem] mt-[0.2rem] size-7">
+                <OrderDashIcon />
+              </div>
+            ) : (
+              ''
+            )}
+
+            {sidebarIcon === 'reservations' ? (
+              <div className="ml-[0.2rem] mt-[0.2rem] size-[1.65rem]">
+                <ReservationIcon />
+              </div>
+            ) : (
+              ''
+            )}
           </div>
 
           {!isSidebarCollapsed && (

@@ -1,8 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import EventItemCard from 'src/features/events/EventItemCard';
 import OrderList from 'src/features/orders/OrderList';
-import eventService from 'src/services/EventService';
 import orderService from 'src/services/OrderService';
 import InputField from 'src/ui/InputField';
 import Loader from 'src/ui/Loader';
@@ -10,17 +8,23 @@ import Separator from 'src/ui/Separator';
 
 function OrdersUserSidePage() {
   const { currentUser } = useSelector((state) => state.auth);
-  const {
-    isPending,
-    data: orders,
-    error,
-  } = useQuery({
-    queryKey: ['orders'],
-    queryFn: async () => {
-      const data = await orderService.getMyOrders(currentUser.uid);
-      return data;
-    },
-  });
+  const [orders, setOders] = useState([]);
+  const [isPending, setIsPending] = useState(false);
+
+  useEffect(() => {
+    const fetchMyOders = async () => {
+      setIsPending(true);
+      try {
+        const data = await orderService.getMyOrders(currentUser.uid);
+        setOders(data);
+      } catch (error) {
+        throw new Error(error.message);
+      }
+      setIsPending(false);
+    };
+
+    fetchMyOders();
+  }, [currentUser]);
 
   return (
     <div className="flex min-h-[30rem] flex-grow flex-col rounded-[1rem] border-[3px] border-border-light bg-white p-4">

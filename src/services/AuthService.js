@@ -9,6 +9,7 @@ import {
 } from 'firebase/auth';
 import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
 import { auth, db } from 'src/firebase';
+
 const provider = new GoogleAuthProvider();
 
 const register = async (data) => {

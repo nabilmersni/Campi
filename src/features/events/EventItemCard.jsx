@@ -1,6 +1,7 @@
 import LinkBtn from 'src/ui/LinkBtn';
 import Button from 'src/ui/Button';
 import { formatDateRange } from 'src/utils/UtilsFunctions';
+import { Link } from 'react-router-dom';
 
 function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg', item }) {
   if (type === 'landingPage') {
@@ -54,11 +55,11 @@ function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg', item }) {
   if (type === 'dash') {
     return (
       <div className="flex h-fit min-h-[20rem] flex-col items-center rounded-[3rem] border-[.2rem] border-primary bg-white-light p-3 sm:min-w-[23rem]">
-        <div className="mb-2 h-[10rem] w-full rounded-[2rem]">
+        <div className="mb-2 h-[10rem] w-full rounded-[1rem]">
           <img
             src={item.photoURLs[0] || img}
             alt="camp-img"
-            className="h-full w-full rounded-[2rem] rounded-t-[3rem] object-cover"
+            className="h-full w-full rounded-[1.5rem] rounded-t-[2rem] object-cover"
           />
         </div>
         <h2 className="mb-4 text-xl font-bold text-primary">{item.title}</h2>
@@ -90,7 +91,9 @@ function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg', item }) {
         </div>
 
         <div className="flex w-full items-center justify-center gap-3 px-3">
-          <Button type="iconBtn" icon={'view'} />
+          <Link to={`/userside/events/${item.id}`}>
+            <Button type="iconBtn" icon={'view'} />
+          </Link>
           <Button type="iconBtn" icon={'update'} />
           <Button type="iconBtn" icon={'delete'} />
         </div>
