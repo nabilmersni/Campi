@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { storage } from 'src/firebase';
 import userService from 'src/services/UserService';
@@ -10,12 +11,19 @@ import ImageInput from 'src/ui/ImageInput';
 import InputField from 'src/ui/InputField';
 import Loader from 'src/ui/Loader';
 import { ToastErrorMsg } from 'src/utils/ToastErrorMsg';
-import { calculateAge } from 'src/utils/UtilsFunctions';
+import { calculateAge, formatDateV1 } from 'src/utils/UtilsFunctions';
+import { updateCurrentUser } from '../authentication/AuthSlice';
 
-function UpdateUserForm({ handleToggleModal, user }) {
+function UpdateUserForm({
+  handleToggleModal,
+  user,
+  title = 'Update user',
+  me,
+}) {
   const [imageFile, setImageFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const queryClient = useQueryClient();
+  const dispatch = useDispatch();
 
   const { mutate } = useMutation({
     mutationFn: () => {},
@@ -35,9 +43,9 @@ function UpdateUserForm({ handleToggleModal, user }) {
     mode: 'all',
     defaultValues: {
       fullname: user.fullname,
-      birthDay: new Date(user.birthDay.seconds * 1000)
-        .toISOString()
-        .split('T')[0],
+      birthDay: user.birthDay?.seconds
+        ? new Date(user.birthDay.seconds * 1000).toISOString().split('T')[0]
+        : new Date(formatDateV1(user.birthDay)).toISOString().split('T')[0],
       phoneNumber: user.phoneNumber,
     },
   });
@@ -46,7 +54,6 @@ function UpdateUserForm({ handleToggleModal, user }) {
     try {
       let imageURL;
       setLoading(true);
-      console.log(imageFile);
       if (imageFile) {
         imageURL = await uploadImage();
         console.log(imageURL);
@@ -57,10 +64,21 @@ function UpdateUserForm({ handleToggleModal, user }) {
         id: user.uid,
         photoURL: imageURL ? imageURL : user.photoURL,
       };
-      await userService.updateUser(userData);
+      const updatedUser = await userService.updateUser(userData);
+      if (me) {
+        dispatch(
+          updateCurrentUser({
+            ...updatedUser,
+            birthDay: updatedUser.birthDay.toDate().toLocaleDateString('en-GB'),
+            createdAt: updatedUser.createdAt
+              .toDate()
+              .toLocaleDateString('en-GB'),
+          }),
+        );
+      }
       mutate();
       toast.success('User updated successfully!');
-      handleToggleModal();
+      handleToggleModal?.();
     } catch (error) {
       ToastErrorMsg(error.message);
     }
@@ -117,7 +135,7 @@ function UpdateUserForm({ handleToggleModal, user }) {
   return (
     <div className="relative flex h-full flex-col">
       {loading && <Loader />}
-      <h1 className="text-2xl font-semibold text-primary">Update user</h1>
+      <h1 className="text-2xl font-semibold text-primary">{title}</h1>
 
       <div className="mt-10 flex flex-col items-center gap-4 overflow-hidden overflow-y-auto pr-4">
         <ImageInput
@@ -206,7 +224,7 @@ function UpdateUserForm({ handleToggleModal, user }) {
           </div>
 
           <div className="mt-3">
-            <Button color={'primaryForm'}>Update user</Button>
+            <Button color={'primaryForm'}>{title}</Button>
           </div>
         </form>
       </div>

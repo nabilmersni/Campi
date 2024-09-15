@@ -58,6 +58,12 @@ const updateUser = async (data) => {
       photoURL: data.photoURL,
       birthDay: Timestamp.fromDate(new Date(data.birthDay)),
     });
+
+    const updatedDoc = await getDoc(doc(db, 'users', data.id));
+
+    if (updatedDoc.exists()) {
+      return updatedDoc.data();
+    }
   } catch (error) {
     throw new Error(error.message);
   }

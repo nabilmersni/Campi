@@ -32,6 +32,7 @@ import OrdersUserSidePage from './pages/OrdersUserSidePage';
 import ReservationsUserSidePage from './pages/ReservationsUserSidePage';
 import OdersDashPage from './pages/OdersDashPage';
 import ReservationsDashPage from './pages/ReservationsDashPage';
+import UserProfileTab from './features/users/UserProfileTab';
 
 const PrivateRoute = ({ children, role }) => {
   const { currentUser } = useSelector((state) => state.auth);
@@ -229,6 +230,11 @@ export default function AppRouter() {
               ),
             },
           ],
+        },
+
+        {
+          path: 'profile',
+          element: <UserProfileTab />,
         },
       ],
     },

@@ -62,3 +62,9 @@ export function formatDateV2(dateString) {
 
   return `${day}/${month}/${year}`;
 }
+
+export function formatDateV1(dateString) {
+  const [day, month, year] = dateString.split('/');
+
+  return `${year}-${month}-${day}`;
+}

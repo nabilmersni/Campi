@@ -44,6 +44,14 @@ export const logout = createAsyncThunk('auth/logout', async () => {
   }
 });
 
+export const updateCurrentUser = createAsyncThunk(
+  'auth/updateCurrentUser',
+  async (data) => {
+    secureLocalStorage.setItem('currentUser', data);
+    return data;
+  },
+);
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -69,9 +77,14 @@ const authSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.loading = false;
         state.currentUser = null;
+      })
+
+      // update currentUser
+      .addCase(updateCurrentUser.fulfilled, (state, action) => {
+        state.currentUser = action.payload;
       });
   },
 });
 
-// export const { logout } = authSlice.actions;
+// export const { updateCurrentUser } = authSlice.actions;
 export default authSlice.reducer;

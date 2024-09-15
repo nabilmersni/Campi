@@ -48,7 +48,7 @@ function AvatarDropDownMenu({ img, type = 'dash', isCenter = false }) {
         >
           <div className="size-12 rounded-full border-[.15rem] border-primary-light">
             <img
-              src={img}
+              src={currentUser.photoURL || img}
               alt="avatar"
               className="size-full rounded-full object-cover"
             />
@@ -72,7 +72,7 @@ function AvatarDropDownMenu({ img, type = 'dash', isCenter = false }) {
         >
           <div className="size-12 rounded-full border-[.15rem] border-primary">
             <img
-              src={img}
+              src={currentUser.photoURL || img}
               alt="avatar"
               className="size-full rounded-full object-cover"
             />
@@ -116,8 +116,12 @@ function AvatarDropDownMenu({ img, type = 'dash', isCenter = false }) {
 
               <div className="flex w-full flex-col gap-1">
                 <Link
-                  to={'/userside'}
-                  onClick={() => setIsDropDownOpen(false)}
+                  to={'/userside/profile'}
+                  onClick={() => {
+                    setIsDropDownOpen(false);
+                    setIsOpen(false);
+                    burgerBtnRef.current.playSegments([98, 0], true);
+                  }}
                   className="flex h-10 w-full items-center gap-3 rounded-[0.25rem] fill-[#4e4e4e] px-2 text-[#4e4e4e] transition-all hover:bg-bg-light hover:fill-primary-dark hover:text-primary-dark"
                 >
                   <div className="w-5">
@@ -129,7 +133,11 @@ function AvatarDropDownMenu({ img, type = 'dash', isCenter = false }) {
                 {currentUser.role !== 'user' && (
                   <Link
                     to={'/userside/reservations'}
-                    onClick={() => setIsDropDownOpen(false)}
+                    onClick={() => {
+                      setIsDropDownOpen(false);
+                      setIsOpen(false);
+                      burgerBtnRef.current.playSegments([98, 0], true);
+                    }}
                     className="flex h-10 w-full items-center gap-3 rounded-[0.25rem] fill-[#4e4e4e] px-2 text-[#4e4e4e] transition-all hover:bg-bg-light hover:fill-primary-dark hover:text-primary-dark"
                   >
                     <div className="w-5">
@@ -142,7 +150,11 @@ function AvatarDropDownMenu({ img, type = 'dash', isCenter = false }) {
                 {currentUser.role !== 'user' && (
                   <Link
                     to={'/userside/orders'}
-                    onClick={() => setIsDropDownOpen(false)}
+                    onClick={() => {
+                      setIsDropDownOpen(false);
+                      setIsOpen(false);
+                      burgerBtnRef.current.playSegments([98, 0], true);
+                    }}
                     className="flex h-10 w-full items-center gap-3 rounded-[0.25rem] fill-[#4e4e4e] px-2 text-[#4e4e4e] transition-all hover:bg-bg-light hover:fill-primary-dark hover:text-primary-dark"
                   >
                     <div className="w-6">
