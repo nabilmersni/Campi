@@ -27,7 +27,7 @@ function NotificationItemUserSide({ active }) {
             className="overflow-hidden text-ellipsis whitespace-nowrap text-sm text-black xl:max-w-[19rem]"
             title="Say Hi to Ahmed Ben ahmed"
           >
-            Say Hi to Ahmed Ben ahmed
+            Say Hi to Foulen Ben foulen
           </p>
         </div>
       </div>

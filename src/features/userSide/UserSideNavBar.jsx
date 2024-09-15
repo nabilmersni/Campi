@@ -84,13 +84,13 @@ function UserSideNavBar() {
 
           <div className="flex flex-row-reverse items-center gap-3">
             {currentUser && (
-              <LinkBtn to={''} type="iconLinkBtn">
+              <LinkBtn to={'#'} type="iconLinkBtn">
                 <NotifIcon />
               </LinkBtn>
             )}
 
             {currentUser && (
-              <LinkBtn to={''} type="iconLinkBtn">
+              <LinkBtn to={'#'} type="iconLinkBtn">
                 <MessengerIcon />
               </LinkBtn>
             )}
@@ -160,13 +160,13 @@ function UserSideNavBar() {
 
                 <div className="flex flex-row-reverse items-center gap-3">
                   {currentUser && (
-                    <LinkBtn to={''} type="iconLinkBtn">
+                    <LinkBtn to={'#'} type="iconLinkBtn">
                       <NotifIcon />
                     </LinkBtn>
                   )}
 
                   {currentUser && (
-                    <LinkBtn to={''} type="iconLinkBtn">
+                    <LinkBtn to={'#'} type="iconLinkBtn">
                       <MessengerIcon />
                     </LinkBtn>
                   )}

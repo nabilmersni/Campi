@@ -74,11 +74,28 @@ const totalReservationCount = async () => {
   }
 };
 
+const getMyResCount = async (id) => {
+  try {
+    //
+    const coll = collection(db, 'reservations');
+    const q = query(
+      coll,
+      where('state', '==', true),
+      where('userID', '==', id),
+    );
+    const snapshot = await getCountFromServer(q);
+    return snapshot.data().count;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const reservationService = {
   confirmRes,
   getAllRes,
   getMyRes,
   totalReservationCount,
+  getMyResCount,
 };
 
 export default reservationService;

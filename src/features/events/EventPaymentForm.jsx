@@ -6,7 +6,6 @@ import {
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import orderService from 'src/services/OrderService';
 import reservationService from 'src/services/ReservationService';
 
 function EventPaymentForm() {
@@ -35,7 +34,7 @@ function EventPaymentForm() {
       try {
         await reservationService.confirmRes(paymentIntent.id);
         toast.success('Payment successful! Your reservation has been placed.');
-        navigate('/userside/orders');
+        navigate('/userside/reservations');
       } catch (error) {
         console.log(error.message);
       }

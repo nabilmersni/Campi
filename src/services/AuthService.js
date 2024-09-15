@@ -1,11 +1,14 @@
 import {
   createUserWithEmailAndPassword,
   deleteUser,
+  EmailAuthProvider,
   GoogleAuthProvider,
+  reauthenticateWithCredential,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
+  updatePassword,
 } from 'firebase/auth';
 import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
 import { auth, db } from 'src/firebase';
@@ -114,12 +117,27 @@ const signInWithGmail = async () => {
   }
 };
 
+const changePassword = async (data) => {
+  try {
+    const credential = EmailAuthProvider.credential(
+      auth.currentUser.email,
+      data.oldPassword,
+    );
+
+    await reauthenticateWithCredential(auth.currentUser, credential);
+    await updatePassword(auth.currentUser, data.password);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const authService = {
   register,
   login,
   logout,
   fogotPassword,
   signInWithGmail,
+  changePassword,
 };
 
 export default authService;

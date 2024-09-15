@@ -67,11 +67,27 @@ const totalOrderCount = async () => {
   }
 };
 
+const getMyOrdersCount = async (id) => {
+  try {
+    const coll = collection(db, 'orders');
+    const q = query(
+      coll,
+      where('state', '==', true),
+      where('userID', '==', id),
+    );
+    const snapshot = await getCountFromServer(q);
+    return snapshot.data().count;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const orderService = {
   confirmOrder,
   getAllOrders,
   getMyOrders,
   totalOrderCount,
+  getMyOrdersCount,
 };
 
 export default orderService;
