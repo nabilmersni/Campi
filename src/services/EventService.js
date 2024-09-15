@@ -2,6 +2,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getCountFromServer,
   getDoc,
   getDocs,
   orderBy,
@@ -114,6 +115,17 @@ const updateEvent = async (data) => {
   }
 };
 
+const totalEventCount = async () => {
+  try {
+    const coll = collection(db, 'events');
+    const q = query(coll);
+    const snapshot = await getCountFromServer(q);
+    return snapshot.data().count;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const eventService = {
   addEvent,
   getAllEvents,
@@ -121,6 +133,7 @@ const eventService = {
   getEventParticipants,
   deleteEvent,
   updateEvent,
+  totalEventCount,
 };
 
 export default eventService;

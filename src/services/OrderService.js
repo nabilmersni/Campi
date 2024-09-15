@@ -1,6 +1,7 @@
 import {
   collection,
   doc,
+  getCountFromServer,
   getDoc,
   getDocs,
   orderBy,
@@ -55,6 +56,22 @@ const getMyOrders = async (id) => {
   }
 };
 
-const orderService = { confirmOrder, getAllOrders, getMyOrders };
+const totalOrderCount = async () => {
+  try {
+    const coll = collection(db, 'orders');
+    const q = query(coll, where('state', '==', true));
+    const snapshot = await getCountFromServer(q);
+    return snapshot.data().count;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const orderService = {
+  confirmOrder,
+  getAllOrders,
+  getMyOrders,
+  totalOrderCount,
+};
 
 export default orderService;

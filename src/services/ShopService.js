@@ -2,6 +2,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getCountFromServer,
   getDoc,
   getDocs,
   orderBy,
@@ -80,12 +81,24 @@ const updateProduct = async (data) => {
   }
 };
 
+const totalProductCount = async () => {
+  try {
+    const coll = collection(db, 'products');
+    const q = query(coll);
+    const snapshot = await getCountFromServer(q);
+    return snapshot.data().count;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const shopService = {
   addProduct,
   getAllProducts,
   getProductDetails,
   deleteProduct,
   updateProduct,
+  totalProductCount,
 };
 
 export default shopService;

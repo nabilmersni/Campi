@@ -1,6 +1,7 @@
 import {
   collection,
   doc,
+  getCountFromServer,
   getDoc,
   getDocs,
   orderBy,
@@ -62,11 +63,23 @@ const updateUser = async (data) => {
   }
 };
 
+const totalUserCount = async () => {
+  try {
+    const coll = collection(db, 'users');
+    const q = query(coll, where('role', '==', 'user'));
+    const snapshot = await getCountFromServer(q);
+    return snapshot.data().count;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const userService = {
   getAllUsers,
   lockUser,
   unlockUser,
   updateUser,
+  totalUserCount,
 };
 
 export default userService;

@@ -1,6 +1,7 @@
 import {
   collection,
   doc,
+  getCountFromServer,
   getDoc,
   getDocs,
   orderBy,
@@ -62,6 +63,22 @@ const getMyRes = async (id) => {
   }
 };
 
-const reservationService = { confirmRes, getAllRes, getMyRes };
+const totalReservationCount = async () => {
+  try {
+    const coll = collection(db, 'reservations');
+    const q = query(coll, where('state', '==', true));
+    const snapshot = await getCountFromServer(q);
+    return snapshot.data().count;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const reservationService = {
+  confirmRes,
+  getAllRes,
+  getMyRes,
+  totalReservationCount,
+};
 
 export default reservationService;
