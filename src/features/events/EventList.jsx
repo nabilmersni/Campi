@@ -1,23 +1,13 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Separator from 'src/ui/Separator';
 import EventItemCard from './EventItemCard';
 import InputField from 'src/ui/InputField';
-import eventService from 'src/services/EventService';
-import { useQuery } from '@tanstack/react-query';
 import Loader from 'src/ui/Loader';
-import { useDispatch, useSelector } from 'react-redux';
 import { setFiltredEvents } from './EventSlice';
-import { useEffect } from 'react';
 
-function EventList({ type }) {
-  const {
-    isPending,
-    data: events,
-    error,
-  } = useQuery({
-    queryKey: ['events'],
-    queryFn: eventService.getAllEvents,
-  });
-
+function EventList({ type, isPending, events }) {
   const { filtredEvents } = useSelector((state) => state.event);
   const dispatch = useDispatch();
 

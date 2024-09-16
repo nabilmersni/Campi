@@ -3,15 +3,8 @@ import Loader from 'src/ui/Loader';
 import { useQuery } from '@tanstack/react-query';
 import userService from 'src/services/UserService';
 
-function UsersTable() {
-  const {
-    isPending,
-    data: users,
-    error,
-  } = useQuery({
-    queryKey: ['users'],
-    queryFn: userService.getAllUsers,
-  });
+function UsersTable({isPending, users}) {
+
 
   // const [page, setPage] = useState(0);
   // const [rowsPerPage, setRowsPerPage] = useState(10);

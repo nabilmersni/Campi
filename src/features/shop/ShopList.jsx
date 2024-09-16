@@ -9,16 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { setFiltredProducts } from './ShopSlice';
 
-function ShopList({ type }) {
-  const {
-    isPending,
-    data: products,
-    error,
-  } = useQuery({
-    queryKey: ['products'],
-    queryFn: shopService.getAllProducts,
-  });
-
+function ShopList({ type, products, isPending }) {
   const { filtredProducts } = useSelector((state) => state.shop);
   const dispatch = useDispatch();
 

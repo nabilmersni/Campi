@@ -70,7 +70,7 @@ function LinkBtn({
           offset={to === 'values' ? 180 : -110}
           duration={500}
           onClick={handleClick}
-          className="navLink relative z-20 w-16 cursor-pointer rounded-full font-bold text-slate-300 transition-all hover:text-[#fefdff]"
+          className="navLink text-slate-300 relative z-20 w-16 cursor-pointer rounded-full font-bold transition-all hover:text-[#fefdff]"
         >
           <span className="flex min-w-16 items-center justify-center">
             {children}
@@ -103,7 +103,7 @@ function LinkBtn({
           offset={-70}
           duration={500}
           onClick={handleClick}
-          className="navLink relative z-20 w-16 rounded-full text-2xl font-bold text-slate-300 transition-all hover:text-[#fefdff]"
+          className="navLink text-slate-300 relative z-20 w-16 rounded-full text-2xl font-bold transition-all hover:text-[#fefdff]"
         >
           <span
             className="flex min-w-24 items-center justify-center"
@@ -142,7 +142,7 @@ function LinkBtn({
           smooth={true}
           offset={-70}
           duration={500}
-          className="navLink relative z-20 w-16 cursor-pointer rounded-full text-[1rem] font-bold text-slate-300 transition-all hover:text-[#fefdff]"
+          className="navLink text-slate-300 relative z-20 w-16 cursor-pointer rounded-full text-[1rem] font-bold transition-all hover:text-[#fefdff]"
         >
           <span className="">{children}</span>
         </ScrollLink>
@@ -162,7 +162,7 @@ function LinkBtn({
     return (
       <NavLink
         to={to}
-        className="navLink relative z-20 w-16 rounded-full font-bold text-slate-300 transition-all hover:text-[#fefdff]"
+        className="navLink text-slate-300 relative z-20 w-16 rounded-full font-bold transition-all hover:text-[#fefdff]"
       >
         {children}
       </NavLink>
@@ -295,7 +295,7 @@ function LinkBtn({
             )}
 
             {sidebarIcon === 'reservations' ? (
-              <div className="ml-[0.2rem] mt-[0.2rem] size-[1.65rem]">
+              <div className="ml-[0.2rem] mt-[0.2rem] size-[1.55rem]">
                 <ReservationIcon />
               </div>
             ) : (
