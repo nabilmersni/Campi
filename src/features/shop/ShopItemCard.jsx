@@ -33,16 +33,16 @@ function ShopItemCard({ type = 'landingPage', img = '/img/tent.png', item }) {
       <div className="flex min-h-[20rem] w-full flex-col items-center rounded-[3rem] border-[.2rem] border-primary bg-[#F9FDFF] p-3 sm:w-fit sm:min-w-[23rem]">
         <div className="mb-2 h-[10rem] w-full rounded-[2rem] bg-white-light p-3">
           <img
-            src={img}
+            src={item.photoURLs[0] || img}
             alt="camp-img"
             className="h-full w-full rounded-[2rem] rounded-t-[3rem] object-contain"
           />
         </div>
 
         <div className="mb-3 flex flex-col items-center justify-center">
-          <h2 className="text-xl font-bold text-primary">REI Co-op</h2>
+          <h2 className="text-xl font-bold text-primary">{item.title}</h2>
           <span className="max-w-[15rem] overflow-hidden truncate whitespace-nowrap text-[.8rem] text-primary">
-            Trail Hut 2 Tent with Footprint
+            {item.subtitle}
           </span>
         </div>
 
@@ -56,9 +56,18 @@ function ShopItemCard({ type = 'landingPage', img = '/img/tent.png', item }) {
         <div className="mb-3 size-[.3rem] rounded-full bg-primary sm:block"></div>
 
         <div className="flex w-full flex-col items-center justify-center gap-2 px-3">
-          <span className="text-xl font-extrabold text-primary">$199</span>
-          <LinkBtn size={4} type={'primaryLight'}>
-            Add to cart
+          <span className="text-xl font-extrabold text-primary">
+            {item.price} TND
+          </span>
+
+          <div className="my-1 h-1 w-10 rounded-full bg-primary-light"></div>
+
+          <LinkBtn
+            to={`/userside/shop/${item.id}`}
+            size={4}
+            type={'primaryLight'}
+          >
+            more info
           </LinkBtn>
           {/* <div className="size-[.3rem] rounded-full bg-primary sm:block"></div> */}
         </div>

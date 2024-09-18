@@ -58,7 +58,7 @@ function LinkBtn({
   if (type === 'navBarLink') {
     return (
       <li
-        className="relative"
+        className="relative cursor-pointer text-white"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -91,7 +91,7 @@ function LinkBtn({
   if (type === 'navBarLinkCollapsed') {
     return (
       <li
-        className="relative"
+        className="relative cursor-pointer text-white"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -333,7 +333,7 @@ function LinkBtn({
   if (type === 'userSideNavbarLink2') {
     const getClassName = () => {
       const isExactActive = location.pathname === to;
-      return `text-nowrap w-full h-full cursor-pointer rounded-xl  px-5 py-2 font-bold text-primary border-[2px] border-[#D9D2FF] text-center transition-all hover:bg-primary-light active:bg-[#D9D2FF] ${isExactActive ? 'bg-primary-light' : ''}`;
+      return `text-nowrap w-full h-full cursor-pointer rounded-xl  px-5 py-2 font-bold text-primary border-[2px] bg-primary-light border-[#D9D2FF] text-center transition-all hover:bg-[#d8d0ff] active:bg-[#D9D2FF] ${isExactActive ? 'bg-primary-light' : ''}`;
     };
     return (
       <NavLink

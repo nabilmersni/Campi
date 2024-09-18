@@ -33,6 +33,7 @@ import ReservationsUserSidePage from './pages/ReservationsUserSidePage';
 import OdersDashPage from './pages/OdersDashPage';
 import ReservationsDashPage from './pages/ReservationsDashPage';
 import UserProfileTab from './features/users/UserProfileTab';
+import DashboardProfilePage from './pages/DashboardProfilePage';
 
 const PrivateRoute = ({ children, role }) => {
   const { currentUser } = useSelector((state) => state.auth);
@@ -161,6 +162,11 @@ export default function AppRouter() {
           path: 'reservations',
           element: <ReservationsDashPage />,
         },
+
+        {
+          path: 'profile',
+          element: <DashboardProfilePage />,
+        },
       ],
     },
 
@@ -171,7 +177,11 @@ export default function AppRouter() {
       children: [
         {
           index: true,
-          element: <HomeUserSidePage />,
+          element: (
+            <PrivateRoute role={'user'}>
+              <HomeUserSidePage />
+            </PrivateRoute>
+          ),
         },
 
         {

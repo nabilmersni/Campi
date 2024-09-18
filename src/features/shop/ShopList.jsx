@@ -13,23 +13,25 @@ function ShopList({ type, products, isPending }) {
   const { filtredProducts } = useSelector((state) => state.shop);
   const dispatch = useDispatch();
 
+  const { isPending: isPending2, data: products2 } = useQuery({
+    queryKey: ['products'],
+    queryFn: shopService.getAllProducts,
+  });
+
   useEffect(() => {
-    dispatch(setFiltredProducts(products));
-  }, [products, dispatch]);
+    dispatch(setFiltredProducts(products2));
+  }, [products2, dispatch]);
 
   if (type === 'landingPage') {
     return (
       <div className="relative mt-4 flex w-full flex-col items-center justify-center rounded-[1.5rem] border-[.15rem] border-primary p-7 pt-16 sm:mt-9 sm:rounded-[3rem] sm:pt-32 md:mt-12 lg:mt-20">
         <div className="mb-7 flex flex-wrap items-center justify-center gap-4 gap-y-10 sm:mb-16 lg:gap-x-20">
-          <ShopItemCard img={'/img/tent.png'} />
-          <ShopItemCard img={'/img/backpack.png'} />
-          <ShopItemCard img={'/img/sleepBag.png'} />
-          <ShopItemCard img={'/img/tent.png'} />
-          <ShopItemCard img={'/img/backpack.png'} />
-          <ShopItemCard img={'/img/sleepBag.png'} />
+          {products2?.slice(0, 6)?.map((product) => (
+            <ShopItemCard type="landingPage" key={product.id} item={product} />
+          ))}
         </div>
 
-        <LinkBtn type={'primary'} size={2}>
+        <LinkBtn to={'/userside/shop'} type={'primary'} size={2}>
           View all
         </LinkBtn>
       </div>
@@ -53,9 +55,9 @@ function ShopList({ type, products, isPending }) {
   if (type === 'userside') {
     return (
       <div className="flex flex-col items-center text-black-light">
-        {isPending && <Loader />}
+        {isPending2 && <Loader />}
         <div className="flex w-full flex-col items-center justify-between gap-3 px-6 sm:flex-row">
-          <h2 className="text-lg font-semibold">Event list</h2>
+          <h2 className="text-lg font-semibold">Products list</h2>
           <div className="flex items-center gap-4 self-end">
             <p>Sort by:</p>
             <InputField color="primary" isSelect={true} />

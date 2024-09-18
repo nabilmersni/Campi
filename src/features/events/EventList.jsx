@@ -6,24 +6,28 @@ import EventItemCard from './EventItemCard';
 import InputField from 'src/ui/InputField';
 import Loader from 'src/ui/Loader';
 import { setFiltredEvents } from './EventSlice';
+import eventService from 'src/services/EventService';
+import { useQuery } from '@tanstack/react-query';
 
 function EventList({ type, isPending, events }) {
   const { filtredEvents } = useSelector((state) => state.event);
   const dispatch = useDispatch();
 
+  const { isPending: isPending2, data: events2 } = useQuery({
+    queryKey: ['events'],
+    queryFn: eventService.getAllEvents,
+  });
+
   useEffect(() => {
-    dispatch(setFiltredEvents(events));
-  }, [events, dispatch]);
+    dispatch(setFiltredEvents(events2));
+  }, [events2, dispatch]);
 
   if (type === 'landingPage') {
     return (
       <div className="mb-12 mt-16 flex flex-wrap items-center justify-center gap-4 gap-y-10 sm:mb-16 lg:gap-x-24">
-        <EventItemCard type="landingPage" img={'/img/camp1.jpg'} />
-        <EventItemCard type="landingPage" img={'/img/camp2.jpg'} />
-        <EventItemCard type="landingPage" img={'/img/camp3.jpg'} />
-        <EventItemCard type="landingPage" img={'/img/camp1.jpg'} />
-        <EventItemCard type="landingPage" img={'/img/camp2.jpg'} />
-        <EventItemCard type="landingPage" img={'/img/camp3.jpg'} />
+        {events2?.slice(0, 6)?.map((event) => (
+          <EventItemCard key={event.id} item={event} type="landingPage" />
+        ))}
       </div>
     );
   }
@@ -52,7 +56,7 @@ function EventList({ type, isPending, events }) {
           <Separator />
         </div>
         <div className="light-scrollbar flex h-full w-full flex-col items-center gap-5 overflow-y-auto pr-3">
-          {events?.slice(0, 3)?.map((event) => (
+          {events2?.slice(0, 3)?.map((event) => (
             <EventItemCard key={event.id} item={event} type="homeuserside" />
           ))}
         </div>
@@ -63,7 +67,7 @@ function EventList({ type, isPending, events }) {
   if (type === 'eventsuserside') {
     return (
       <div className="flex flex-col items-center text-black-light">
-        {isPending && <Loader />}
+        {isPending2 && <Loader />}
 
         <div className="flex w-full flex-col items-center justify-between gap-3 px-6 sm:flex-row">
           <h2 className="text-lg font-semibold">Event list</h2>

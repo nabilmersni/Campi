@@ -2,11 +2,9 @@ import {
   collection,
   doc,
   getCountFromServer,
-  getDoc,
   getDocs,
   orderBy,
   query,
-  setDoc,
   updateDoc,
   where,
 } from 'firebase/firestore';

@@ -4,8 +4,6 @@ import { useForm } from 'react-hook-form';
 import InputField from 'src/ui/InputField';
 import Button from 'src/ui/Button';
 import LinkBtn from 'src/ui/LinkBtn';
-import GoogleAuth from './GoogleAuth';
-import FacebookAuth from './FacebookAuth';
 import authService from 'src/services/AuthService';
 import Loader from 'src/ui/Loader';
 import { toast } from 'react-toastify';
@@ -195,16 +193,16 @@ function RegisterForm() {
 
           <Button color={'primaryForm'}>Sign Up</Button>
 
-          <div className="my-3 flex items-center gap-2">
+          {/* <div className="my-3 flex items-center gap-2">
             <div className="h-[.15rem] w-20 rounded-full bg-primary opacity-50"></div>
             <span className="text-md font-semibold text-primary">or</span>
             <div className="h-[.15rem] w-20 rounded-full bg-primary opacity-50"></div>
-          </div>
+          </div> */}
 
-          <div className="flex w-full flex-col items-center justify-center gap-2">
+          {/* <div className="flex w-full flex-col items-center justify-center gap-2">
             <GoogleAuth>Sign Up with Google</GoogleAuth>
             <FacebookAuth>Sign Up with Facebook</FacebookAuth>
-          </div>
+          </div> */}
 
           <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-center">
             <span className="text-nowrap">Already have an account ?</span>

@@ -5,7 +5,6 @@ import CategoriesInput from 'src/ui/CategoriesInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 import { deleteCategory, reset, setFiltredProducts } from './ShopSlice';
-import { deleteState } from '../events/EventSlice';
 
 function ShopFilter() {
   const { filtredProducts, categories, priceRange } = useSelector(

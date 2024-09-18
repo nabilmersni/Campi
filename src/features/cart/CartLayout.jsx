@@ -8,7 +8,7 @@ function CartLayout({ children }) {
 
   useEffect(() => {
     dispatch(setStage('cart'));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col gap-4 text-black-light">

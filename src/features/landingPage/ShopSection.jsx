@@ -1,6 +1,4 @@
 import Title from 'src/ui/Title';
-import LinkBtn from 'src/ui/LinkBtn';
-import ShopItemCard from '../shop/ShopItemCard';
 import ShopList from '../shop/ShopList';
 
 function ShopSection() {

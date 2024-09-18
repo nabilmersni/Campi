@@ -3,7 +3,6 @@ import Lottie from 'lottie-react';
 import { useRef } from 'react';
 import Title from 'src/ui/Title';
 import plantAnimation from '../../assets/lottiesAnimations/trees.json';
-import EventItemCard from '../events/EventItemCard';
 import LinkBtn from 'src/ui/LinkBtn';
 import EventList from '../events/EventList';
 
@@ -28,7 +27,7 @@ function EventsSection() {
 
         <EventList type={'landingPage'} />
 
-        <LinkBtn type={'primary'} size={2}>
+        <LinkBtn to={'userside/events'} type={'primary'} size={2}>
           View all
         </LinkBtn>
       </div>

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import InputField from 'src/ui/InputField';
@@ -8,8 +7,6 @@ import Button from 'src/ui/Button';
 
 import authService from 'src/services/AuthService';
 import Loader from 'src/ui/Loader';
-import { ToastErrorMsg } from 'src/utils/ToastErrorMsg';
-import { calculateAge } from 'src/utils/UtilsFunctions';
 
 function ChangePasswordForm() {
   const {

@@ -25,7 +25,7 @@ function OrderItem({ item }) {
 
       setBoughtProducts(temp);
     }
-  }, [products]);
+  }, [products, item]);
 
   const ref = useRef(null);
 
@@ -41,7 +41,7 @@ function OrderItem({ item }) {
           <div className="mr-auto flex">
             <span className="mr-1 text-primary">Oder num: </span>{' '}
             <p
-              className="max-w-[5rem] truncate xsm:max-w-[25vw] sm:max-w-full"
+              className="max-w-[5rem] truncate sm:max-w-full xsm:max-w-[25vw]"
               title={item.id}
             >
               {item.id}
@@ -107,7 +107,7 @@ function OrderItem({ item }) {
                 key={boughtProduct.id}
                 className="relative flex size-[12rem] flex-col items-center justify-center gap-2 rounded-[1rem] border-[3px] border-border-light p-2"
               >
-                <div className="flex size-[7rem] w-full items-center justify-center rounded-[0.9rem] bg-slate-200">
+                <div className="bg-slate-200 flex size-[7rem] w-full items-center justify-center rounded-[0.9rem]">
                   <img
                     src={boughtProduct.photoURLs[0]}
                     alt=""

@@ -98,7 +98,6 @@ const signInWithGmail = async () => {
   try {
     const res = await signInWithPopup(auth, provider);
     const user = res.user;
-
     const docRef = doc(db, 'users', user.uid);
     const docSnap = await getDoc(docRef);
 

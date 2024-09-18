@@ -58,7 +58,7 @@ function FilterListLayout({ children }) {
       </div>
       {/* filter modal */}
 
-      <div className="flex min-h-[80rem] flex-grow flex-col rounded-[1rem] border-[3px] border-border-light bg-white p-4">
+      <div className="flex min-h-[33rem] flex-grow flex-col rounded-[1rem] border-[3px] border-border-light bg-white p-4">
         {children[1]}
       </div>
     </div>

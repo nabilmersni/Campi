@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useRef, useState } from 'react';
 import eventService from 'src/services/EventService';
-import shopService from 'src/services/ShopService';
 import EventItemCard from '../events/EventItemCard';
 import ReservationIcon from 'src/assets/svgs/reservationIcon.svg';
 
@@ -40,7 +39,7 @@ function ReservationItem({ item }) {
           <div className="mr-auto flex">
             <span className="mr-1 text-primary">Reservation num: </span>{' '}
             <p
-              className="max-w-[5rem] truncate xsm:max-w-[25vw] sm:max-w-full"
+              className="max-w-[5rem] truncate sm:max-w-full xsm:max-w-[25vw]"
               title={item.id}
             >
               {item.id}

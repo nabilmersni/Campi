@@ -1,9 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Separator from 'src/ui/Separator';
 import { setStage } from './CartSlice';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function CartChekout() {
   const { itemsCount, totalPrice, stage } = useSelector((state) => state.cart);
+  const { currentUser } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   return (
@@ -42,7 +46,14 @@ function CartChekout() {
         {stage === 'cart' && (
           <button
             disabled={totalPrice === 0}
-            onClick={() => dispatch(setStage('address'))}
+            onClick={() => {
+              if (!currentUser) {
+                toast.warn('You must log in first to proceed!');
+                navigate('/login');
+              } else {
+                dispatch(setStage('address'));
+              }
+            }}
             className={`my-2 w-full rounded-[0.5rem] p-2 text-sm font-bold transition-all ${totalPrice === 0 ? 'bg-[#f4f2ff] text-[#a79adb]' : 'bg-bg-light text-primary hover:bg-[#e6dfff]'}`}
           >
             PLACE ORDER

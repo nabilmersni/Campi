@@ -46,7 +46,7 @@ function NavBar() {
 
           <div className="flex items-center gap-4">
             <LinkBtn type={'navBarLoginLink'} to={'/login'}>
-              Login
+              <span className="text-white">Login</span>
             </LinkBtn>
 
             <LinkBtn type={'hero'} to={'/signup'}>

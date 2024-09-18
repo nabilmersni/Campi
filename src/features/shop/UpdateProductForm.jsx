@@ -7,7 +7,6 @@ import Button from 'src/ui/Button';
 import CategoriesInput from 'src/ui/CategoriesInput';
 import InputField from 'src/ui/InputField';
 import Loader from 'src/ui/Loader';
-import StatesInput from 'src/ui/StatesInput';
 import { ToastErrorMsg } from 'src/utils/ToastErrorMsg';
 
 function UpdateProductForm({ handleToggleModal, product }) {

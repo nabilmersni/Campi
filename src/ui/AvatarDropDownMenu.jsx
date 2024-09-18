@@ -115,22 +115,41 @@ function AvatarDropDownMenu({ img, type = 'dash', isCenter = false }) {
               ></div>
 
               <div className="flex w-full flex-col gap-1">
-                <Link
-                  to={'/userside/profile'}
-                  onClick={() => {
-                    setIsDropDownOpen(false);
-                    setIsOpen(false);
-                    burgerBtnRef.current.playSegments([98, 0], true);
-                  }}
-                  className="flex h-10 w-full items-center gap-3 rounded-[0.25rem] fill-[#4e4e4e] px-2 text-[#4e4e4e] transition-all hover:bg-bg-light hover:fill-primary-dark hover:text-primary-dark"
-                >
-                  <div className="w-5">
-                    <ProfileIcon />
-                  </div>
-                  <span className="font-semibold">My profile</span>
-                </Link>
+                {currentUser.role === 'user' && (
+                  <Link
+                    to={'/userside/profile'}
+                    onClick={() => {
+                      setIsDropDownOpen(false);
+                      setIsOpen(false);
+                      burgerBtnRef.current.playSegments([98, 0], true);
+                    }}
+                    className="flex h-10 w-full items-center gap-3 rounded-[0.25rem] fill-[#4e4e4e] px-2 text-[#4e4e4e] transition-all hover:bg-bg-light hover:fill-primary-dark hover:text-primary-dark"
+                  >
+                    <div className="w-5">
+                      <ProfileIcon />
+                    </div>
+                    <span className="font-semibold">My profile</span>
+                  </Link>
+                )}
 
-                {currentUser.role !== 'user' && (
+                {currentUser.role === 'admin' && (
+                  <Link
+                    to={'/dashboard/profile'}
+                    onClick={() => {
+                      setIsDropDownOpen(false);
+                      setIsOpen(false);
+                      burgerBtnRef.current.playSegments([98, 0], true);
+                    }}
+                    className="flex h-10 w-full items-center gap-3 rounded-[0.25rem] fill-[#4e4e4e] px-2 text-[#4e4e4e] transition-all hover:bg-bg-light hover:fill-primary-dark hover:text-primary-dark"
+                  >
+                    <div className="w-5">
+                      <ProfileIcon />
+                    </div>
+                    <span className="font-semibold">My profile</span>
+                  </Link>
+                )}
+
+                {currentUser.role === 'user' && (
                   <Link
                     to={'/userside/reservations'}
                     onClick={() => {
@@ -147,7 +166,7 @@ function AvatarDropDownMenu({ img, type = 'dash', isCenter = false }) {
                   </Link>
                 )}
 
-                {currentUser.role !== 'user' && (
+                {currentUser.role === 'user' && (
                   <Link
                     to={'/userside/orders'}
                     onClick={() => {
@@ -165,7 +184,7 @@ function AvatarDropDownMenu({ img, type = 'dash', isCenter = false }) {
                 )}
 
                 <Link
-                  to={''}
+                  to={'#'}
                   onClick={() => setIsDropDownOpen(false)}
                   className="flex h-10 w-full items-center gap-3 rounded-[0.25rem] fill-[#4e4e4e] px-2 text-[#4e4e4e] transition-all hover:bg-bg-light hover:fill-primary-dark hover:text-primary-dark"
                 >

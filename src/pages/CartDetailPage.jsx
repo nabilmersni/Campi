@@ -12,11 +12,7 @@ import Separator from 'src/ui/Separator';
 
 function CartDetailPage() {
   const { itemsCount, cartItems, stage } = useSelector((state) => state.cart);
-  const {
-    data: products,
-    isPending,
-    error,
-  } = useQuery({
+  const { data: products } = useQuery({
     queryKey: ['products'],
     queryFn: shopService.getAllProducts,
   });

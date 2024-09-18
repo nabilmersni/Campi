@@ -13,7 +13,10 @@ function AuthFormLayout() {
         <NavBar />
 
         <div className="mt-24 flex flex-col-reverse items-center justify-evenly gap-4 md:flex-row lg:px-8">
-          <Lottie animationData={AuthAnimation} className="flex-1" />
+          <Lottie
+            animationData={AuthAnimation}
+            className="hidden flex-1 xl:flex"
+          />
 
           <Outlet />
         </div>
