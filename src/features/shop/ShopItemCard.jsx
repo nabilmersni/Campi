@@ -87,8 +87,16 @@ function ShopItemCard({ type = 'landingPage', img = '/img/tent.png', item }) {
         </div>
 
         <div className="mb-3 flex flex-col items-center justify-center">
-          <h2 className="text-xl font-bold text-primary">{item.title}</h2>
-          <span className="max-w-[15rem] overflow-hidden truncate whitespace-nowrap text-[.8rem] text-primary">
+          <h2
+            className="max-w-[18rem] truncate text-xl font-bold text-primary"
+            title={item.title}
+          >
+            {item.title}
+          </h2>
+          <span
+            className="max-w-[15rem] overflow-hidden truncate whitespace-nowrap text-[.8rem] text-primary"
+            title={item.subtitle}
+          >
             {item.subtitle}
           </span>
         </div>
@@ -138,7 +146,9 @@ function ShopItemCard({ type = 'landingPage', img = '/img/tent.png', item }) {
           </div>
 
           <div className="mb-3 flex flex-col items-center justify-center">
-            <h2 className="text-xl font-bold text-primary">{item.title}</h2>
+            <h2 className="max-w-[15rem] truncate text-xl font-bold text-primary">
+              {item.title}
+            </h2>
             <span className="max-w-[15rem] overflow-hidden truncate whitespace-nowrap text-[.8rem] text-primary">
               {item.subtitle}
             </span>

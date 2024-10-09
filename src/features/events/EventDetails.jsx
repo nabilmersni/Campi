@@ -32,7 +32,10 @@ function EventDetails({ event }) {
       <div className="flex w-full flex-col items-center justify-between gap-1 px-4 sm:flex-row sm:px-16">
         <div className="flex items-center gap-3">
           <img src="/img/campIcon.svg" alt="campIcon" className="w-6" />
-          <h2 className="truncate text-nowrap text-[1.7rem] font-extrabold text-primary sm:max-w-[25rem]">
+          <h2
+            className="truncate text-nowrap text-[1.7rem] font-extrabold text-primary sm:max-w-[25rem]"
+            title={event.title}
+          >
             {event.title}
           </h2>
         </div>

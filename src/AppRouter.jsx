@@ -17,8 +17,7 @@ import HomeUserSidePage from './pages/HomeUserSidePage';
 import EventsUserSidePage from './pages/EventsUserSidePage';
 import ShopUserSidePage from './pages/ShopUserSidePage';
 import CartDetailPage from './pages/CartDetailPage';
-import CartAddressPage from './pages/CartAddressPage';
-import CartPaymentPage from './pages/CartPaymentPage';
+
 import EventDetailsPage, {
   loader as eventDetailLoader,
 } from './pages/EventDetailsPage';
@@ -222,22 +221,6 @@ export default function AppRouter() {
             {
               index: true,
               element: <CartDetailPage />,
-            },
-            {
-              path: 'address',
-              element: (
-                <PrivateRoute role={'user'}>
-                  <CartAddressPage />
-                </PrivateRoute>
-              ),
-            },
-            {
-              path: 'payment',
-              element: (
-                <PrivateRoute role={'user'}>
-                  <CartPaymentPage />
-                </PrivateRoute>
-              ),
             },
           ],
         },

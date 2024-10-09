@@ -77,7 +77,12 @@ function EventItemCard({ type = 'landingPage', img = '/img/camp1.jpg', item }) {
             className="h-full w-full rounded-[1.5rem] rounded-t-[2rem] object-cover"
           />
         </div>
-        <h2 className="mb-4 text-xl font-bold text-primary">{item.title}</h2>
+        <h2
+          className="mb-4 max-w-[19rem] truncate text-xl font-bold text-primary"
+          title={item.title}
+        >
+          {item.title}
+        </h2>
 
         <div className="mb-6 flex items-center justify-center gap-5">
           <div className="flex flex-1 items-center justify-center gap-2">
